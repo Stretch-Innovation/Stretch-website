@@ -1,11 +1,222 @@
 ---
-import Welcome from '../components/Welcome.astro';
+import { getCollection } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import BottleneckCard from '../components/BottleneckCard.astro';
+import CaseCard from '../components/CaseCard.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+import CTASection from '../components/CTASection.astro';
+import StatBar from '../components/StatBar.astro';
+import { services } from '../data/services';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const allCases = await getCollection('cases');
+const featuredCases = allCases.filter((c) => c.data.featured).slice(0, 3);
+
+const bottlenecks = [
+  { num: '01', title: 'Flying Blind', desc: 'No visibility into what drives growth' },
+  { num: '02', title: 'Struggling for Demand', desc: 'Not enough qualified opportunities' },
+  { num: '03', title: 'Struggling for Conversion', desc: 'Too few opportunities become revenue' },
+  { num: '04', title: 'Struggling to Scale', desc: 'Growth creates chaos instead of systems' },
+];
+
+const clients = ['Vandemoortele', 'Brouwerij Van Steenberge', 'H.Essers', 'Luminus', 'Group Jansen'];
+
+const steps = [
+  {
+    title: 'Audit',
+    desc: 'We map your current growth setup, identify bottlenecks, and benchmark against what works.',
+  },
+  {
+    title: 'Prioritize',
+    desc: 'We focus on the highest-impact opportunities — validated through data, not assumptions.',
+  },
+  {
+    title: 'Build',
+    desc: 'We build the systems, processes, and capabilities that turn proven initiatives into predictable growth.',
+  },
+];
+
+const testimonials = [
+  {
+    quote:
+      'Stretch went above and beyond... They took the time to dive into a lot of data to understand our company and customers on a deep level.',
+    client: 'Vandemoortele',
+  },
+  {
+    quote:
+      'Stretch is very committed and goal-oriented. It is really easy to work with them and they quickly grasp the concept of what we need.',
+    client: 'Solucious',
+  },
+];
+
+const heroStats = [
+  { value: '+120', label: 'happy clients' },
+  { value: '36', label: 'colleagues' },
+  { value: '5', label: 'growth services' },
+  { value: '15', label: 'industries served' },
+];
 ---
 
 <Layout>
-	<Welcome />
+  <Hero />
+
+  <!-- Bottleneck diagnosis -->
+  <section class="relative bg-cod-gray diagonal-top py-20 md:py-28">
+    <span class="section-number" aria-hidden="true">01</span>
+    <div class="relative mx-auto max-w-7xl px-4">
+      <div class="reveal max-w-2xl">
+        <p class="text-xs font-semibold uppercase tracking-[0.2em] text-aquamarine">Diagnosis</p>
+        <h2 class="mt-4 text-3xl font-bold tracking-tight md:text-4xl">
+          Most growth gets stuck at one of four bottlenecks.
+        </h2>
+      </div>
+      <div class="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {bottlenecks.map((b, i) => <BottleneckCard {...b} delay={(i % 4) + 1} />)}
+      </div>
+      <div class="reveal reveal-delay-3 mt-12 text-center">
+        <a
+          href="/bottleneck-quiz"
+          class="group inline-flex items-center gap-3 text-sm font-semibold text-aquamarine"
+        >
+          Which one is yours? Find out in 2 minutes
+          <span class="transition-transform group-hover:translate-x-1">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats + social proof -->
+  <StatBar stats={heroStats} />
+
+  <section class="border-b border-white/5 bg-bunting py-10">
+    <div class="reveal mx-auto max-w-7xl px-4">
+      <p class="text-center text-sm font-medium text-muted">
+        Trusted by Belgium's most ambitious growth teams
+      </p>
+      <div class="mt-8 flex flex-wrap items-center justify-center gap-x-10 gap-y-4">
+        {
+          clients.map((client) => (
+            <span class="text-sm font-bold tracking-wide text-white/40 transition-colors hover:text-white/70">
+              {client}
+            </span>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured cases — alternating layout -->
+  <section class="relative py-20 md:py-28">
+    <span class="section-number section-number--right" aria-hidden="true">02</span>
+    <div class="relative mx-auto max-w-7xl px-4">
+      <div class="reveal mb-12 max-w-xl">
+        <p class="text-xs font-semibold uppercase tracking-[0.2em] text-aquamarine">Proof</p>
+        <h2 class="mt-4 text-3xl font-bold tracking-tight md:text-5xl">Proof over promises.</h2>
+      </div>
+      <div class="space-y-6">
+        {
+          featuredCases.map((c, i) => (
+            <CaseCard
+              variant="featured"
+              index={i}
+              slug={c.id}
+              client={c.data.client}
+              sector={c.data.sector}
+              services={c.data.service}
+              headlineResult={c.data.headline_result}
+              challenge={c.data.challenge}
+            />
+          ))
+        }
+      </div>
+      <div class="reveal reveal-delay-2 mt-10">
+        <a
+          href="/cases"
+          class="group inline-flex items-center gap-2 text-sm font-semibold text-aquamarine"
+        >
+          See all cases
+          <span class="transition-transform group-hover:translate-x-1">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section class="relative overflow-hidden bg-cod-gray diagonal-both py-20 md:py-28">
+    <span class="section-number" aria-hidden="true">03</span>
+    <div class="relative mx-auto max-w-7xl px-4">
+      <div class="reveal max-w-2xl">
+        <p class="text-xs font-semibold uppercase tracking-[0.2em] text-aquamarine">Services</p>
+        <h2 class="mt-4 text-3xl font-bold tracking-tight md:text-4xl">
+          Four trajectories. One destination: predictable growth.
+        </h2>
+      </div>
+      <div class="mt-12 grid gap-4 sm:grid-cols-2">
+        {
+          services.map((s, i) => (
+            <ServiceCard
+              name={s.name}
+              bottleneck={s.bottleneck}
+              description={s.description}
+              href={`/services/${s.slug}`}
+              compact
+              delay={(i % 4) + 1}
+            />
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- How we engage -->
+  <section class="relative py-20 md:py-28">
+    <span class="section-number section-number--right" aria-hidden="true">04</span>
+    <div class="relative mx-auto max-w-7xl px-4">
+      <div class="reveal">
+        <p class="text-xs font-semibold uppercase tracking-[0.2em] text-aquamarine">Process</p>
+        <h2 class="mt-4 text-3xl font-bold tracking-tight md:text-4xl">How we engage</h2>
+      </div>
+      <div class="mt-14 grid gap-10 md:grid-cols-3">
+        {
+          steps.map((step, i) => (
+            <div class={`reveal reveal-delay-${i + 1} relative border-l-2 border-aquamarine/30 pl-6`}>
+              <span class="absolute -left-3 top-0 flex h-6 w-6 items-center justify-center rounded-full bg-aquamarine text-xs font-bold text-pearl">
+                {i + 1}
+              </span>
+              <h3 class="text-xl font-bold">{step.title}</h3>
+              <p class="mt-3 text-sm leading-relaxed text-muted">{step.desc}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="relative overflow-hidden bg-bunting py-20 md:py-28">
+    <div class="absolute inset-0 grid-pattern opacity-20" aria-hidden="true" />
+    <div class="relative mx-auto max-w-7xl px-4">
+      <div class="grid gap-6 md:grid-cols-2">
+        {
+          testimonials.map((t, i) => (
+            <blockquote
+              class={`reveal reveal-delay-${i + 1} relative rounded-xl border border-white/10 bg-pearl/60 p-8 backdrop-blur-sm`}
+            >
+              <div class="accent-line mb-6" />
+              <p class="text-lg leading-relaxed text-white/90">"{t.quote}"</p>
+              <footer class="mt-6 text-sm font-bold text-aquamarine">— {t.client}</footer>
+            </blockquote>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <CTASection
+    headline="Ready to build your growth engine?"
+    primaryLabel="Identify your growth bottleneck →"
+    primaryHref="/bottleneck-quiz"
+    secondaryLabel="Or book a free growth audit →"
+    secondaryHref="/contact"
+  />
 </Layout>

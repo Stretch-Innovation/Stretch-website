@@ -1,0 +1,74 @@
+---
+const navLinks = [
+  { href: '/services', label: 'Services' },
+  { href: '/cases', label: 'Cases' },
+  { href: '/insights', label: 'Insights' },
+  { href: '/about', label: 'About' },
+  { href: '/contact', label: 'Contact' },
+];
+---
+
+<footer class="border-t border-white/10 bg-cod-gray">
+  <div class="mx-auto max-w-6xl px-4 py-12 md:py-16">
+    <div class="grid gap-10 md:grid-cols-3">
+      <div>
+        <a href="/" aria-label="Stretch Innovation home">
+          <img
+            src="/logos/stretch_logo_full.svg"
+            alt="Stretch Innovation"
+            class="h-6 w-auto brightness-0 invert"
+            width="160"
+            height="28"
+          />
+        </a>
+        <p class="mt-4 text-sm text-muted">
+          Building predictable growth engines for ambitious companies.
+        </p>
+      </div>
+
+      <div>
+        <h3 class="text-sm font-semibold uppercase tracking-wide">Navigation</h3>
+        <ul class="mt-4 space-y-2">
+          {
+            navLinks.map((link) => (
+              <li>
+                <a href={link.href} class="text-sm text-muted hover:text-aquamarine">
+                  {link.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="text-sm font-semibold uppercase tracking-wide">Contact</h3>
+        <ul class="mt-4 space-y-2 text-sm text-muted">
+          <li>Desguinlei 6, 2018 Antwerpen</li>
+          <li>
+            <a href="mailto:stijn@stretchinnovation.be" class="hover:text-aquamarine">
+              stijn@stretchinnovation.be
+            </a>
+          </li>
+          <li>
+            <a href="tel:+32477986352" class="hover:text-aquamarine">+32 477 98 63 52</a>
+          </li>
+          <li>
+            <a
+              href="https://www.linkedin.com/company/stretch-innovation"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="hover:text-aquamarine"
+            >
+              LinkedIn
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="mt-12 border-t border-white/10 pt-8 text-center text-xs text-muted">
+      © {new Date().getFullYear()} Stretch Innovation. All rights reserved.
+    </div>
+  </div>
+</footer>

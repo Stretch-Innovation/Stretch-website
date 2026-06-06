@@ -1,0 +1,15 @@
+---
+interface Props {
+  name: string;
+  role: string;
+}
+
+const { name, role } = Astro.props;
+---
+
+<div class="text-center">
+  <!-- TEAM PHOTO: {name}.jpg -->
+  <div class="mx-auto aspect-square w-full max-w-[180px] rounded-lg bg-bunting" />
+  <h3 class="mt-4 text-sm font-semibold">{name}</h3>
+  <p class="mt-1 text-xs text-muted">{role}</p>
+</div>

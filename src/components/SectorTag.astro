@@ -1,0 +1,19 @@
+---
+interface Props {
+  label: string;
+  variant?: 'sector' | 'service';
+}
+
+const { label, variant = 'sector' } = Astro.props;
+---
+
+<span
+  class:list={[
+    'inline-block rounded-full px-3 py-1 text-xs font-medium',
+    variant === 'sector'
+      ? 'border border-aquamarine/40 text-aquamarine'
+      : 'bg-bunting text-muted',
+  ]}
+>
+  {label}
+</span>

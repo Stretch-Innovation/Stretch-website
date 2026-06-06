@@ -1,0 +1,81 @@
+---
+import ParticleField from './ParticleField.astro';
+import Button from './Button.astro';
+
+const headline = 'Building Predictable Growth Engines';
+const words = headline.split(' ');
+---
+
+<section class="relative flex min-h-[100svh] items-center overflow-hidden">
+  <div class="absolute inset-0 bg-pearl" />
+  <div class="absolute inset-0 grid-pattern" />
+  <div
+    class="absolute inset-0 opacity-40"
+    style="background: radial-gradient(ellipse 80% 60% at 70% 40%, rgba(23, 31, 80, 0.8) 0%, transparent 70%);"
+  />
+  <ParticleField />
+
+  <div class="relative z-10 mx-auto w-full max-w-7xl px-4 py-20 md:py-28">
+    <div class="grid items-end gap-10 lg:grid-cols-12 lg:gap-8">
+      <!-- Headline: ~70% width -->
+      <div class="lg:col-span-8">
+        <p
+          class="hero-fade-up mb-6 text-xs font-semibold uppercase tracking-[0.25em] text-aquamarine"
+          style="animation-delay: 0.05s"
+        >
+          Growth Engine Builders
+        </p>
+        <h1 class="text-[clamp(2.25rem,6vw,4.5rem)] font-bold leading-[1.05] tracking-tight">
+          {
+            words.map((word, i) => (
+              <span class="hero-word" style={`animation-delay: ${0.12 + i * 0.09}s`}>
+                {word}
+                {i < words.length - 1 ? '\u00A0' : ''}
+              </span>
+            ))
+          }
+        </h1>
+        <p
+          class="hero-fade-up mt-6 max-w-xl text-base leading-relaxed text-muted md:mt-8 md:text-lg"
+          style="animation-delay: 0.65s"
+        >
+          Most companies grow by accident. We build the systems that make growth intentional,
+          measurable and scalable.
+        </p>
+      </div>
+
+      <!-- CTA floats right -->
+      <div
+        class="hero-fade-up flex flex-col gap-4 lg:col-span-4 lg:items-end lg:pb-2"
+        style="animation-delay: 0.85s"
+      >
+        <Button href="/bottleneck-quiz" class="w-full sm:w-auto">
+          Identify your growth bottleneck →
+        </Button>
+        <a
+          href="/cases"
+          class="group flex items-center gap-2 text-sm font-medium text-muted transition-colors hover:text-aquamarine lg:justify-end"
+        >
+          <span class="accent-line transition-all group-hover:w-16" />
+          See our cases
+        </a>
+      </div>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div
+      class="hero-fade-up absolute bottom-8 left-1/2 hidden -translate-x-1/2 md:block"
+      style="animation-delay: 1.2s"
+    >
+      <div class="flex flex-col items-center gap-2 text-muted">
+        <span class="text-[10px] uppercase tracking-widest">Scroll</span>
+        <div class="h-8 w-px bg-gradient-to-b from-aquamarine/60 to-transparent animate-pulse" />
+      </div>
+    </div>
+  </div>
+
+  <div
+    class="absolute right-0 bottom-0 left-0 h-16 bg-gradient-to-t from-pearl to-transparent"
+    aria-hidden="true"
+  />
+</section>

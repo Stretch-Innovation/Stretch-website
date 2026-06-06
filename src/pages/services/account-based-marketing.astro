@@ -1,0 +1,11 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import ServicePageContent from '../../components/ServicePageContent.astro';
+import { getServiceBySlug } from '../../data/services';
+
+const service = getServiceBySlug('account-based-marketing')!;
+---
+
+<Layout title="Account Based Marketing — Stretch Innovation" description={service.description}>
+  <ServicePageContent service={service} />
+</Layout>

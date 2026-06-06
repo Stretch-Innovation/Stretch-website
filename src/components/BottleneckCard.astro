@@ -1,0 +1,21 @@
+---
+interface Props {
+  num: string;
+  title: string;
+  desc: string;
+  delay?: number;
+}
+
+const { num, title, desc, delay = 0 } = Astro.props;
+---
+
+<div class={`reveal reveal-delay-${delay} group relative overflow-hidden rounded-lg border border-white/8 bg-pearl/80 p-6 backdrop-blur-sm transition-colors hover:border-aquamarine/30`}>
+  <div
+    class="absolute -right-4 -top-4 text-6xl font-bold text-aquamarine/5 transition-colors group-hover:text-aquamarine/10"
+  >
+    {num}
+  </div>
+  <span class="relative text-sm font-bold tracking-widest text-aquamarine">{num}</span>
+  <h3 class="relative mt-3 text-lg font-bold">{title}</h3>
+  <p class="relative mt-2 text-sm leading-relaxed text-muted">{desc}</p>
+</div>

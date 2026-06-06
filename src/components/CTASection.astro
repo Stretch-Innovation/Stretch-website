@@ -1,0 +1,43 @@
+---
+import Button from './Button.astro';
+
+interface Props {
+  headline: string;
+  primaryLabel?: string;
+  primaryHref?: string;
+  secondaryLabel?: string;
+  secondaryHref?: string;
+}
+
+const {
+  headline,
+  primaryLabel = 'Identify your growth bottleneck →',
+  primaryHref = '/bottleneck-quiz',
+  secondaryLabel,
+  secondaryHref,
+} = Astro.props;
+---
+
+<section class="relative overflow-hidden bg-bunting py-20 md:py-28">
+  <div
+    class="absolute inset-0 opacity-30"
+    style="background: radial-gradient(ellipse at center, rgba(159,255,220,0.08) 0%, transparent 70%);"
+    aria-hidden="true"
+  />
+  <div class="relative mx-auto max-w-3xl px-4 text-center">
+    <h2 class="reveal text-3xl font-bold tracking-tight md:text-5xl">{headline}</h2>
+    <div class="reveal reveal-delay-2 mt-10 flex flex-col items-center justify-center gap-5 sm:flex-row">
+      <Button href={primaryHref}>{primaryLabel}</Button>
+      {
+        secondaryLabel && secondaryHref && (
+          <a
+            href={secondaryHref}
+            class="text-sm font-medium text-aquamarine underline-offset-4 transition-opacity hover:underline"
+          >
+            {secondaryLabel}
+          </a>
+        )
+      }
+    </div>
+  </div>
+</section>

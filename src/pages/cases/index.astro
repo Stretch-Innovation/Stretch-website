@@ -1,0 +1,144 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import CaseCard from '../../components/CaseCard.astro';
+
+const cases = (await getCollection('cases')).sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime()
+);
+
+const sectors = ['All', 'Food', 'Construction', 'Telecom', 'Beverage', 'Tech'];
+const serviceFilters = [
+  'All',
+  'Growth Readiness',
+  'Growth Generation',
+  'Growth Conversion',
+  'Growth Acceleration',
+  'Account Based Marketing',
+];
+---
+
+<Layout title="Cases — Stretch Innovation" description="Proof over promises. Real results from real clients.">
+  <section class="py-12 md:py-20">
+    <div class="mx-auto max-w-6xl px-4">
+      <h1 class="text-3xl font-bold md:text-5xl">Proof over promises.</h1>
+
+      <div class="mt-10 space-y-4">
+        <div>
+          <span class="text-sm text-muted">Sector</span>
+          <div class="mt-2 flex flex-wrap gap-2" id="sector-filters">
+            {
+              sectors.map((s, i) => (
+                <button
+                  type="button"
+                  data-sector={s}
+                  class:list={[
+                    'filter-btn rounded-full border px-4 py-1.5 text-sm transition-colors',
+                    i === 0
+                      ? 'border-aquamarine bg-aquamarine/10 text-aquamarine'
+                      : 'border-white/20 text-muted hover:border-aquamarine/40',
+                  ]}
+                >
+                  {s}
+                </button>
+              ))
+            }
+          </div>
+        </div>
+        <div>
+          <span class="text-sm text-muted">Service</span>
+          <div class="mt-2 flex flex-wrap gap-2" id="service-filters">
+            {
+              serviceFilters.map((s, i) => (
+                <button
+                  type="button"
+                  data-service={s}
+                  class:list={[
+                    'filter-btn-service rounded-full border px-4 py-1.5 text-sm transition-colors',
+                    i === 0
+                      ? 'border-aquamarine bg-aquamarine/10 text-aquamarine'
+                      : 'border-white/20 text-muted hover:border-aquamarine/40',
+                  ]}
+                >
+                  {s}
+                </button>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-10 grid gap-6 md:grid-cols-2" id="cases-grid">
+        {
+          cases.map((c) => (
+            <div
+              class="case-item"
+              data-sector={c.data.sector}
+              data-services={c.data.service.join(',')}
+            >
+              <CaseCard
+                slug={c.id}
+                client={c.data.client}
+                sector={c.data.sector}
+                services={c.data.service}
+                headlineResult={c.data.headline_result}
+                challenge={c.data.challenge}
+              />
+            </div>
+          ))
+        }
+      </div>
+
+      <p id="no-results" class="mt-10 hidden text-center text-muted">
+        No cases match your filters.
+      </p>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  let activeSector = 'All';
+  let activeService = 'All';
+
+  const items = document.querySelectorAll('.case-item');
+  const noResults = document.getElementById('no-results');
+
+  function applyFilters() {
+    let visible = 0;
+    items.forEach((item) => {
+      const sector = item.getAttribute('data-sector');
+      const services = item.getAttribute('data-services') || '';
+      const sectorMatch = activeSector === 'All' || sector === activeSector;
+      const serviceMatch = activeService === 'All' || services.includes(activeService);
+      const show = sectorMatch && serviceMatch;
+      (item as HTMLElement).style.display = show ? '' : 'none';
+      if (show) visible++;
+    });
+    noResults?.classList.toggle('hidden', visible > 0);
+  }
+
+  function setActive(btn: HTMLElement, selector: string) {
+    document.querySelectorAll(selector).forEach((b) => {
+      b.classList.remove('border-aquamarine', 'bg-aquamarine/10', 'text-aquamarine');
+      b.classList.add('border-white/20', 'text-muted');
+    });
+    btn.classList.add('border-aquamarine', 'bg-aquamarine/10', 'text-aquamarine');
+    btn.classList.remove('border-white/20', 'text-muted');
+  }
+
+  document.querySelectorAll('.filter-btn').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      activeSector = (btn as HTMLElement).dataset.sector || 'All';
+      setActive(btn as HTMLElement, '.filter-btn');
+      applyFilters();
+    });
+  });
+
+  document.querySelectorAll('.filter-btn-service').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      activeService = (btn as HTMLElement).dataset.service || 'All';
+      setActive(btn as HTMLElement, '.filter-btn-service');
+      applyFilters();
+    });
+  });
+</script>

@@ -1,0 +1,11 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import ServicePageContent from '../../components/ServicePageContent.astro';
+import { getServiceBySlug } from '../../data/services';
+
+const service = getServiceBySlug('growth-acceleration')!;
+---
+
+<Layout title="Growth Acceleration — Stretch Innovation" description={service.description}>
+  <ServicePageContent service={service} />
+</Layout>

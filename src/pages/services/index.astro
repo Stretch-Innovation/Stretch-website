@@ -1,0 +1,37 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import ServiceCard from '../../components/ServiceCard.astro';
+import CTASection from '../../components/CTASection.astro';
+import { services } from '../../data/services';
+---
+
+<Layout
+  title="Services — Stretch Innovation"
+  description="Five ways we build your growth engine. Every engagement starts with identifying your bottleneck."
+>
+  <section class="py-12 md:py-20">
+    <div class="mx-auto max-w-6xl px-4">
+      <h1 class="text-3xl font-bold md:text-5xl">Five ways we build your growth engine.</h1>
+      <p class="mt-6 max-w-2xl text-lg text-muted">
+        Every engagement starts with identifying your bottleneck. Then we build the capabilities to
+        overcome it.
+      </p>
+      <div class="mt-12 grid gap-6 md:grid-cols-2">
+        {
+          services.map((s) => (
+            <ServiceCard
+              name={s.name}
+              bottleneck={s.bottleneck}
+              description={s.description}
+              bullets={s.bullets}
+              outcome={s.outcome}
+              href={`/services/${s.slug}`}
+            />
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <CTASection headline="Not sure which service fits?" />
+</Layout>

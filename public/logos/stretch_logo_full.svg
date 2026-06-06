@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 40" fill="none">
+  <path d="M8 32V8h6.4l8.8 14.4L32 8h6.4v24h-5.6V17.6L24.8 32h-4.8L12 17.6V32H8z" fill="currentColor"/>
+  <path d="M42 32V8h10.4c3.2 0 5.6.8 7.2 2.4 1.6 1.6 2.4 3.8 2.4 6.6 0 2.8-.8 5-2.4 6.6-1.6 1.6-4 2.4-7.2 2.4H42zm5.6-4.8h4.4c1.6 0 2.8-.4 3.6-1.2.8-.8 1.2-2 1.2-3.6 0-1.6-.4-2.8-1.2-3.6-.8-.8-2-1.2-3.6-1.2h-4.4V27.2z" fill="currentColor"/>
+  <path d="M66 32V8h5.6v24H66z" fill="currentColor"/>
+  <path d="M78 32V8h5.6l12.8 15.2V8H102v24h-5.6L83.6 16.8V32H78z" fill="currentColor"/>
+  <path d="M108 32V8h5.6v19.2H124V32h-16z" fill="currentColor"/>
+  <path d="M130 32V8h10.4c3.2 0 5.6.8 7.2 2.4 1.6 1.6 2.4 3.8 2.4 6.6 0 2.8-.8 5-2.4 6.6-1.6 1.6-4 2.4-7.2 2.4H130zm5.6-4.8h4.4c1.6 0 2.8-.4 3.6-1.2.8-.8 1.2-2 1.2-3.6 0-1.6-.4-2.8-1.2-3.6-.8-.8-2-1.2-3.6-1.2h-4.4V27.2z" fill="currentColor"/>
+  <path d="M154 32V8h5.6v9.6L168.8 8H176l-8 11.2L177.6 32h-6.4l-6.4-9.6V32H154z" fill="currentColor"/>
+  <rect x="184" y="8" width="8" height="8" rx="1" fill="#9FFFDC"/>
+</svg>

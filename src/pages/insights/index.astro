@@ -1,0 +1,30 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import InsightCard from '../../components/InsightCard.astro';
+
+const insights = (await getCollection('insights')).sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime()
+);
+---
+
+<Layout title="Insights — Stretch Innovation" description="Thinking out loud. Growth strategy and demand generation insights.">
+  <section class="py-12 md:py-20">
+    <div class="mx-auto max-w-6xl px-4">
+      <h1 class="text-3xl font-bold md:text-5xl">Thinking out loud.</h1>
+      <div class="mt-10 grid gap-6 md:grid-cols-2">
+        {
+          insights.map((insight) => (
+            <InsightCard
+              slug={insight.id}
+              title={insight.data.title}
+              category={insight.data.category}
+              intro={insight.data.intro}
+              date={insight.data.date}
+            />
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</Layout>

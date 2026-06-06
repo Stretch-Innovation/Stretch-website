@@ -1,0 +1,121 @@
+---
+const navLinks = [
+  { href: '/services', label: 'Services' },
+  { href: '/cases', label: 'Cases' },
+  { href: '/insights', label: 'Insights' },
+  { href: '/about', label: 'About' },
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<header class="site-header fixed top-0 right-0 left-0 z-50 border-b border-white/5 bg-pearl/60 backdrop-blur-sm">
+  <nav class="site-header__inner mx-auto flex max-w-7xl items-center justify-between px-4 py-4 transition-all">
+    <a href="/" class="site-header__logo shrink-0 text-white" aria-label="Stretch Innovation home">
+      <img
+        src="/logos/stretch_logo_full.svg"
+        alt="Stretch Innovation"
+        class="h-6 w-auto brightness-0 invert md:h-7"
+        width="160"
+        height="28"
+      />
+    </a>
+
+    <div class="hidden items-center gap-8 md:flex">
+      {
+        navLinks.map((link) => (
+          <a
+            href={link.href}
+            class:list={[
+              'relative text-sm font-medium transition-colors after:absolute after:-bottom-1 after:left-0 after:h-px after:w-0 after:bg-aquamarine after:transition-all hover:after:w-full',
+              currentPath.startsWith(link.href)
+                ? 'text-aquamarine after:w-full'
+                : 'text-white/80 hover:text-white',
+            ]}
+          >
+            {link.label}
+          </a>
+        ))
+      }
+      <a
+        href="/bottleneck-quiz"
+        class="btn-glow rounded px-4 py-2 text-sm font-semibold"
+      >
+        Identify your bottleneck
+      </a>
+    </div>
+
+    <button
+      id="mobile-menu-btn"
+      type="button"
+      class="flex h-10 w-10 items-center justify-center rounded md:hidden"
+      aria-label="Open menu"
+      aria-expanded="false"
+    >
+      <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path
+          id="menu-icon-open"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M4 6h16M4 12h16M4 18h16"></path>
+        <path
+          id="menu-icon-close"
+          class="hidden"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M6 18L18 6M6 6l12 12"></path>
+      </svg>
+    </button>
+  </nav>
+
+  <div
+    id="mobile-menu"
+    class="fixed inset-0 top-[65px] hidden flex-col bg-pearl/98 px-4 py-8 backdrop-blur-xl md:hidden"
+  >
+    {
+      navLinks.map((link) => (
+        <a
+          href={link.href}
+          class="border-b border-white/10 py-4 text-lg font-medium hover:text-aquamarine"
+        >
+          {link.label}
+        </a>
+      ))
+    }
+    <a
+      href="/bottleneck-quiz"
+      class="btn-glow mt-6 rounded px-6 py-3 text-center text-sm font-semibold"
+    >
+      Identify your bottleneck
+    </a>
+  </div>
+</header>
+
+<script>
+  const btn = document.getElementById('mobile-menu-btn');
+  const menu = document.getElementById('mobile-menu');
+  const iconOpen = document.getElementById('menu-icon-open');
+  const iconClose = document.getElementById('menu-icon-close');
+
+  btn?.addEventListener('click', () => {
+    const isOpen = !menu?.classList.contains('hidden');
+    menu?.classList.toggle('hidden', isOpen);
+    menu?.classList.toggle('flex', !isOpen);
+    iconOpen?.classList.toggle('hidden', !isOpen);
+    iconClose?.classList.toggle('hidden', isOpen);
+    btn.setAttribute('aria-expanded', String(!isOpen));
+    btn.setAttribute('aria-label', isOpen ? 'Open menu' : 'Close menu');
+  });
+
+  menu?.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', () => {
+      menu.classList.add('hidden');
+      menu.classList.remove('flex');
+      iconOpen?.classList.remove('hidden');
+      iconClose?.classList.add('hidden');
+      btn?.setAttribute('aria-expanded', 'false');
+    });
+  });
+</script>

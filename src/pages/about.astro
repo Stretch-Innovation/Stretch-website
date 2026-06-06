@@ -1,0 +1,129 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+import StatBar from '../components/StatBar.astro';
+import TeamCard from '../components/TeamCard.astro';
+import CTASection from '../components/CTASection.astro';
+
+const team = (await getCollection('team')).sort((a, b) => a.data.order - b.data.order);
+
+const stats = [
+  { value: '+120', label: 'happy clients' },
+  { value: '36', label: 'colleagues' },
+  { value: '5', label: 'services' },
+  { value: 'BE', label: 'Belgium-based, European reach', countUp: false },
+];
+
+const differentiators = [
+  { title: 'Fixed prices', desc: 'No hourly billing. You know what you pay upfront.' },
+  {
+    title: 'Variable KPIs',
+    desc: 'You only pay more if we deliver measurable results.',
+  },
+  {
+    title: 'Well-defined projects',
+    desc: 'Clear timelines, deliverables, and outcomes from day one.',
+  },
+  { title: 'Weekly reporting', desc: 'Full transparency on progress every single week.' },
+];
+
+const testimonials = [
+  {
+    quote:
+      'Stretch went above and beyond... They took the time to dive into a lot of data to understand our company and customers on a deep level.',
+    client: 'Vandemoortele',
+  },
+  {
+    quote:
+      'Stretch is very committed and goal-oriented. It is really easy to work with them and they quickly grasp the concept of what we need.',
+    client: 'Solucious',
+  },
+];
+---
+
+<Layout title="About — Stretch Innovation" description="The team you call when growth needs doing.">
+  <section class="py-12 md:py-20">
+    <div class="mx-auto max-w-3xl px-4">
+      <h1 class="text-3xl font-bold md:text-5xl">The team you call when growth needs doing.</h1>
+      <div class="mt-8 space-y-6 text-muted leading-relaxed">
+        <p>
+          At Stretch Innovation, we help companies build scalable, data-driven Growth Engines that
+          accelerate revenue growth. Unlike traditional consultants who stop at strategy or agencies
+          that focus on execution alone, we combine both. We work alongside our clients to identify
+          growth opportunities, validate assumptions through rapid experimentation, and turn proven
+          initiatives into predictable growth systems.
+        </p>
+        <p>
+          Our approach is built on one simple belief: growth should be driven by evidence, not
+          assumptions. That's why we combine customer insights, data analysis, experimentation, and
+          technology to continuously discover what works and scale it.
+        </p>
+        <p>
+          Over the past years, we've helped companies across industries improve lead generation,
+          optimize conversion rates, launch new business concepts, and create sustainable growth
+          processes. From fast-growing scale-ups to international organizations, we embed ourselves
+          in our clients' teams and help build the capabilities needed for long-term success.
+        </p>
+        <p>
+          Because a Growth Engine is not a campaign. It's a system. And systems create predictable
+          growth.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <StatBar stats={stats} />
+
+  <section class="py-12 md:py-20">
+    <div class="mx-auto max-w-6xl px-4">
+      <!-- GROUP PHOTO: place team photo here, file: group-photo.jpg -->
+      <div class="aspect-video w-full rounded-lg bg-bunting" />
+    </div>
+  </section>
+
+  <section class="border-t border-white/10 bg-cod-gray py-12 md:py-20">
+    <div class="mx-auto max-w-6xl px-4">
+      <h2 class="text-2xl font-bold md:text-3xl">Our team</h2>
+      <div class="mt-10 grid grid-cols-2 gap-8 md:grid-cols-4">
+        {team.map((member) => <TeamCard name={member.data.name} role={member.data.role} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-12 md:py-20">
+    <div class="mx-auto max-w-6xl px-4">
+      <h2 class="text-2xl font-bold md:text-3xl">How we do things differently</h2>
+      <div class="mt-10 grid gap-6 sm:grid-cols-2">
+        {
+          differentiators.map((d) => (
+            <div class="rounded-lg border border-white/10 bg-cod-gray p-6">
+              <h3 class="font-bold text-aquamarine">{d.title}</h3>
+              <p class="mt-2 text-sm text-muted">{d.desc}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="border-t border-white/10 bg-bunting py-12 md:py-20">
+    <div class="mx-auto max-w-6xl px-4">
+      <div class="grid gap-8 md:grid-cols-2">
+        {
+          testimonials.map((t) => (
+            <blockquote class="rounded-lg border border-white/10 bg-pearl p-6">
+              <p class="text-muted">"{t.quote}"</p>
+              <footer class="mt-4 text-sm font-semibold text-aquamarine">— {t.client}</footer>
+            </blockquote>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <CTASection
+    headline="Ready to work with us?"
+    primaryLabel="Book a free growth audit →"
+    primaryHref="/contact"
+  />
+</Layout>

@@ -1,0 +1,93 @@
+---
+import { getCollection } from 'astro:content';
+import CaseCard from './CaseCard.astro';
+import CTASection from './CTASection.astro';
+import Button from './Button.astro';
+import type { Service } from '../data/services';
+
+interface Props {
+  service: Service;
+}
+
+const { service } = Astro.props;
+
+const allCases = await getCollection('cases');
+const relatedCases = allCases
+  .filter((c) => c.data.service.includes(service.name as never))
+  .slice(0, 2);
+---
+
+<section class="relative overflow-hidden bg-pearl py-16 md:py-24">
+  <div class="absolute inset-0 grid-pattern opacity-40" aria-hidden="true" />
+  <div class="relative mx-auto max-w-4xl px-4">
+    <span class="reveal text-xs font-semibold uppercase tracking-[0.2em] text-indigo">
+      Solve: {service.bottleneck}
+    </span>
+    <h1 class="reveal reveal-delay-1 mt-4 text-3xl font-bold tracking-tight md:text-5xl">
+      {service.headline}
+    </h1>
+    <p class="reveal reveal-delay-2 mt-6 text-lg text-muted">{service.description}</p>
+    <div class="reveal reveal-delay-3 mt-8 flex flex-col gap-4 sm:flex-row">
+      <Button href="/bottleneck-quiz">Identify your bottleneck →</Button>
+      <Button href="/contact" variant="ghost">Book a growth audit →</Button>
+    </div>
+  </div>
+</section>
+
+<section class="border-t border-white/10 bg-cod-gray py-12 md:py-20">
+  <div class="mx-auto max-w-4xl px-4">
+    {
+      service.whoItsFor && (
+        <>
+          <h2 class="text-2xl font-bold">Who it's for</h2>
+          <p class="mt-4 text-muted">{service.whoItsFor}</p>
+        </>
+      )
+    }
+    <h2 class="mt-10 text-2xl font-bold">What we build</h2>
+    <ul class="mt-6 grid gap-3 sm:grid-cols-2">
+      {
+        service.bullets.map((bullet) => (
+          <li class="flex items-start gap-3 rounded-lg border border-white/10 bg-pearl p-4">
+            <span class="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-aquamarine" />
+            <span>{bullet}</span>
+          </li>
+        ))
+      }
+    </ul>
+    <div class="mt-10 rounded-lg border border-aquamarine/30 bg-bunting p-6">
+      <p class="text-sm font-medium uppercase tracking-wide text-aquamarine">Outcome</p>
+      <p class="mt-2 text-xl font-semibold">{service.outcome}</p>
+    </div>
+  </div>
+</section>
+
+{
+  relatedCases.length > 0 && (
+    <section class="py-12 md:py-20">
+      <div class="mx-auto max-w-6xl px-4">
+        <h2 class="text-2xl font-bold">Relevant case studies</h2>
+        <div class="mt-8 grid gap-6 md:grid-cols-2">
+          {relatedCases.map((c) => (
+            <CaseCard
+              slug={c.id}
+              client={c.data.client}
+              sector={c.data.sector}
+              services={c.data.service}
+              headlineResult={c.data.headline_result}
+              challenge={c.data.challenge}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+<CTASection
+  headline="Ready to overcome this bottleneck?"
+  primaryLabel="Identify your growth bottleneck →"
+  primaryHref="/bottleneck-quiz"
+  secondaryLabel="Or book a free growth audit →"
+  secondaryHref="/contact"
+/>

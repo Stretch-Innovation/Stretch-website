@@ -1,0 +1,71 @@
+---
+import SectorTag from './SectorTag.astro';
+
+interface Props {
+  slug: string;
+  client: string;
+  sector: string;
+  services: string[];
+  headlineResult: string;
+  challenge: string;
+  variant?: 'grid' | 'featured';
+  index?: number;
+}
+
+const { slug, client, sector, services, headlineResult, challenge, variant = 'grid', index = 0 } =
+  Astro.props;
+const summary = challenge.length > 120 ? challenge.slice(0, 120) + '…' : challenge;
+const isReversed = index % 2 === 1;
+---
+
+{
+  variant === 'featured' ? (
+    <a
+      href={`/cases/${slug}`}
+      class:list={[
+        'case-card-glow group reveal flex flex-col overflow-hidden rounded-xl border border-white/10 bg-cod-gray md:flex-row',
+        isReversed && 'md:flex-row-reverse',
+        `reveal-delay-${(index % 3) + 1}`,
+      ]}
+    >
+      <div class="relative aspect-[16/10] w-full shrink-0 bg-bunting md:aspect-auto md:w-2/5">
+        <div class="absolute inset-0 bg-gradient-to-br from-indigo/20 to-aquamarine/5" />
+        <div class="absolute inset-0 grid-pattern-dense opacity-50" />
+        <div class="absolute bottom-4 left-4">
+          <span class="text-5xl font-bold text-white/10">{String(index + 1).padStart(2, '0')}</span>
+        </div>
+      </div>
+      <div class="flex flex-1 flex-col p-6 md:p-8">
+        <div class="mb-4 flex flex-wrap gap-2">
+          <SectorTag label={sector} />
+          {services.slice(0, 2).map((s) => <SectorTag label={s} variant="service" />)}
+        </div>
+        <h3 class="text-2xl font-bold transition-colors group-hover:text-aquamarine md:text-3xl">
+          {client}
+        </h3>
+        <p class="mt-3 text-xl font-semibold text-aquamarine">{headlineResult}</p>
+        <p class="mt-4 flex-1 text-sm leading-relaxed text-muted">{summary}</p>
+        <span class="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-aquamarine">
+          Read case
+          <span class="transition-transform group-hover:translate-x-1">→</span>
+        </span>
+      </div>
+    </a>
+  ) : (
+    <a
+      href={`/cases/${slug}`}
+      class="case-card-glow group flex h-full flex-col rounded-xl border border-white/10 bg-cod-gray p-6"
+    >
+      <div class="mb-4 flex flex-wrap gap-2">
+        <SectorTag label={sector} />
+        {services.slice(0, 2).map((s) => <SectorTag label={s} variant="service" />)}
+      </div>
+      <h3 class="text-xl font-bold transition-colors group-hover:text-aquamarine md:text-2xl">
+        {client}
+      </h3>
+      <p class="mt-3 text-lg font-semibold text-aquamarine">{headlineResult}</p>
+      <p class="mt-3 flex-1 text-sm text-muted">{summary}</p>
+      <span class="mt-4 text-sm font-medium text-aquamarine">Read case →</span>
+    </a>
+  )
+}

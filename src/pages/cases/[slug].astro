@@ -1,0 +1,122 @@
+---
+import { getCollection, render } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import SectorTag from '../../components/SectorTag.astro';
+import CaseCard from '../../components/CaseCard.astro';
+import HubSpotFormFallback from '../../components/HubSpotFormFallback.astro';
+import CTASection from '../../components/CTASection.astro';
+
+export async function getStaticPaths() {
+  const cases = await getCollection('cases');
+  return cases.map((c) => ({ params: { slug: c.id }, props: { entry: c } }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const { data } = entry;
+
+const allCases = await getCollection('cases');
+const relatedCases = allCases
+  .filter(
+    (c) =>
+      c.id !== entry.id &&
+      (c.data.sector === data.sector ||
+        c.data.service.some((s) => data.service.includes(s)))
+  )
+  .slice(0, 2);
+---
+
+<Layout
+  title={`${data.client} — ${data.title} | Stretch Innovation`}
+  description={data.challenge}
+>
+  <article>
+    <section class="bg-bunting py-12 md:py-20">
+      <div class="mx-auto max-w-4xl px-4">
+        <div class="flex flex-wrap gap-2">
+          <SectorTag label={data.sector} />
+          {data.service.map((s) => <SectorTag label={s} variant="service" />)}
+        </div>
+        <h1 class="mt-6 text-3xl font-bold md:text-5xl">{data.client}</h1>
+        <p class="mt-2 text-xl text-muted">{data.title}</p>
+        <p class="mt-8 text-2xl font-bold text-aquamarine md:text-4xl">
+          {data.headline_result}
+        </p>
+      </div>
+    </section>
+
+    <section class="py-12 md:py-16">
+      <div class="mx-auto max-w-3xl px-4 space-y-12">
+        <div>
+          <h2 class="text-2xl font-bold">The Challenge</h2>
+          <p class="mt-4 text-muted leading-relaxed">{data.challenge}</p>
+        </div>
+        <div>
+          <h2 class="text-2xl font-bold">Our Approach</h2>
+          <p class="mt-4 text-muted leading-relaxed">{data.approach}</p>
+        </div>
+        <div>
+          <h2 class="text-2xl font-bold">The Result</h2>
+          <p class="mt-4 text-2xl font-bold text-aquamarine md:text-3xl">{data.headline_result}</p>
+          <p class="mt-4 text-muted leading-relaxed">{data.result}</p>
+        </div>
+        <Content />
+      </div>
+    </section>
+
+    {
+      data.pdf_download && (
+        <section class="border-t border-white/10 bg-cod-gray py-12 md:py-16">
+          <div class="mx-auto max-w-xl px-4 text-center">
+            <h2 class="text-2xl font-bold">Want the full case study?</h2>
+            <p class="mt-4 text-muted">
+              Download the complete version including methodology, experiment details and full
+              results.
+            </p>
+            <div class="mt-8 text-left">
+              <!-- HUBSPOT FORM EMBED CODE HERE — replace with actual embed from HubSpot portal -->
+              <HubSpotFormFallback
+                formId="case-pdf-download"
+                fields={['Name', 'Email', 'Company']}
+                submitLabel="Download case study"
+              />
+            </div>
+            <p class="mt-4 text-xs text-muted">
+              PDF: <a href={data.pdf_download} class="text-aquamarine hover:underline">{data.pdf_download}</a>
+            </p>
+          </div>
+        </section>
+      )
+    }
+
+    {
+      relatedCases.length > 0 && (
+        <section class="py-12 md:py-16">
+          <div class="mx-auto max-w-6xl px-4">
+            <h2 class="text-2xl font-bold">Related cases</h2>
+            <div class="mt-8 grid gap-6 md:grid-cols-2">
+              {relatedCases.map((c) => (
+                <CaseCard
+                  slug={c.id}
+                  client={c.data.client}
+                  sector={c.data.sector}
+                  services={c.data.service}
+                  headlineResult={c.data.headline_result}
+                  challenge={c.data.challenge}
+                />
+              ))}
+            </div>
+          </div>
+        </section>
+      )
+    }
+  </article>
+
+  <CTASection
+    headline="Ready to get similar results?"
+    primaryLabel="Book a free growth audit →"
+    primaryHref="/contact"
+    secondaryLabel="Or identify your bottleneck first →"
+    secondaryHref="/bottleneck-quiz"
+  />
+</Layout>

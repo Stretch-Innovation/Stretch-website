@@ -1,0 +1,231 @@
+---
+import HubSpotFormFallback from './HubSpotFormFallback.astro';
+---
+
+<div id="bottleneck-quiz" class="mx-auto max-w-2xl">
+  <div id="quiz-intro">
+    <div class="mb-8 h-1 w-full overflow-hidden rounded-full bg-white/10">
+      <div id="quiz-progress" class="h-full w-0 bg-aquamarine transition-all duration-300"></div>
+    </div>
+    <div id="quiz-question-container"></div>
+  </div>
+
+  <div id="quiz-result" class="hidden"></div>
+
+  <div id="quiz-email" class="mt-12 hidden rounded-lg border border-white/10 bg-cod-gray p-6">
+    <h3 class="text-lg font-bold">Get your personalized growth roadmap</h3>
+    <p class="mt-2 text-sm text-muted">
+      Leave your email and we'll send you a tailored action plan based on your bottleneck.
+    </p>
+    <div class="mt-6">
+      <HubSpotFormFallback
+        formId="quiz-email-capture"
+        fields={['Name', 'Email', 'Company']}
+        submitLabel="Get my roadmap"
+      />
+    </div>
+  </div>
+</div>
+
+<script>
+  const questions = [
+    {
+      id: 1,
+      text: "Do you know what's actually driving your growth right now?",
+      answers: [
+        { label: 'No — we rely on gut feeling and manual reporting', value: 'A' },
+        { label: "Partially — we have some data but it's incomplete", value: 'B' },
+        { label: 'Yes — we have clear tracking, attribution and CRM discipline', value: 'C' },
+      ],
+      dimension: 'visibility',
+    },
+    {
+      id: 2,
+      text: 'How would you describe your pipeline?',
+      answers: [
+        { label: "Too empty — we depend on referrals and it's unpredictable", value: 'A' },
+        { label: 'Inconsistent — some months are great, others are dry', value: 'B' },
+        { label: 'Healthy — we generate leads consistently across multiple channels', value: 'C' },
+      ],
+      dimension: 'demand',
+    },
+    {
+      id: 3,
+      text: 'What happens to your leads once you have them?',
+      answers: [
+        { label: 'Many go cold — follow-up is inconsistent and conversion is low', value: 'A' },
+        { label: 'Some convert but the process is unclear and results vary', value: 'B' },
+        { label: 'We have a clear process and strong conversion rates', value: 'C' },
+      ],
+      dimension: 'conversion',
+    },
+    {
+      id: 4,
+      text: 'As you grow, does it feel easier or harder to manage?',
+      answers: [
+        { label: 'Much harder — everything feels more complex and manual', value: 'A' },
+        { label: "About the same — we're managing but not systematically", value: 'B' },
+        { label: 'Easier — we have systems and processes that scale', value: 'C' },
+      ],
+      dimension: 'scale',
+    },
+  ];
+
+  const results = {
+    visibility: {
+      title: 'Flying Blind',
+      bottleneck: 'Visibility',
+      diagnosis:
+        'Your bottleneck is Visibility. Before generating more demand, you need to build the measurement foundation.',
+      description:
+        'We build tracking, CRM foundations, and KPI frameworks so you know exactly what drives growth — and what doesn\'t.',
+      cta: 'Explore Growth Readiness →',
+      href: '/services/growth-readiness',
+      case: { client: 'Easybell', slug: 'easybell', result: '272% decrease in CAC' },
+    },
+    demand: {
+      title: 'Struggling for Demand',
+      bottleneck: 'Demand Generation',
+      diagnosis:
+        'Your bottleneck is Demand Generation. You need a repeatable engine that fills your pipeline on purpose.',
+      description:
+        'We build demand capture and creation systems — paid acquisition, SEO, and lead generation — that run consistently.',
+      cta: 'Explore Growth Generation →',
+      href: '/services/growth-generation',
+      case: { client: 'Anders Beton', slug: 'anders-beton', result: '0 to 3,000 leads in 3 months' },
+    },
+    conversion: {
+      title: 'Struggling for Conversion',
+      bottleneck: 'Conversion',
+      diagnosis:
+        "Your bottleneck is Conversion. You have demand but it's not turning into revenue efficiently.",
+      description:
+        'We optimize funnels, implement lead scoring, and align marketing automation with sales to convert more.',
+      cta: 'Explore Growth Conversion →',
+      href: '/services/growth-conversion',
+      case: { client: 'Vandemoortele', slug: 'vandemoortele', result: 'B2C to B2B engine at scale' },
+    },
+    scale: {
+      title: 'Struggling to Scale',
+      bottleneck: 'Scalability',
+      diagnosis:
+        'Your bottleneck is Scalability. Growth is creating complexity — you need systems.',
+      description:
+        'We build RevOps, forecasting, and commercial operating models so growth scales without chaos.',
+      cta: 'Explore Growth Acceleration →',
+      href: '/services/growth-acceleration',
+      case: { client: 'Easybell', slug: 'easybell', result: '261% MRR uplift' },
+    },
+    developing: {
+      title: 'Your engine is developing',
+      bottleneck: 'Next step',
+      diagnosis:
+        'Your engine is developing. A growth audit will identify the highest-impact next step.',
+      description:
+        "We'll analyze your current growth setup and pinpoint where to focus for maximum impact.",
+      cta: 'Book a free growth audit →',
+      href: '/contact',
+      case: { client: 'Brouwerij Van Steenberge', slug: 'brouwerij-van-steenberge', result: '€65,000 in 24 hours' },
+    },
+  };
+
+  let currentQuestion = 0;
+  const answers: Record<string, string> = {};
+
+  const container = document.getElementById('quiz-question-container');
+  const progress = document.getElementById('quiz-progress');
+  const resultEl = document.getElementById('quiz-result');
+  const introEl = document.getElementById('quiz-intro');
+  const emailEl = document.getElementById('quiz-email');
+
+  function renderQuestion() {
+    const q = questions[currentQuestion];
+    if (!container || !progress) return;
+
+    progress.style.width = `${((currentQuestion) / questions.length) * 100}%`;
+
+    container.innerHTML = `
+      <p class="text-sm text-muted mb-2">Question ${currentQuestion + 1} of ${questions.length}</p>
+      <h3 class="text-xl font-bold mb-6 md:text-2xl">${q.text}</h3>
+      <div class="space-y-3">
+        ${q.answers
+          .map(
+            (a) => `
+          <button
+            type="button"
+            class="quiz-answer w-full rounded-lg border border-white/10 bg-cod-gray px-4 py-4 text-left text-sm transition-colors hover:border-aquamarine/40 hover:bg-bunting"
+            data-value="${a.value}"
+            data-dimension="${q.dimension}"
+          >
+            ${a.label}
+          </button>
+        `
+          )
+          .join('')}
+      </div>
+    `;
+
+    container.querySelectorAll('.quiz-answer').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const dimension = (btn as HTMLElement).dataset.dimension!;
+        const value = (btn as HTMLElement).dataset.value!;
+        answers[dimension] = value;
+        currentQuestion++;
+        if (currentQuestion < questions.length) {
+          renderQuestion();
+        } else {
+          showResult();
+        }
+      });
+    });
+  }
+
+  function calculateResult() {
+    const counts = { A: 0, B: 0, C: 0 };
+    Object.values(answers).forEach((v) => counts[v as keyof typeof counts]++);
+
+    if (counts.A >= 2) {
+      const aDimensions = Object.entries(answers).filter(([, v]) => v === 'A');
+      const firstA = aDimensions[0]?.[0];
+      if (firstA && firstA in results) return results[firstA as keyof typeof results];
+    }
+
+    if (answers.visibility === 'A') return results.visibility;
+    if (answers.demand === 'A') return results.demand;
+    if (answers.conversion === 'A') return results.conversion;
+    if (answers.scale === 'A') return results.scale;
+
+    return results.developing;
+  }
+
+  function showResult() {
+    const result = calculateResult();
+    if (!resultEl || !introEl || !emailEl || !progress) return;
+
+    progress.style.width = '100%';
+    introEl.classList.add('hidden');
+    resultEl.classList.remove('hidden');
+    emailEl.classList.remove('hidden');
+
+    resultEl.innerHTML = `
+      <div class="rounded-lg border border-aquamarine/30 bg-bunting p-6 md:p-8">
+        <span class="text-sm font-medium uppercase tracking-wide text-aquamarine">${result.bottleneck}</span>
+        <h3 class="mt-2 text-2xl font-bold md:text-3xl">${result.title}</h3>
+        <p class="mt-4 text-lg">${result.diagnosis}</p>
+        <p class="mt-4 text-muted">${result.description}</p>
+        <a href="${result.href}" class="mt-6 inline-flex rounded bg-aquamarine px-6 py-3 text-sm font-semibold text-pearl hover:bg-aquamarine/90">
+          ${result.cta}
+        </a>
+      </div>
+      <div class="mt-8 rounded-lg border border-white/10 bg-cod-gray p-6">
+        <p class="text-sm text-muted">Relevant case study</p>
+        <a href="/cases/${result.case.slug}" class="group mt-2 block">
+          <span class="text-lg font-bold group-hover:text-aquamarine">${result.case.client}</span>
+          <span class="mt-1 block text-aquamarine">${result.case.result}</span>
+        </a>
+      </div>
+    `;
+  }
+
+  renderQuestion();
+</script>
