@@ -1,11 +1,12 @@
 ---
-import Layout from '../../layouts/Layout.astro';
-import ServicePageContent from '../../components/ServicePageContent.astro';
-import { getServiceBySlug } from '../../data/services';
+import StretchLayout from '../../layouts/StretchLayout.astro';
+import ServicePage from '../../components/stretch/ServicePage.astro';
+import { SERVICE_DATA } from '../../data/stretch-services';
 
-const service = getServiceBySlug('growth-generation')!;
+const slug = 'growth-generation';
+const service = SERVICE_DATA.find((s) => s.slug === slug)!;
 ---
 
-<Layout title="Growth Generation — Stretch Innovation" description={service.description}>
-  <ServicePageContent service={service} />
-</Layout>
+<StretchLayout title={`${service.name} — Stretch Innovation`} description={service.short}>
+  <ServicePage slug={slug} />
+</StretchLayout>

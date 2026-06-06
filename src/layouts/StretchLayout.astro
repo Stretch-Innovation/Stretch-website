@@ -1,0 +1,112 @@
+---
+import '../styles/stretch.css';
+import Nav from '../components/stretch/Nav.astro';
+import Footer from '../components/stretch/Footer.astro';
+
+interface Props {
+  title?: string;
+  description?: string;
+  home?: boolean;
+}
+
+const {
+  title = 'Stretch Innovation',
+  description = 'Belgian growth partner. We engineer predictable Growth Engines for scale-ups and enterprise.',
+  home = false,
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="stylesheet" href="/ds/styles.css" />
+    <style is:global>
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        background: var(--surface-base);
+        overflow-x: hidden;
+        margin: 0;
+        color: var(--text-primary);
+        font-family: var(--font-body);
+      }
+      .nav-mobile-btn {
+        display: none;
+      }
+      @media (max-width: 860px) {
+        .nav-desktop {
+          display: none !important;
+        }
+        .nav-mobile-btn {
+          display: flex !important;
+        }
+        .grid-4 {
+          grid-template-columns: repeat(2, 1fr) !important;
+        }
+        .grid-3 {
+          grid-template-columns: 1fr !important;
+        }
+        .about-grid {
+          grid-template-columns: 1fr !important;
+          gap: var(--space-6) !important;
+        }
+        .footer-grid {
+          grid-template-columns: 1fr 1fr !important;
+        }
+        .case-body {
+          grid-template-columns: 1fr !important;
+        }
+        .case-stats {
+          grid-template-columns: repeat(2, 1fr) !important;
+        }
+        .more-grid {
+          grid-template-columns: 1fr !important;
+        }
+        .build-grid {
+          grid-template-columns: 1fr !important;
+        }
+      }
+      @media (max-width: 1024px) {
+        .services-grid {
+          grid-template-columns: repeat(2, 1fr) !important;
+        }
+        .services-grid > * {
+          grid-column: auto !important;
+        }
+      }
+      @media (max-width: 560px) {
+        .grid-4,
+        .services-grid,
+        .footer-grid,
+        .case-stats {
+          grid-template-columns: 1fr !important;
+        }
+        .hero-stat-divider {
+          display: none !important;
+        }
+        .hero-stats {
+          gap: var(--space-6) !important;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <Nav home={home} />
+    <main>
+      <slot />
+    </main>
+    <Footer />
+    <script src="/scripts/stretch.js" defer></script>
+  </body>
+</html>

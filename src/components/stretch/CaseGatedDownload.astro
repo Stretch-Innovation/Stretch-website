@@ -1,0 +1,66 @@
+---
+import Reveal from './Reveal.astro';
+import Icon from './Icon.astro';
+import type { CaseStudy } from '../../data/cases';
+
+interface Props {
+  c: CaseStudy;
+}
+
+const { c } = Astro.props;
+---
+
+<section class="case-gated-section" style="padding: var(--section-gap) var(--gutter);">
+  <Reveal>
+    <div class="case-gated-panel">
+      <div class="case-gated-grid">
+        <div class="case-gated-cover-col">
+          <div class="case-gated-cover-wrap" aria-hidden="false">
+            <div class="case-gated-cover-glow" aria-hidden="true"></div>
+            <img
+              src={c.downloadCover}
+              alt={`${c.client} case study cover`}
+              class="case-gated-cover-img"
+              loading="lazy"
+            />
+          </div>
+        </div>
+
+        <div class="case-gated-form-col">
+          <h2 class="case-gated-form__title">Want the full case study?</h2>
+          <p class="case-gated-form__subtitle">
+            Download the complete version including methodology, experiment details and full results.
+          </p>
+
+          <!-- HUBSPOT FORM EMBED — replace with actual embed 
+          code from HubSpot portal per case -->
+          <form class="case-gated-form" onsubmit="event.preventDefault()">
+            <div class="case-gated-names">
+              <label class="case-gated-field">
+                <span class="case-gated-field__label">First name</span>
+                <input type="text" name="firstname" placeholder="Jane" autocomplete="given-name" class="case-gated-input" />
+              </label>
+              <label class="case-gated-field">
+                <span class="case-gated-field__label">Last name</span>
+                <input type="text" name="lastname" placeholder="Doe" autocomplete="family-name" class="case-gated-input" />
+              </label>
+            </div>
+            <label class="case-gated-field">
+              <span class="case-gated-field__label">Company email</span>
+              <input type="email" name="email" placeholder="you@company.com" autocomplete="email" class="case-gated-input" />
+            </label>
+            <label class="case-gated-field">
+              <span class="case-gated-field__label">Phone</span>
+              <input type="tel" name="phone" placeholder="+32 ..." autocomplete="tel" class="case-gated-input" />
+            </label>
+            <button type="submit" class="ds-btn ds-btn--primary ds-btn--lg ds-btn--full case-gated-submit">
+              Send me the case study
+              <Icon name="arrowRight" size={18} />
+            </button>
+            <p class="case-gated-note">We'll send it to your inbox immediately.</p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </Reveal>
+</section>

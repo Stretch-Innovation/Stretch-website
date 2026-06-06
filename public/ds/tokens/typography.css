@@ -1,0 +1,46 @@
+/* ============================================================
+   Stretch — Typography tokens
+   Syne for display/headlines. Inter for body & UI.
+   ============================================================ */
+:root {
+  /* ---- Families ---- */
+  --font-display: "Syne", "Inter", system-ui, sans-serif;
+  --font-body: "Inter", system-ui, -apple-system, sans-serif;
+  --font-mono: "Inter", ui-monospace, "SF Mono", Menlo, monospace; /* tabular numerics */
+
+  /* ---- Fluid display scale (clamp: min @ 375px → max @ 1440px) ---- */
+  --text-display-1: clamp(3.25rem, 1.8rem + 6.2vw, 7rem); /* @kind spacing */   /* hero */
+  --text-display-2: clamp(2.5rem, 1.4rem + 4.7vw, 5rem); /* @kind spacing */
+  --text-display-3: clamp(2rem, 1.4rem + 2.6vw, 3.25rem); /* @kind spacing */
+
+  /* ---- Static type scale ---- */
+  --text-h1: 2.5rem;     /* 40 */
+  --text-h2: 2rem;       /* 32 */
+  --text-h3: 1.5rem;     /* 24 */
+  --text-h4: 1.25rem;    /* 20 */
+  --text-lg: 1.125rem;   /* 18 */
+  --text-base: 1rem;     /* 16 */
+  --text-sm: 0.875rem;   /* 14 */
+  --text-xs: 0.75rem;    /* 12 — labels, eyebrows */
+
+  /* ---- Weights ---- */
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+  --weight-extrabold: 800;
+
+  /* ---- Line heights ---- */
+  --leading-none: 1;
+  --leading-tight: 1.1;     /* display headlines */
+  --leading-snug: 1.25;     /* sub-headlines */
+  --leading-normal: 1.5;    /* body */
+  --leading-relaxed: 1.65;  /* long-form */
+
+  /* ---- Letter spacing ---- */
+  --tracking-tighter: -0.04em;  /* big Syne display */
+  --tracking-tight: -0.02em;    /* headings */
+  --tracking-normal: 0;
+  --tracking-wide: 0.04em;
+  --tracking-eyebrow: 0.18em;   /* uppercase eyebrows / labels */
+}

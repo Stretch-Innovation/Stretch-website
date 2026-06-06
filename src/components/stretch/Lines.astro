@@ -1,0 +1,35 @@
+---
+interface Props {
+  width?: number;
+  gap?: number;
+  h?: number;
+  accent?: boolean;
+  opacity?: number;
+}
+
+const { width = 22, gap = 4, h = 2, accent = false, opacity = 0.55 } = Astro.props;
+---
+
+<span class="lines-mark" style={`--lines-width: ${width}px; --lines-gap: ${gap}px; --lines-h: ${h}px;`} aria-hidden="true">
+  <span style={`opacity: ${opacity}`}></span>
+  <span class:list={[{ accent }]}></span>
+  <span style={`opacity: ${opacity}`}></span>
+</span>
+
+<style>
+  .lines-mark {
+    display: inline-flex;
+    flex-direction: column;
+    gap: var(--lines-gap);
+    width: var(--lines-width);
+    color: currentColor;
+  }
+  .lines-mark span {
+    height: var(--lines-h);
+    border-radius: var(--lines-h);
+    background: currentColor;
+  }
+  .lines-mark span.accent {
+    background: var(--aquamarine);
+  }
+</style>

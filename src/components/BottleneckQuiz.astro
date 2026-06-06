@@ -3,17 +3,24 @@ import HubSpotFormFallback from './HubSpotFormFallback.astro';
 ---
 
 <div id="bottleneck-quiz" class="mx-auto max-w-2xl">
-  <div id="quiz-intro">
-    <div class="mb-8 h-1 w-full overflow-hidden rounded-full bg-white/10">
-      <div id="quiz-progress" class="h-full w-0 bg-aquamarine transition-all duration-300"></div>
+  <div id="quiz-intro" class="quiz-panel rounded-2xl p-6 md:p-8">
+    <div class="mb-2 flex items-center justify-between text-xs font-medium uppercase tracking-wider text-muted">
+      <span id="quiz-step-label">Question 1 of 4</span>
+      <span id="quiz-percent">0%</span>
     </div>
-    <div id="quiz-question-container"></div>
+    <div class="mb-8 h-1.5 w-full overflow-hidden rounded-full bg-white/10">
+      <div
+        id="quiz-progress"
+        class="quiz-progress-bar h-full w-0 rounded-full bg-aquamarine transition-all duration-500 ease-out"
+      />
+    </div>
+    <div id="quiz-question-container" />
   </div>
 
-  <div id="quiz-result" class="hidden"></div>
+  <div id="quiz-result" class="hidden" />
 
-  <div id="quiz-email" class="mt-12 hidden rounded-lg border border-white/10 bg-cod-gray p-6">
-    <h3 class="text-lg font-bold">Get your personalized growth roadmap</h3>
+  <div id="quiz-email" class="quiz-panel mt-8 hidden rounded-2xl p-6 md:p-8">
+    <h3 class="font-display text-xl font-bold">Get your personalized growth roadmap</h3>
     <p class="mt-2 text-sm text-muted">
       Leave your email and we'll send you a tailored action plan based on your bottleneck.
     </p>
@@ -78,7 +85,7 @@ import HubSpotFormFallback from './HubSpotFormFallback.astro';
       diagnosis:
         'Your bottleneck is Visibility. Before generating more demand, you need to build the measurement foundation.',
       description:
-        'We build tracking, CRM foundations, and KPI frameworks so you know exactly what drives growth — and what doesn\'t.',
+        "We build tracking, CRM foundations, and KPI frameworks so you know exactly what drives growth — and what doesn't.",
       cta: 'Explore Growth Readiness →',
       href: '/services/growth-readiness',
       case: { client: 'Easybell', slug: 'easybell', result: '272% decrease in CAC' },
@@ -125,7 +132,11 @@ import HubSpotFormFallback from './HubSpotFormFallback.astro';
         "We'll analyze your current growth setup and pinpoint where to focus for maximum impact.",
       cta: 'Book a free growth audit →',
       href: '/contact',
-      case: { client: 'Brouwerij Van Steenberge', slug: 'brouwerij-van-steenberge', result: '€65,000 in 24 hours' },
+      case: {
+        client: 'Brouwerij Van Steenberge',
+        slug: 'brouwerij-van-steenberge',
+        result: '€65,000 in 24 hours',
+      },
     },
   };
 
@@ -134,34 +145,46 @@ import HubSpotFormFallback from './HubSpotFormFallback.astro';
 
   const container = document.getElementById('quiz-question-container');
   const progress = document.getElementById('quiz-progress');
+  const stepLabel = document.getElementById('quiz-step-label');
+  const percentLabel = document.getElementById('quiz-percent');
   const resultEl = document.getElementById('quiz-result');
   const introEl = document.getElementById('quiz-intro');
   const emailEl = document.getElementById('quiz-email');
 
+  function updateProgress() {
+    const pct = Math.round((currentQuestion / questions.length) * 100);
+    if (progress) progress.style.width = `${pct}%`;
+    if (stepLabel) stepLabel.textContent = `Question ${currentQuestion + 1} of ${questions.length}`;
+    if (percentLabel) percentLabel.textContent = `${pct}%`;
+  }
+
   function renderQuestion() {
     const q = questions[currentQuestion];
-    if (!container || !progress) return;
+    if (!container) return;
 
-    progress.style.width = `${((currentQuestion) / questions.length) * 100}%`;
+    updateProgress();
 
+    const labels = ['A', 'B', 'C'];
     container.innerHTML = `
-      <p class="text-sm text-muted mb-2">Question ${currentQuestion + 1} of ${questions.length}</p>
-      <h3 class="text-xl font-bold mb-6 md:text-2xl">${q.text}</h3>
-      <div class="space-y-3">
-        ${q.answers
-          .map(
-            (a) => `
-          <button
-            type="button"
-            class="quiz-answer w-full rounded-lg border border-white/10 bg-cod-gray px-4 py-4 text-left text-sm transition-colors hover:border-aquamarine/40 hover:bg-bunting"
-            data-value="${a.value}"
-            data-dimension="${q.dimension}"
-          >
-            ${a.label}
-          </button>
-        `
-          )
-          .join('')}
+      <div class="quiz-question-enter">
+        <h3 class="font-display text-xl font-bold leading-snug md:text-2xl">${q.text}</h3>
+        <div class="mt-6 space-y-3">
+          ${q.answers
+            .map(
+              (a, i) => `
+            <button
+              type="button"
+              class="quiz-answer flex w-full items-start gap-4 rounded-xl border border-white/10 bg-pearl/60 px-4 py-4 text-left"
+              data-value="${a.value}"
+              data-dimension="${q.dimension}"
+            >
+              <span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-aquamarine/30 text-xs font-bold text-aquamarine">${labels[i]}</span>
+              <span class="text-sm leading-relaxed text-white/90">${a.label}</span>
+            </button>
+          `
+            )
+            .join('')}
+        </div>
       </div>
     `;
 
@@ -170,12 +193,15 @@ import HubSpotFormFallback from './HubSpotFormFallback.astro';
         const dimension = (btn as HTMLElement).dataset.dimension!;
         const value = (btn as HTMLElement).dataset.value!;
         answers[dimension] = value;
+        btn.classList.add('border-aquamarine/60', 'bg-bunting/80');
         currentQuestion++;
-        if (currentQuestion < questions.length) {
-          renderQuestion();
-        } else {
-          showResult();
-        }
+        setTimeout(() => {
+          if (currentQuestion < questions.length) {
+            renderQuestion();
+          } else {
+            showResult();
+          }
+        }, 200);
       });
     });
   }
@@ -200,27 +226,28 @@ import HubSpotFormFallback from './HubSpotFormFallback.astro';
 
   function showResult() {
     const result = calculateResult();
-    if (!resultEl || !introEl || !emailEl || !progress) return;
+    if (!resultEl || !introEl || !emailEl || !progress || !percentLabel) return;
 
     progress.style.width = '100%';
+    percentLabel.textContent = '100%';
     introEl.classList.add('hidden');
     resultEl.classList.remove('hidden');
     emailEl.classList.remove('hidden');
 
     resultEl.innerHTML = `
-      <div class="rounded-lg border border-aquamarine/30 bg-bunting p-6 md:p-8">
-        <span class="text-sm font-medium uppercase tracking-wide text-aquamarine">${result.bottleneck}</span>
-        <h3 class="mt-2 text-2xl font-bold md:text-3xl">${result.title}</h3>
-        <p class="mt-4 text-lg">${result.diagnosis}</p>
-        <p class="mt-4 text-muted">${result.description}</p>
-        <a href="${result.href}" class="mt-6 inline-flex rounded bg-aquamarine px-6 py-3 text-sm font-semibold text-pearl hover:bg-aquamarine/90">
+      <div class="quiz-question-enter rounded-2xl border border-aquamarine/30 bg-bunting p-6 md:p-8">
+        <span class="text-xs font-semibold uppercase tracking-[0.2em] text-aquamarine">${result.bottleneck}</span>
+        <h3 class="font-display mt-3 text-2xl font-bold md:text-3xl">${result.title}</h3>
+        <p class="mt-4 text-lg leading-relaxed">${result.diagnosis}</p>
+        <p class="mt-4 text-sm leading-relaxed text-muted">${result.description}</p>
+        <a href="${result.href}" class="btn-glow mt-8 inline-flex rounded px-6 py-3.5 text-sm font-semibold">
           ${result.cta}
         </a>
       </div>
-      <div class="mt-8 rounded-lg border border-white/10 bg-cod-gray p-6">
-        <p class="text-sm text-muted">Relevant case study</p>
-        <a href="/cases/${result.case.slug}" class="group mt-2 block">
-          <span class="text-lg font-bold group-hover:text-aquamarine">${result.case.client}</span>
+      <div class="quiz-panel mt-6 rounded-2xl p-6">
+        <p class="text-xs font-semibold uppercase tracking-wider text-muted">Relevant case study</p>
+        <a href="/cases/${result.case.slug}" class="group mt-3 block">
+          <span class="font-display text-lg font-bold group-hover:text-aquamarine">${result.case.client}</span>
           <span class="mt-1 block text-aquamarine">${result.case.result}</span>
         </a>
       </div>

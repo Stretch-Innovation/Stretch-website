@@ -1,0 +1,35 @@
+---
+import Reveal from '../Reveal.astro';
+import Icon from '../Icon.astro';
+import HomeCaseCard from './HomeCaseCard.astro';
+import { CASE_DATA } from '../../../data/cases';
+
+const featured = CASE_DATA.filter((c) => c.featured);
+---
+
+<section id="cases" style="padding: var(--section-gap) var(--gutter); border-top: 1px solid var(--border-subtle); background: var(--surface-sunken); scroll-margin-top: var(--header-height);">
+  <div style="max-width: var(--container-max); margin: 0 auto;">
+    <Reveal>
+      <div style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 1rem; margin-bottom: var(--space-7);">
+        <div style="max-width: 36ch;">
+          <span class="ds-eyebrow">
+            <span class="ds-eyebrow-mark" aria-hidden="true"><span></span><span></span><span></span></span>
+            Proof, not promises
+          </span>
+          <h2 style="font-size: var(--text-display-3); margin-top: var(--space-3);">Engines we've built</h2>
+        </div>
+        <a href="/cases" class="ds-btn ds-btn--ghost ds-btn--md">
+          Explore all cases
+          <Icon name="arrowRight" size={16} />
+        </a>
+      </div>
+    </Reveal>
+    <div class="grid-3" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-4);">
+      {featured.map((c, i) => (
+        <Reveal delay={i * 100}>
+          <HomeCaseCard c={c} />
+        </Reveal>
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,40 @@
+---
+import Reveal from '../Reveal.astro';
+import Icon from '../Icon.astro';
+import { BOTTLENECKS } from '../../../data/clients-logos';
+---
+
+<section id="bottleneck" style="padding: var(--section-gap) var(--gutter); scroll-margin-top: var(--header-height);">
+  <div style="max-width: var(--container-max); margin: 0 auto;">
+    <Reveal>
+      <div style="max-width: 40ch;">
+        <span class="ds-eyebrow">
+          <span class="ds-eyebrow-mark" aria-hidden="true"><span></span><span></span><span></span></span>
+          Where growth breaks
+        </span>
+        <h2 style="font-size: var(--text-display-3); margin-top: var(--space-3); max-width: 20ch;">Which bottleneck is stalling your growth?</h2>
+        <p style="margin-top: var(--space-4); color: var(--text-secondary); font-size: var(--text-lg); line-height: 1.6;">
+          Every plateau traces back to one of four. Name yours and the path forward gets obvious.
+        </p>
+      </div>
+    </Reveal>
+    <div class="grid-4" style="margin-top: var(--space-7); display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-4);">
+      {
+        BOTTLENECKS.map((b, i) => (
+          <Reveal delay={i * 90}>
+            <div class="ds-card-interactive" style="display: flex; flex-direction: column; gap: var(--space-4); height: 100%; border-radius: var(--radius-card); padding: var(--space-6); background: var(--surface-raised); border: 1px solid var(--border-subtle); box-shadow: var(--shadow-inset-hairline);">
+              <span style="width: 48px; height: 48px; border-radius: var(--radius-md); border: 1px solid var(--border-default); display: flex; align-items: center; justify-content: center; color: var(--aquamarine); background: rgba(159,255,220,0.06);">
+                <Icon name={b.icon} size={22} />
+              </span>
+              <div style="display: flex; align-items: center; gap: 0.5rem;">
+                <span style="font-family: var(--font-display); font-weight: 700; font-size: 0.8125rem; color: var(--text-muted); font-variant-numeric: tabular-nums;">0{i + 1}</span>
+                <h3 style="font-size: var(--text-h4); margin: 0;">{b.title}</h3>
+              </div>
+              <p style="color: var(--text-secondary); font-size: 0.9375rem; line-height: 1.6; margin: 0;">{b.desc}</p>
+            </div>
+          </Reveal>
+        ))
+      }
+    </div>
+  </div>
+</section>

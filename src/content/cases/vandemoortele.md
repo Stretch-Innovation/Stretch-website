@@ -8,6 +8,7 @@ challenge: "Vandemoortele had strong brand visibility but marketing wasn't conve
 approach: "Stretch transformed their marketing approach into a high-performance B2B engine built on first-party data. We implemented a full-funnel strategy with gated content, lead magnets, and HubSpot-powered lead scoring. Marketing and sales were aligned around a shared funnel with clear MQL to SQL handoff procedures."
 result: "Vandemoortele now owns direct relationships with thousands of foodservice buyers. Lead scoring and automation run continuously, campaign performance is tracked in real time, and the sales team receives only sales-ready leads. The engine is now replicable across other European markets."
 featured: true
+cover_image: "/images/cases/vandemoortele-case-cover.png"
 pdf_download: "/downloads/vandemoortele-case.pdf"
 date: 2024-01-15
 ---

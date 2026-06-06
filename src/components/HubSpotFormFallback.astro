@@ -10,15 +10,18 @@ const {
   fields = ['Name', 'Email'],
   submitLabel = 'Submit',
 } = Astro.props;
+
+const inputClass =
+  'w-full rounded-lg border border-white/10 bg-pearl px-4 py-3 text-sm text-white placeholder:text-muted focus:border-aquamarine focus:outline-none focus:ring-1 focus:ring-aquamarine/30';
 ---
 
 <div class="hubspot-form-fallback" data-form-id={formId}>
   <!-- HUBSPOT FORM EMBED CODE HERE — replace with actual embed from HubSpot portal -->
-  <form class="space-y-4" onsubmit="event.preventDefault()">
+  <form class="space-y-5" onsubmit="event.preventDefault()">
     {
       fields.map((field) => (
         <div>
-          <label class="mb-1 block text-sm text-muted" for={`${formId}-${field}`}>
+          <label class="mb-1.5 block text-sm font-medium text-muted" for={`${formId}-${field}`}>
             {field}
           </label>
           {field === 'Message' || field.includes('challenge') ? (
@@ -26,23 +29,20 @@ const {
               id={`${formId}-${field}`}
               name={field}
               rows={4}
-              class="w-full rounded border border-white/10 bg-pearl px-4 py-2 text-sm text-white placeholder:text-muted focus:border-aquamarine focus:outline-none"
+              class={inputClass}
             />
           ) : (
             <input
               type={field === 'Email' ? 'email' : 'text'}
               id={`${formId}-${field}`}
               name={field}
-              class="w-full rounded border border-white/10 bg-pearl px-4 py-2 text-sm text-white placeholder:text-muted focus:border-aquamarine focus:outline-none"
+              class={inputClass}
             />
           )}
         </div>
       ))
     }
-    <button
-      type="submit"
-      class="rounded bg-aquamarine px-6 py-3 text-sm font-semibold text-pearl transition-colors hover:bg-aquamarine/90"
-    >
+    <button type="submit" class="btn-glow rounded-lg px-6 py-3.5 text-sm font-semibold">
       {submitLabel}
     </button>
   </form>

@@ -1,0 +1,60 @@
+---
+import Wordmark from './Wordmark.astro';
+import Icon from './Icon.astro';
+import { SERVICE_DATA } from '../../data/stretch-services';
+
+const LINKEDIN = 'https://www.linkedin.com/company/stretch-innovation/';
+---
+
+<footer style="border-top: 1px solid var(--border-subtle); background: var(--surface-sunken); padding: var(--space-9) var(--gutter) var(--space-7);">
+  <div style="max-width: var(--container-wide); margin: 0 auto;">
+    <div class="footer-grid" style="display: grid; grid-template-columns: 1.6fr 1fr 1fr 1fr; gap: var(--space-6);">
+      <div>
+        <div style="color: var(--white); margin-bottom: 1.25rem;"><Wordmark height={38} /></div>
+        <p style="color: var(--text-muted); font-size: 0.9375rem; max-width: 32ch; line-height: 1.6; margin: 0;">
+          Belgian growth partner. We engineer predictable Growth Engines for scale-ups and enterprise — no guesswork.
+        </p>
+        <div style="display: flex; align-items: center; gap: 0.5rem; margin-top: 1.25rem; color: var(--text-muted); font-size: 0.8125rem;">
+          <Icon name="mapPin" size={15} />
+          <span>Antwerp, Belgium · operating across the Benelux</span>
+        </div>
+      </div>
+
+      <div>
+        <div style="font-size: 0.75rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 1.25rem;">Services</div>
+        <div style="display: flex; flex-direction: column; gap: 0.625rem;">
+          {SERVICE_DATA.map((s) => (
+            <a href={`/services/${s.slug}`} class="footer-link" style="font-size: 0.9375rem; color: var(--text-secondary); transition: color var(--dur-fast) var(--ease-out); width: fit-content;">{s.name}</a>
+          ))}
+        </div>
+      </div>
+
+      <div>
+        <div style="font-size: 0.75rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 1.25rem;">Company</div>
+        <div style="display: flex; flex-direction: column; gap: 0.625rem;">
+          <a href="/about" class="footer-link" style="font-size: 0.9375rem; color: var(--text-secondary); width: fit-content;">About</a>
+          <a href="/cases" class="footer-link" style="font-size: 0.9375rem; color: var(--text-secondary); width: fit-content;">Cases</a>
+          <a href="/insights" class="footer-link" style="font-size: 0.9375rem; color: var(--text-secondary); width: fit-content;">Insights</a>
+          <a href="/#contact" class="footer-link" style="font-size: 0.9375rem; color: var(--text-secondary); width: fit-content;">Careers</a>
+        </div>
+      </div>
+
+      <div>
+        <div style="font-size: 0.75rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 1.25rem;">Connect</div>
+        <div style="display: flex; flex-direction: column; gap: 0.625rem;">
+          <a href="/contact" class="footer-link" style="font-size: 0.9375rem; color: var(--text-secondary); width: fit-content;">Contact</a>
+          <a href={LINKEDIN} target="_blank" rel="noopener noreferrer" class="footer-link" style="font-size: 0.9375rem; color: var(--text-secondary); width: fit-content;">LinkedIn</a>
+          <a href="/contact" class="footer-link" style="font-size: 0.9375rem; color: var(--text-secondary); width: fit-content;">Newsletter</a>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top: var(--space-8); padding-top: var(--space-5); border-top: 1px solid var(--border-subtle); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem; color: var(--text-muted); font-size: 0.8125rem;">
+      <span>© 2026 Stretch Innovation</span>
+      <span style="display: flex; gap: 1.5rem;">
+        <a href="#" style="color: inherit;">Privacy</a>
+        <a href="#" style="color: inherit;">Terms</a>
+      </span>
+    </div>
+  </div>
+</footer>

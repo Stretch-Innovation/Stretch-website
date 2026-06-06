@@ -1,6 +1,7 @@
 ---
-const navLinks = [
-  { href: '/services', label: 'Services' },
+import { SERVICE_DATA } from '../data/stretch-services';
+
+const otherNavLinks = [
   { href: '/cases', label: 'Cases' },
   { href: '/insights', label: 'Insights' },
   { href: '/about', label: 'About' },
@@ -22,8 +23,35 @@ const currentPath = Astro.url.pathname;
     </a>
 
     <div class="hidden items-center gap-8 md:flex">
+      <div class="services-menu">
+        <a
+          href="/services"
+          class:list={[
+            'nav-services-trigger relative text-sm font-medium transition-colors',
+            currentPath.startsWith('/services')
+              ? 'text-aquamarine'
+              : 'text-white/80 hover:text-white',
+          ]}
+        >
+          Services
+          <svg class="chevron-icon inline-block" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="m6 9 6 6 6-6" />
+          </svg>
+        </a>
+        <div class="services-dropdown" role="menu">
+          {
+            SERVICE_DATA.map((s) => (
+              <a href={`/services/${s.slug}`} role="menuitem" class="services-dropdown__item">
+                <span class="services-dropdown__name">{s.name}</span>
+                <span class="services-dropdown__desc">{s.headline}</span>
+              </a>
+            ))
+          }
+        </div>
+      </div>
+
       {
-        navLinks.map((link) => (
+        otherNavLinks.map((link) => (
           <a
             href={link.href}
             class:list={[
@@ -74,8 +102,17 @@ const currentPath = Astro.url.pathname;
     id="mobile-menu"
     class="fixed inset-0 top-[65px] hidden flex-col bg-pearl/98 px-4 py-8 backdrop-blur-xl md:hidden"
   >
+    <div class="text-xs font-semibold uppercase tracking-widest text-white/50">Services</div>
     {
-      navLinks.map((link) => (
+      SERVICE_DATA.map((s) => (
+        <a href={`/services/${s.slug}`} class="border-b border-white/10 py-4">
+          <span class="block text-lg font-medium hover:text-aquamarine">{s.name}</span>
+          <span class="mt-1 block text-sm text-white/60">{s.headline}</span>
+        </a>
+      ))
+    }
+    {
+      otherNavLinks.map((link) => (
         <a
           href={link.href}
           class="border-b border-white/10 py-4 text-lg font-medium hover:text-aquamarine"

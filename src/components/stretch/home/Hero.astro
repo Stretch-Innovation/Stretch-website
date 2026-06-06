@@ -1,0 +1,50 @@
+---
+import Reveal from '../Reveal.astro';
+import Icon from '../Icon.astro';
+---
+
+<section id="top" style="position: relative; overflow: hidden; padding: calc(var(--header-height) + var(--space-8)) var(--gutter) var(--space-9);">
+  <div aria-hidden="true" style="position: absolute; top: -18%; left: 50%; transform: translateX(-50%); width: min(1000px, 96vw); height: 640px; background: radial-gradient(ellipse at center, rgba(95,107,211,0.26), transparent 66%); pointer-events: none;"></div>
+  <div style="position: relative; max-width: var(--container-max); margin: 0 auto; text-align: center;">
+    <Reveal>
+      <span class="ds-badge ds-badge--accent ds-badge--dot">Belgian growth partner · scale-ups &amp; enterprise</span>
+    </Reveal>
+    <Reveal delay={80} tag="h1" class="hero-headline" style="font-family: var(--font-display); font-weight: 800; font-size: var(--text-display-1); line-height: 1.02; letter-spacing: -0.04em; margin: 0 auto; max-width: 15ch;">
+      Building <span style="color: var(--aquamarine);">predictable</span> Growth Engines<span style="color: var(--aquamarine);">.</span>
+    </Reveal>
+    <Reveal delay={180} tag="p" style="margin: var(--space-5) auto 0; max-width: 54ch; font-size: var(--text-lg); line-height: 1.6; color: var(--text-secondary);">
+      No guesswork — a tested system that turns spend into compounding pipeline. We diagnose the bottleneck, build the engine, then scale it with you.
+    </Reveal>
+    <Reveal delay={260}>
+      <div style="display: flex; gap: 0.875rem; justify-content: center; flex-wrap: wrap; margin-top: var(--space-6);">
+        <a href="#contact" class="ds-btn ds-btn--primary ds-btn--lg">
+          Identify your bottleneck
+          <Icon name="arrowRight" size={18} />
+        </a>
+        <a href="#cases" class="ds-btn ds-btn--outline ds-btn--lg">See the results</a>
+      </div>
+    </Reveal>
+    <Reveal delay={360}>
+      <div class="hero-stats" style="margin-top: var(--space-9); display: inline-flex; align-items: center; gap: var(--space-7); flex-wrap: wrap; justify-content: center;">
+        <div style="display: flex; flex-direction: column; gap: 0.25rem; text-align: center;">
+          <div style="font-family: var(--font-display); font-weight: 800; font-size: clamp(2.5rem,1.6rem + 3vw,3.5rem); line-height: 0.95; letter-spacing: -0.03em; font-variant-numeric: tabular-nums; display: flex; align-items: baseline; justify-content: center;">
+            <span style="color: var(--aquamarine);">+</span><span>120</span>
+          </div>
+          <div style="font-size: 0.875rem; color: var(--text-muted); max-width: 16ch;">Clients on a Growth Engine</div>
+        </div>
+        <span class="hero-stat-divider" aria-hidden="true" style="width: 1px; height: 56px; background: var(--border-default);"></span>
+        <div style="display: flex; flex-direction: column; gap: 0.25rem; text-align: center;">
+          <div style="font-family: var(--font-display); font-weight: 800; font-size: clamp(2.5rem,1.6rem + 3vw,3.5rem); line-height: 0.95; letter-spacing: -0.03em;">36</div>
+          <div style="font-size: 0.875rem; color: var(--text-muted); max-width: 16ch;">Colleagues across the Benelux</div>
+        </div>
+        <span class="hero-stat-divider" aria-hidden="true" style="width: 1px; height: 56px; background: var(--border-default);"></span>
+        <div style="display: flex; flex-direction: column; gap: 0.25rem; text-align: center;">
+          <div style="font-family: var(--font-display); font-weight: 800; font-size: clamp(2.5rem,1.6rem + 3vw,3.5rem); line-height: 0.95; letter-spacing: -0.03em;">
+            <span>3</span><span style="color: var(--aquamarine); font-size: 0.55em; margin-left: 0.1em;">-step</span>
+          </div>
+          <div style="font-size: 0.875rem; color: var(--text-muted); max-width: 16ch;">Diagnose · build · scale</div>
+        </div>
+      </div>
+    </Reveal>
+  </div>
+</section>

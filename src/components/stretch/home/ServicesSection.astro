@@ -1,0 +1,64 @@
+---
+import Reveal from '../Reveal.astro';
+import Icon from '../Icon.astro';
+import { SERVICE_DATA } from '../../../data/stretch-services';
+---
+
+<section id="services" style="padding: var(--section-gap) var(--gutter); scroll-margin-top: var(--header-height);">
+  <div style="max-width: var(--container-max); margin: 0 auto;">
+    <Reveal>
+      <div style="max-width: 44ch;">
+        <span class="ds-eyebrow">
+          <span class="ds-eyebrow-mark" aria-hidden="true"><span></span><span></span><span></span></span>
+          What we build
+        </span>
+        <h2 style="font-size: var(--text-display-3); margin-top: var(--space-3); max-width: 20ch;">Five ways we build your Growth Engine.</h2>
+        <p style="margin-top: var(--space-4); color: var(--text-secondary); font-size: var(--text-lg); line-height: 1.6;">
+          Every engagement starts with identifying your bottleneck. Then we build the capabilities to overcome it.
+        </p>
+      </div>
+    </Reveal>
+    <div class="services-grid" style="margin-top: var(--space-7); display: grid; grid-template-columns: repeat(6, 1fr); gap: var(--space-4);">
+      {
+        SERVICE_DATA.map((s, i) => (
+          <div style={i < 3 ? 'grid-column: span 2;' : 'grid-column: span 3;'}>
+          <Reveal delay={(i % 3) * 90}>
+            <a
+              href={`/services/${s.slug}`}
+              class="hover-service-card"
+              style="position: relative; overflow: hidden; display: flex; flex-direction: column; height: 100%; border-radius: var(--radius-card); border: 1px solid var(--border-subtle); background: var(--surface-raised); padding: var(--space-6); box-shadow: var(--shadow-inset-hairline); text-decoration: none; color: inherit; transition: all var(--dur-base) var(--ease-out);"
+            >
+              <div style="display: flex; justify-content: space-between; align-items: center; gap: 0.75rem;">
+                <span style="width: 48px; height: 48px; flex-shrink: 0; border-radius: var(--radius-md); border: 1px solid var(--border-default); display: flex; align-items: center; justify-content: center; color: var(--aquamarine); background: rgba(159,255,220,0.06);">
+                  <Icon name={s.icon} size={22} />
+                </span>
+                {s.standalone ? (
+                  <span class="ds-badge ds-badge--accent">High-value accounts</span>
+                ) : (
+                  <span class="ds-badge ds-badge--indigo">Solves: {s.solves}</span>
+                )}
+              </div>
+              <h3 style="font-size: var(--text-h3); margin-top: var(--space-5);">{s.name}</h3>
+              <p style="margin-top: var(--space-2); color: var(--text-secondary); font-size: {i >= 3 ? 'var(--text-lg)' : '1rem'}; line-height: 1.5; font-family: var(--font-display); font-weight: 500; letter-spacing: -0.01em; text-wrap: balance;">{s.headline}</p>
+              <div style="margin-top: var(--space-4); display: flex; flex-wrap: wrap; gap: 0.4rem;">
+                {s.build.slice(0, i >= 3 ? 6 : 3).map((b) => (
+                  <span style="font-size: 0.75rem; color: var(--text-muted); padding: 0.25rem 0.625rem; border-radius: var(--radius-pill); border: 1px solid var(--border-subtle); background: rgba(255,255,255,0.02);">{b}</span>
+                ))}
+                {i < 3 && s.build.length > 3 && (
+                  <span style="font-size: 0.75rem; color: var(--text-muted); padding: 0.25rem 0.5rem;">+{s.build.length - 3} more</span>
+                )}
+              </div>
+              <div style="margin-top: auto; padding-top: var(--space-5);">
+                <span class="hover-card-cta" style="display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.875rem; font-weight: 600; color: var(--text-secondary); transition: color var(--dur-fast) var(--ease-out);">
+                  Explore service
+                  <Icon name="arrowRight" size={15} class="icon-arrow-right" style="transition: transform var(--dur-fast) var(--ease-out);" />
+                </span>
+              </div>
+            </a>
+          </Reveal>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

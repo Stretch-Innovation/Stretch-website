@@ -1,30 +1,44 @@
 ---
-import { getCollection } from 'astro:content';
-import Layout from '../../layouts/Layout.astro';
-import InsightCard from '../../components/InsightCard.astro';
-
-const insights = (await getCollection('insights')).sort(
-  (a, b) => b.data.date.getTime() - a.data.date.getTime()
-);
+import StretchLayout from '../../layouts/StretchLayout.astro';
+import Reveal from '../../components/stretch/Reveal.astro';
+import Icon from '../../components/stretch/Icon.astro';
+import { INSIGHT_DATA, formatInsightDate } from '../../data/insights';
 ---
 
-<Layout title="Insights — Stretch Innovation" description="Thinking out loud. Growth strategy and demand generation insights.">
-  <section class="py-12 md:py-20">
-    <div class="mx-auto max-w-6xl px-4">
-      <h1 class="text-3xl font-bold md:text-5xl">Thinking out loud.</h1>
-      <div class="mt-10 grid gap-6 md:grid-cols-2">
-        {
-          insights.map((insight) => (
-            <InsightCard
-              slug={insight.id}
-              title={insight.data.title}
-              category={insight.data.category}
-              intro={insight.data.intro}
-              date={insight.data.date}
-            />
-          ))
-        }
-      </div>
+<StretchLayout title="Insights — Stretch Innovation" description="Guides and perspectives on building predictable growth.">
+  <section style="padding: calc(var(--header-height) + var(--space-8)) var(--gutter) var(--space-8);">
+    <div style="max-width: var(--container-max); margin: 0 auto;">
+      <Reveal>
+        <span class="ds-eyebrow"><span class="ds-eyebrow-mark" aria-hidden="true"><span></span><span></span><span></span></span>Insights</span>
+        <h1 style="font-family: var(--font-display); font-weight: 800; font-size: var(--text-display-1); margin-top: var(--space-4); max-width: 18ch;">Guides for growth leaders</h1>
+      </Reveal>
     </div>
   </section>
-</Layout>
+
+  <section style="padding: 0 var(--gutter) var(--section-gap);">
+    <div class="grid-3" style="max-width: var(--container-max); margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-4);">
+      {
+        INSIGHT_DATA.map((ins, i) => (
+          <Reveal delay={i * 70}>
+            <a href={`/insights/${ins.slug}`} class="insight-card" style="display: flex; flex-direction: column; height: 100%; border-radius: var(--radius-card); overflow: hidden; border: 1px solid var(--border-subtle); background: var(--surface-raised); text-decoration: none; color: inherit; transition: all var(--dur-base) var(--ease-out);">
+              <div style="height: 260px; display: flex; align-items: center; justify-content: center; background: radial-gradient(ellipse at 70% 80%, rgba(95,107,211,0.18), var(--surface-sunken) 70%); border-bottom: 1px solid var(--border-subtle);">
+                <img src={`/assets/insights/covers/${ins.cover}`} alt={`${ins.title} cover`} class="insight-cover-img" style="height: 82%; width: auto; border-radius: 3px; box-shadow: 0 12px 28px -8px rgba(0,0,0,0.6); transform: rotate(-1.5deg); transition: transform var(--dur-base) var(--ease-out);" loading="lazy" />
+              </div>
+              <div style="display: flex; flex-direction: column; flex: 1; padding: var(--space-5) var(--space-5) var(--space-6);">
+                <div style="display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap;">
+                  <span class="ds-badge ds-badge--accent">{ins.category}</span>
+                  <span style="font-size: 0.8125rem; color: var(--text-muted);">{formatInsightDate(ins.date)}{ins.readMins ? ` · ${ins.readMins} min read` : ''}</span>
+                </div>
+                <h3 style="font-size: var(--text-h3); margin-top: var(--space-4);">{ins.title}</h3>
+                <p style="margin-top: var(--space-3); color: var(--text-secondary); font-size: 0.9375rem; line-height: 1.6; flex: 1;">{ins.excerpt}</p>
+                <span class="insight-cta" style="display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.875rem; font-weight: 600; color: var(--text-secondary); margin-top: var(--space-5); transition: color var(--dur-fast) var(--ease-out);">
+                  Read more <Icon name="arrowRight" size={15} class="icon-arrow-right" />
+                </span>
+              </div>
+            </a>
+          </Reveal>
+        ))
+      }
+    </div>
+  </section>
+</StretchLayout>

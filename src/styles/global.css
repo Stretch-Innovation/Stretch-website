@@ -9,6 +9,11 @@
   --color-indigo: #5f6bd3;
   --color-muted: #9ca3af;
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Syne", ui-sans-serif, system-ui, sans-serif;
+}
+
+.font-display {
+  font-family: var(--font-display);
 }
 
 /* ─── Base ─── */
@@ -282,6 +287,45 @@ body {
   letter-spacing: -0.03em;
   color: var(--color-aquamarine);
   font-variant-numeric: tabular-nums;
+}
+
+/* ─── Quiz ─── */
+.quiz-panel {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(19, 19, 19, 0.8);
+  backdrop-filter: blur(8px);
+}
+
+.quiz-progress-bar {
+  box-shadow: 0 0 12px rgba(159, 255, 220, 0.35);
+}
+
+.quiz-answer {
+  transition:
+    border-color 0.25s ease,
+    background-color 0.25s ease,
+    transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.quiz-answer:hover {
+  transform: translateX(4px);
+  border-color: rgba(159, 255, 220, 0.4);
+  background-color: rgba(23, 31, 80, 0.6);
+}
+
+.quiz-question-enter {
+  animation: quiz-fade-in 0.45s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes quiz-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* ─── Accent line ─── */

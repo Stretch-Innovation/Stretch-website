@@ -8,6 +8,7 @@ challenge: "Brouwerij Van Steenberge, a renowned Belgian brewery, had no webshop
 approach: "Stretch built a D2C growth engine from scratch: starting with an audit of existing assets, internal ideation, a 3-month experiment roadmap, and systematic growth hacking. Key insight: urgency and exclusivity drove significantly higher conversions and average order values. Stretch implemented the 'post ID engagement snowball' technique on Meta ads to consolidate social proof and lower CPMs."
 result: "Starting from zero in March 2024, Stretch scaled online sales month over month. The product drop in November 2024 generated over €65,000 in sales within 24 hours with stock selling out completely. Average order values were significantly higher for exclusive limited-edition releases."
 featured: true
+cover_image: "/images/cases/vsb-case-cover.png"
 pdf_download: "/downloads/van-steenberge-case.pdf"
 date: 2024-11-15
 ---

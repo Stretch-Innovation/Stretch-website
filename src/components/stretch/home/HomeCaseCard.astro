@@ -1,0 +1,50 @@
+---
+import Icon from '../Icon.astro';
+import type { CaseStudy } from '../../../data/cases';
+
+interface Props {
+  c: CaseStudy;
+}
+
+const { c } = Astro.props;
+const st = c.stat;
+---
+
+<a
+  href={`/cases/${c.slug}`}
+  class="hover-card"
+  style="position: relative; overflow: hidden; display: flex; flex-direction: column; height: 100%; border-radius: var(--radius-card); border: 1px solid var(--border-subtle); background: var(--surface-raised); box-shadow: var(--shadow-inset-hairline); text-decoration: none; color: inherit;"
+>
+  <div style="position: relative; aspect-ratio: 16 / 10; overflow: hidden; background: var(--surface-sunken);">
+    <img
+      src={`/assets/cases/${c.image}`}
+      alt={c.imageAlt}
+      loading="lazy"
+      class="hover-card-img"
+      style="width: 100%; height: 100%; object-fit: cover; display: block;"
+    />
+    <div aria-hidden="true" style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(6,9,29,0.05) 40%, rgba(11,15,38,0.85));"></div>
+    <div style="position: absolute; top: var(--space-4); left: var(--space-4);">
+      <span class="ds-badge ds-badge--indigo">{c.tag}</span>
+    </div>
+    <div style="position: absolute; left: var(--space-5); right: var(--space-5); bottom: var(--space-4); display: flex; justify-content: space-between; align-items: flex-end; gap: 0.5rem;">
+      <span style="font-family: var(--font-display); font-weight: 700; font-size: var(--text-h4); color: var(--white);">{c.client}</span>
+      <span style="font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted);">{c.sector}</span>
+    </div>
+  </div>
+  <div style="display: flex; flex-direction: column; flex: 1; padding: var(--space-6);">
+    <div style="font-family: var(--font-display); font-weight: 800; font-size: clamp(2rem,1.4rem + 1.6vw,2.5rem); line-height: 1; letter-spacing: -0.02em; display: flex; align-items: baseline; flex-wrap: wrap; font-variant-numeric: tabular-nums;">
+      {st.prefix && <span style="color: var(--aquamarine);">{st.prefix}</span>}
+      <span>{st.value}</span>
+      {st.suffix && <span style="color: var(--aquamarine);">{st.suffix}</span>}
+    </div>
+    <div style="margin-top: 0.375rem; font-size: 0.875rem; font-weight: 600; letter-spacing: 0.01em; color: var(--aquamarine);">{st.metric}</div>
+    <p style="margin-top: var(--space-4); color: var(--text-secondary); font-size: 0.9375rem; line-height: 1.6; margin-bottom: 0;">{c.teaser}</p>
+    <div style="margin-top: auto; padding-top: var(--space-5);">
+      <span class="hover-card-cta" style="display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.875rem; font-weight: 600; color: var(--text-secondary); transition: color var(--dur-fast) var(--ease-out);">
+        Read the case
+        <Icon name="arrowUpRight" size={15} class="icon-arrow-up" style="transition: transform var(--dur-fast) var(--ease-out);" />
+      </span>
+    </div>
+  </div>
+</a>

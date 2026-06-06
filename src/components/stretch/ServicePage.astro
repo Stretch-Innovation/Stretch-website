@@ -1,0 +1,81 @@
+---
+import Reveal from './Reveal.astro';
+import Icon from './Icon.astro';
+import FinalCTA from './FinalCTA.astro';
+import { SERVICE_DATA } from '../../data/stretch-services';
+
+interface Props {
+  slug: string;
+}
+
+const { slug } = Astro.props;
+const s = SERVICE_DATA.find((x) => x.slug === slug) || SERVICE_DATA[0];
+const others = SERVICE_DATA.filter((x) => x.slug !== slug);
+---
+
+<section style="position: relative; overflow: hidden; padding: calc(var(--header-height) + var(--space-8)) var(--gutter) var(--space-9);">
+  <div style="position: relative; max-width: var(--container-max); margin: 0 auto;">
+    <Reveal>
+      <div style="display: flex; align-items: center; gap: 0.875rem; flex-wrap: wrap;">
+        <span style="width: 56px; height: 56px; border-radius: var(--radius-md); border: 1px solid var(--border-default); display: flex; align-items: center; justify-content: center; color: var(--aquamarine); background: rgba(159,255,220,0.06);">
+          <Icon name={s.icon} size={26} />
+        </span>
+        <span class="ds-eyebrow"><span class="ds-eyebrow-mark" aria-hidden="true"><span></span><span></span><span></span></span>Growth Engine · {s.num}</span>
+        {s.standalone ? <span class="ds-badge ds-badge--accent">High-value accounts</span> : <span class="ds-badge ds-badge--indigo">Solves: {s.solves}</span>}
+      </div>
+    </Reveal>
+    <Reveal delay={80} tag="h1" style="font-family: var(--font-display); font-weight: 800; font-size: var(--text-display-2); margin-top: var(--space-5); max-width: 20ch;">{s.headline}</Reveal>
+    <Reveal delay={160} tag="p" style="margin-top: var(--space-5); max-width: 60ch; font-size: var(--text-lg); color: var(--text-secondary); line-height: 1.65;">{s.intro}</Reveal>
+    <Reveal delay={240}>
+      <div style="margin-top: var(--space-6); display: flex; gap: 0.875rem; flex-wrap: wrap;">
+        <a href="/contact" class="ds-btn ds-btn--primary ds-btn--lg">Book a growth audit <Icon name="arrowRight" size={18} /></a>
+        <a href="/#bottleneck" class="ds-btn ds-btn--outline ds-btn--lg">See the bottlenecks</a>
+      </div>
+    </Reveal>
+  </div>
+</section>
+
+<section style="padding: var(--section-gap) var(--gutter); border-top: 1px solid var(--border-subtle); background: var(--surface-sunken);">
+  <div style="max-width: var(--container-max); margin: 0 auto;">
+    <Reveal>
+      <span class="ds-eyebrow"><span class="ds-eyebrow-mark" aria-hidden="true"><span></span><span></span><span></span></span>What we build</span>
+      <h2 style="font-size: var(--text-display-3); margin-top: var(--space-3);">The capabilities we put in place</h2>
+      {s.forWho && <p style="margin-top: var(--space-4); color: var(--text-secondary); font-size: var(--text-lg);">{s.forWho}</p>}
+    </Reveal>
+    <div class="build-grid" style="margin-top: var(--space-7); display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-4);">
+      {s.build.map((b, i) => (
+        <Reveal delay={(i % 2) * 70}>
+          <div style="display: flex; align-items: center; gap: var(--space-4); padding: var(--space-5); border-radius: var(--radius-card); border: 1px solid var(--border-subtle); background: var(--surface-raised);">
+            <span style="width: 28px; height: 28px; border-radius: var(--radius-pill); display: flex; align-items: center; justify-content: center; background: var(--aquamarine); color: var(--black-pearl);"><Icon name="check" size={16} /></span>
+            <span style="font-family: var(--font-display); font-weight: 600; font-size: var(--text-h4);">{b}</span>
+          </div>
+        </Reveal>
+      ))}
+    </div>
+  </div>
+</section>
+
+<section style="padding: var(--section-gap) var(--gutter); text-align: center;">
+  <Reveal>
+    <div style="max-width: var(--container-prose); margin: 0 auto;">
+      <span class="ds-eyebrow"><span class="ds-eyebrow-mark" aria-hidden="true"><span></span><span></span><span></span></span>The outcome</span>
+      <p style="margin-top: var(--space-5); font-family: var(--font-display); font-weight: 700; font-size: var(--text-display-3); line-height: 1.2;">{s.outcome}</p>
+    </div>
+  </Reveal>
+</section>
+
+<section style="padding: var(--section-gap) var(--gutter); border-top: 1px solid var(--border-subtle); background: var(--surface-sunken);">
+  <div style="max-width: var(--container-max); margin: 0 auto;">
+    <h2 style="font-size: var(--text-h2);">Other services</h2>
+    <div class="grid-3" style="margin-top: var(--space-6); display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-4);">
+      {others.slice(0, 3).map((o) => (
+        <a href={`/services/${o.slug}`} class="hover-service-card" style="padding: var(--space-5); border-radius: var(--radius-card); border: 1px solid var(--border-subtle); background: var(--surface-raised); text-decoration: none; color: inherit;">
+          <div style="font-weight: 600;">{o.name}</div>
+          <div style="margin-top: 0.5rem; color: var(--text-secondary); font-size: 0.9375rem;">{o.short}</div>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+
+<FinalCTA />

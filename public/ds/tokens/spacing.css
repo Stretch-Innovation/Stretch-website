@@ -1,0 +1,62 @@
+/* ============================================================
+   Stretch — Spacing, radii, shadows, motion, layout
+   8px base grid.
+   ============================================================ */
+:root {
+  /* ---- Spacing scale (8px base) ---- */
+  --space-0: 0;
+  --space-1: 0.25rem;   /* 4 */
+  --space-2: 0.5rem;    /* 8 */
+  --space-3: 0.75rem;   /* 12 */
+  --space-4: 1rem;      /* 16 */
+  --space-5: 1.5rem;    /* 24 */
+  --space-6: 2rem;      /* 32 */
+  --space-7: 3rem;      /* 48 */
+  --space-8: 4rem;      /* 64 */
+  --space-9: 6rem;      /* 96 */
+  --space-10: 8rem;     /* 128 */
+  --space-11: 10rem;    /* 160 */
+
+  /* ---- Radii ---- */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-2xl: 32px;
+  --radius-pill: 999px;
+  --radius-card: var(--radius-lg);
+
+  /* ---- Border widths ---- */
+  --border-width: 1px;
+  --border-width-thick: 1.5px;
+
+  /* ---- Shadows (dark UI — soft, low-spread) ---- */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.45);
+  --shadow-lg: 0 24px 60px rgba(0, 0, 0, 0.55);
+  --shadow-inset-hairline: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+
+  /* ---- Layout ---- */
+  --container-max: 1200px;
+  --container-wide: 1400px;
+  --container-prose: 680px;
+  --gutter: clamp(1.25rem, 4vw, 3rem); /* @kind spacing */
+  --header-height: 72px;
+  --section-gap: clamp(5rem, 10vw, 9rem); /* @kind spacing */
+
+  /* ---- Motion ---- */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1); /* @kind other */     /* signature: smooth deceleration */
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1); /* @kind other */
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1); /* @kind other */
+  --dur-fast: 140ms; /* @kind other */
+  --dur-base: 240ms; /* @kind other */
+  --dur-slow: 480ms; /* @kind other */
+  --dur-slower: 800ms; /* @kind other */
+
+  /* ---- Z-index ---- */
+  --z-base: 0; /* @kind other */
+  --z-raised: 10; /* @kind other */
+  --z-sticky: 100; /* @kind other */
+  --z-overlay: 1000; /* @kind other */
+  --z-toast: 2000; /* @kind other */
+}

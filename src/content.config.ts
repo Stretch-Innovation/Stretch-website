@@ -21,6 +21,7 @@ const cases = defineCollection({
     approach: z.string(),
     result: z.string(),
     featured: z.boolean().default(false),
+    cover_image: z.string().optional(),
     pdf_download: z.string().optional(),
     date: z.coerce.date(),
   }),
@@ -34,6 +35,7 @@ const insights = defineCollection({
     intro: z.string(),
     date: z.coerce.date(),
     featured: z.boolean().default(false),
+    cover_image: z.string().optional(),
   }),
 });
 

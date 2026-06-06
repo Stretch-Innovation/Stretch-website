@@ -1,0 +1,33 @@
+---
+import { ICONS } from '../../data/icons';
+
+interface Props {
+  name: keyof typeof ICONS | string;
+  size?: number;
+  class?: string;
+}
+
+const { name, size = 18, class: className = '' } = Astro.props;
+const paths = ICONS[name] || '';
+---
+
+<svg
+  width={size}
+  height={size}
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="1.5"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  class:list={['stretch-icon', className]}
+  aria-hidden="true"
+  set:html={paths}
+/>
+
+<style>
+  .stretch-icon {
+    display: block;
+    flex-shrink: 0;
+  }
+</style>

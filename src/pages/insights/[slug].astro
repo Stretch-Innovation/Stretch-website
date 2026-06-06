@@ -1,89 +1,43 @@
 ---
-import { getCollection, render } from 'astro:content';
-import Layout from '../../layouts/Layout.astro';
-import SectorTag from '../../components/SectorTag.astro';
-import InsightCard from '../../components/InsightCard.astro';
-import CTASection from '../../components/CTASection.astro';
+import StretchLayout from '../../layouts/StretchLayout.astro';
+import Reveal from '../../components/stretch/Reveal.astro';
+import InsightGatedDownload from '../../components/stretch/InsightGatedDownload.astro';
+import InsightBottomCTA from '../../components/stretch/InsightBottomCTA.astro';
+import { INSIGHT_DATA, getInsight, formatInsightDate } from '../../data/insights';
 
-export async function getStaticPaths() {
-  const insights = await getCollection('insights');
-  return insights.map((i) => ({ params: { slug: i.id }, props: { entry: i } }));
+export function getStaticPaths() {
+  return INSIGHT_DATA.map((i) => ({ params: { slug: i.slug } }));
 }
 
-const { entry } = Astro.props;
-const { Content } = await render(entry);
-const { data } = entry;
-
-const formattedDate = data.date.toLocaleDateString('en-GB', {
-  day: 'numeric',
-  month: 'long',
-  year: 'numeric',
-});
-
-const allInsights = await getCollection('insights');
-const related = allInsights.filter((i) => i.id !== entry.id).slice(0, 2);
+const { slug } = Astro.params;
+const ins = getInsight(slug!);
 ---
 
-<Layout title={`${data.title} — Stretch Innovation`} description={data.intro}>
-  <article class="py-12 md:py-20">
-    <div class="mx-auto max-w-3xl px-4">
-      <div class="flex items-center gap-4">
-        <SectorTag label={data.category} variant="service" />
-        <time class="text-sm text-muted" datetime={data.date.toISOString()}>{formattedDate}</time>
-      </div>
-      <h1 class="mt-6 text-3xl font-bold md:text-5xl">{data.title}</h1>
-      <p class="mt-6 text-lg text-muted">{data.intro}</p>
-      <div class="prose prose-invert mt-10 max-w-none">
-        <Content />
+<StretchLayout title={`${ins.title} — Stretch Innovation`} description={ins.excerpt}>
+  <article style="padding: calc(var(--header-height) + var(--space-8)) var(--gutter) 0;">
+    <div style="max-width: var(--container-prose); margin: 0 auto;">
+      <Reveal>
+        <span class="ds-badge ds-badge--accent">{ins.category}</span>
+        <span style="margin-left: 0.75rem; font-size: 0.875rem; color: var(--text-muted);">{formatInsightDate(ins.date)}</span>
+        <h1 style="font-family: var(--font-display); font-weight: 800; font-size: var(--text-display-2); margin-top: var(--space-5); line-height: 1.1;">{ins.title}</h1>
+        <p style="margin-top: var(--space-4); font-size: var(--text-lg); color: var(--text-secondary); line-height: 1.65;">{ins.excerpt}</p>
+      </Reveal>
+
+      <div style="margin-top: var(--space-8); display: flex; flex-direction: column; gap: var(--space-5); color: var(--text-secondary); line-height: 1.7;">
+        {
+          ins.body.map((block) => {
+            if ('lead' in block) return <p style="font-size: var(--text-lg); color: var(--text-primary);">{block.lead}</p>;
+            if ('h2' in block) return <h2 style="font-family: var(--font-display); font-size: var(--text-h2); color: var(--text-primary); margin-top: var(--space-4);">{block.h2}</h2>;
+            if ('p' in block) return <p>{block.p}</p>;
+            if ('ul' in block) return <ul style="padding-left: 1.25rem;">{block.ul.map((li) => <li style="margin-bottom: 0.5rem;">{li}</li>)}</ul>;
+            if ('fix' in block) return <p style="padding: var(--space-4); border-left: 3px solid var(--aquamarine); background: rgba(159,255,220,0.06); border-radius: var(--radius-sm); color: var(--text-primary); font-weight: 500;">{block.fix}</p>;
+            return null;
+          })
+        }
       </div>
     </div>
   </article>
 
-  {
-    related.length > 0 && (
-      <section class="border-t border-white/10 py-12 md:py-16">
-        <div class="mx-auto max-w-6xl px-4">
-          <h2 class="text-2xl font-bold">Related insights</h2>
-          <div class="mt-8 grid gap-6 md:grid-cols-2">
-            {related.map((i) => (
-              <InsightCard
-                slug={i.id}
-                title={i.data.title}
-                category={i.data.category}
-                intro={i.data.intro}
-                date={i.data.date}
-              />
-            ))}
-          </div>
-        </div>
-      </section>
-    )
-  }
-
-  <CTASection
-    headline="Want to apply this to your business?"
-    primaryLabel="Book a free growth audit →"
-    primaryHref="/contact"
-  />
-</Layout>
-
-<style>
-  .prose :global(h2) {
-    margin-top: 2rem;
-    margin-bottom: 1rem;
-    font-size: 1.5rem;
-    font-weight: 700;
-  }
-  .prose :global(p) {
-    margin-bottom: 1rem;
-    color: #9ca3af;
-    line-height: 1.75;
-  }
-  .prose :global(strong) {
-    color: #ffffff;
-  }
-  .prose :global(hr) {
-    margin: 2rem 0;
-    border-color: rgba(255, 255, 255, 0.1);
-  }
-</style>
+  <InsightGatedDownload ins={ins} />
+  <InsightBottomCTA />
+</StretchLayout>

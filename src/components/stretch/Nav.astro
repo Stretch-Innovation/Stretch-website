@@ -1,0 +1,81 @@
+---
+import Wordmark from './Wordmark.astro';
+import Icon from './Icon.astro';
+import { SERVICE_DATA } from '../../data/stretch-services';
+
+interface Props {
+  home?: boolean;
+}
+
+const { home = false } = Astro.props;
+const logoHref = home ? '#top' : '/';
+const section = (id: string) => (home ? `#${id}` : `/#${id}`);
+---
+
+<header class="site-header">
+  <div
+    style="max-width: var(--container-wide); margin: 0 auto; padding: 0 var(--gutter); height: var(--header-height); display: flex; align-items: center; gap: 1.5rem;"
+  >
+    <a href={logoHref} style="display: flex; align-items: center; color: var(--white);" aria-label="Stretch — home">
+      <Wordmark height={30} />
+    </a>
+
+    <nav class="nav-desktop" style="display: flex; align-items: center; gap: 0.25rem; margin-left: 1.25rem;">
+      <div class="services-menu">
+        <a href={section('services')} class="nav-services-trigger nav-link">
+          Services
+          <Icon name="chevronDown" size={15} class="chevron-icon" />
+        </a>
+        <div class="services-dropdown" role="menu">
+          {
+            SERVICE_DATA.map((s) => (
+              <a href={`/services/${s.slug}`} role="menuitem" class="services-dropdown__item">
+                <span class="services-dropdown__name">{s.name}</span>
+                <span class="services-dropdown__desc">{s.headline}</span>
+              </a>
+            ))
+          }
+        </div>
+      </div>
+      <a href="/cases" class="nav-link" style="font-size: 0.9375rem; font-weight: 500; padding: 0.5rem 0.875rem; border-radius: var(--radius-sm); color: var(--text-secondary); transition: color var(--dur-fast) var(--ease-out);">Cases</a>
+      <a href="/insights" class="nav-link" style="font-size: 0.9375rem; font-weight: 500; padding: 0.5rem 0.875rem; border-radius: var(--radius-sm); color: var(--text-secondary); transition: color var(--dur-fast) var(--ease-out);">Insights</a>
+      <a href="/about" class="nav-link" style="font-size: 0.9375rem; font-weight: 500; padding: 0.5rem 0.875rem; border-radius: var(--radius-sm); color: var(--text-secondary); transition: color var(--dur-fast) var(--ease-out);">About</a>
+    </nav>
+
+    <div class="nav-desktop" style="margin-left: auto; display: flex; align-items: center; gap: 0.75rem;">
+      <a href={section('contact')} class="ds-btn ds-btn--primary ds-btn--sm">
+        Identify your bottleneck
+        <Icon name="arrowRight" size={16} />
+      </a>
+    </div>
+
+    <button class="nav-mobile-btn" type="button" aria-label="Menu" aria-expanded="false" data-open="false">
+      <Icon name="menu" size={20} class="icon-menu" />
+      <Icon name="x" size={20} class="icon-close" />
+    </button>
+  </div>
+
+  <div class="mobile-nav">
+    <div style="display: flex; flex-direction: column; gap: 0.25rem;">
+      <div style="font-size: 0.75rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); padding: 0.5rem 0;">Services</div>
+      {
+        SERVICE_DATA.map((s) => (
+          <a href={`/services/${s.slug}`} style="display: block; padding: 0.625rem 0; color: var(--text-primary); text-decoration: none;">
+            <span style="display: block; font-size: 1rem; font-weight: 500;">{s.name}</span>
+            <span style="display: block; font-size: 0.875rem; color: var(--text-muted); margin-top: 0.125rem;">{s.headline}</span>
+          </a>
+        ))
+      }
+      <div style="height: 1px; background: var(--border-subtle); margin: 0.5rem 0;"></div>
+      <a href="/cases" style="padding: 0.75rem 0; font-size: 1.125rem; font-weight: 500; color: var(--text-primary); border-bottom: 1px solid var(--border-subtle);">Cases</a>
+      <a href="/insights" style="padding: 0.75rem 0; font-size: 1.125rem; font-weight: 500; color: var(--text-primary); border-bottom: 1px solid var(--border-subtle);">Insights</a>
+      <a href="/about" style="padding: 0.75rem 0; font-size: 1.125rem; font-weight: 500; color: var(--text-primary); border-bottom: 1px solid var(--border-subtle);">About</a>
+      <div style="margin-top: 1rem;">
+        <a href={section('contact')} class="ds-btn ds-btn--primary ds-btn--md ds-btn--full">
+          Identify your bottleneck
+          <Icon name="arrowRight" size={16} />
+        </a>
+      </div>
+    </div>
+  </div>
+</header>

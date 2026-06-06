@@ -1,0 +1,90 @@
+/* ============================================================
+   Stretch — Color tokens
+   Dark-first brand. Black Pearl is the canonical canvas.
+   ============================================================ */
+:root {
+  /* ---- Brand primaries (from Brand Guide 2025) ---- */
+  --black-pearl: #06091D;   /* canonical background */
+  --aquamarine: #9FFFDC;    /* primary accent / signal */
+  --indigo: #5F6BD3;        /* secondary accent */
+  --white: #FFFFFF;
+
+  /* ---- Secondary / support palette ---- */
+  --cod-gray: #131313;
+  --mine-shaft: #353233;
+  --bunting: #171F50;       /* deep indigo-navy */
+  --blue-stone: #005F56;    /* deep teal */
+
+  /* ---- Aquamarine tints/shades (derived) ---- */
+  --aqua-100: #E8FFF6;
+  --aqua-200: #C9FFEC;
+  --aqua-300: #9FFFDC;      /* = aquamarine */
+  --aqua-500: #4BE3B4;
+  --aqua-700: #1FA882;
+  --aqua-900: #005F56;      /* = blue-stone */
+
+  /* ---- Indigo tints/shades (derived) ---- */
+  --indigo-300: #9AA2E6;
+  --indigo-500: #5F6BD3;    /* = indigo */
+  --indigo-700: #3A44A0;
+  --indigo-900: #171F50;    /* = bunting */
+
+  /* ---- Neutral ink ramp (cool, tuned to Black Pearl) ---- */
+  --ink-0:  #06091D;        /* = black pearl */
+  --ink-50: #0B0F26;
+  --ink-100:#10142F;
+  --ink-200:#181D3D;
+  --ink-300:#262C4E;
+  --ink-400:#3C4366;
+  --ink-500:#5A6184;
+  --ink-600:#838AA8;
+  --ink-700:#AEB4CC;
+  --ink-800:#D6DAE8;
+  --ink-900:#FFFFFF;
+
+  /* ============================================================
+     Semantic aliases — reference these in components
+     ============================================================ */
+
+  /* Surfaces */
+  --surface-base: var(--black-pearl);    /* page background */
+  --surface-raised: var(--ink-100);      /* cards, panels */
+  --surface-overlay: var(--ink-200);     /* popovers, menus */
+  --surface-sunken: #04061A;             /* wells, code blocks */
+  --surface-inverse: var(--white);       /* light sections */
+
+  /* Text */
+  --text-primary: var(--white);
+  --text-secondary: var(--ink-700);
+  --text-muted: var(--ink-600);
+  --text-disabled: var(--ink-500);
+  --text-accent: var(--aquamarine);
+  --text-on-accent: var(--black-pearl);  /* dark ink on aqua buttons */
+  --text-on-inverse: var(--black-pearl); /* on white sections */
+
+  /* Borders / hairlines */
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-default: rgba(255, 255, 255, 0.14);
+  --border-strong: rgba(255, 255, 255, 0.24);
+  --border-accent: var(--aquamarine);
+
+  /* Accents */
+  --accent: var(--aquamarine);
+  --accent-hover: var(--aqua-200);
+  --accent-press: var(--aqua-500);
+  --accent-secondary: var(--indigo);
+  --accent-secondary-hover: var(--indigo-300);
+
+  /* Focus ring */
+  --focus-ring: var(--aquamarine);
+
+  /* Status */
+  --success: var(--aquamarine);
+  --info: var(--indigo);
+  --warning: #F5C451;
+  --danger: #F0635B;
+
+  /* Glow / signal (used sparingly for the accent halo) */
+  --glow-aqua: 0 0 0 1px rgba(159, 255, 220, 0.4), 0 0 32px rgba(159, 255, 220, 0.25);
+  --glow-indigo: 0 0 32px rgba(95, 107, 211, 0.35);
+}

@@ -1,122 +1,94 @@
 ---
-import { getCollection, render } from 'astro:content';
-import Layout from '../../layouts/Layout.astro';
-import SectorTag from '../../components/SectorTag.astro';
-import CaseCard from '../../components/CaseCard.astro';
-import HubSpotFormFallback from '../../components/HubSpotFormFallback.astro';
-import CTASection from '../../components/CTASection.astro';
+import StretchLayout from '../../layouts/StretchLayout.astro';
+import Reveal from '../../components/stretch/Reveal.astro';
+import Icon from '../../components/stretch/Icon.astro';
+import HomeCaseCard from '../../components/stretch/home/HomeCaseCard.astro';
+import CaseGatedDownload from '../../components/stretch/CaseGatedDownload.astro';
+import CaseBottomCTA from '../../components/stretch/CaseBottomCTA.astro';
+import { CASE_DATA, getCase } from '../../data/cases';
 
-export async function getStaticPaths() {
-  const cases = await getCollection('cases');
-  return cases.map((c) => ({ params: { slug: c.id }, props: { entry: c } }));
+export function getStaticPaths() {
+  return CASE_DATA.map((c) => ({ params: { slug: c.slug } }));
 }
 
-const { entry } = Astro.props;
-const { Content } = await render(entry);
-const { data } = entry;
-
-const allCases = await getCollection('cases');
-const relatedCases = allCases
-  .filter(
-    (c) =>
-      c.id !== entry.id &&
-      (c.data.sector === data.sector ||
-        c.data.service.some((s) => data.service.includes(s)))
-  )
-  .slice(0, 2);
+const { slug } = Astro.params;
+const c = getCase(slug!);
+const others = CASE_DATA.filter((x) => x.slug !== slug).slice(0, 3);
 ---
 
-<Layout
-  title={`${data.client} — ${data.title} | Stretch Innovation`}
-  description={data.challenge}
->
-  <article>
-    <section class="bg-bunting py-12 md:py-20">
-      <div class="mx-auto max-w-4xl px-4">
-        <div class="flex flex-wrap gap-2">
-          <SectorTag label={data.sector} />
-          {data.service.map((s) => <SectorTag label={s} variant="service" />)}
+<StretchLayout title={`${c.client} — ${c.title} · Stretch Innovation`} description={c.teaser}>
+  <section style="position: relative; overflow: hidden; padding: calc(var(--header-height) + var(--space-7)) var(--gutter) var(--space-8);">
+    <div style="position: relative; max-width: var(--container-max); margin: 0 auto;">
+      <Reveal>
+        <a href="/cases" style="display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.875rem; font-weight: 500; color: var(--text-muted); text-decoration: none;">
+          <Icon name="arrowRight" size={15} class="icon-back" /> All cases
+        </a>
+      </Reveal>
+      <Reveal delay={60}>
+        <span class="ds-eyebrow" style="margin-top: var(--space-5); display: inline-flex;">
+          <span class="ds-eyebrow-mark" aria-hidden="true"><span></span><span></span><span></span></span>
+          Case · {c.sector}
+        </span>
+        {c.services.map((sv) => <span class="ds-badge ds-badge--indigo" style="margin-left: 0.5rem;">{sv}</span>)}
+      </Reveal>
+      <Reveal delay={100} tag="h1" style="font-family: var(--font-display); font-weight: 800; font-size: var(--text-display-2); line-height: 1.04; letter-spacing: -0.035em; margin-top: var(--space-4); max-width: 20ch;">
+        {c.client}<span style="color: var(--aquamarine);">.</span>
+      </Reveal>
+      <Reveal delay={140} tag="p" style="margin-top: var(--space-4); max-width: 60ch; font-size: var(--text-lg); line-height: 1.65; color: var(--text-secondary);">{c.intro}</Reveal>
+      <Reveal delay={200}>
+        <div style="margin-top: var(--space-7); border-radius: var(--radius-xl); overflow: hidden; border: 1px solid var(--border-default); box-shadow: var(--shadow-lg);">
+          <img src={`/assets/cases/${c.hero}`} alt={c.heroAlt} style="width: 100%; aspect-ratio: 21 / 9; object-fit: cover; display: block;" loading="lazy" />
         </div>
-        <h1 class="mt-6 text-3xl font-bold md:text-5xl">{data.client}</h1>
-        <p class="mt-2 text-xl text-muted">{data.title}</p>
-        <p class="mt-8 text-2xl font-bold text-aquamarine md:text-4xl">
-          {data.headline_result}
-        </p>
-      </div>
-    </section>
+      </Reveal>
+    </div>
+  </section>
 
-    <section class="py-12 md:py-16">
-      <div class="mx-auto max-w-3xl px-4 space-y-12">
-        <div>
-          <h2 class="text-2xl font-bold">The Challenge</h2>
-          <p class="mt-4 text-muted leading-relaxed">{data.challenge}</p>
-        </div>
-        <div>
-          <h2 class="text-2xl font-bold">Our Approach</h2>
-          <p class="mt-4 text-muted leading-relaxed">{data.approach}</p>
-        </div>
-        <div>
-          <h2 class="text-2xl font-bold">The Result</h2>
-          <p class="mt-4 text-2xl font-bold text-aquamarine md:text-3xl">{data.headline_result}</p>
-          <p class="mt-4 text-muted leading-relaxed">{data.result}</p>
-        </div>
-        <Content />
-      </div>
-    </section>
-
-    {
-      data.pdf_download && (
-        <section class="border-t border-white/10 bg-cod-gray py-12 md:py-16">
-          <div class="mx-auto max-w-xl px-4 text-center">
-            <h2 class="text-2xl font-bold">Want the full case study?</h2>
-            <p class="mt-4 text-muted">
-              Download the complete version including methodology, experiment details and full
-              results.
-            </p>
-            <div class="mt-8 text-left">
-              <!-- HUBSPOT FORM EMBED CODE HERE — replace with actual embed from HubSpot portal -->
-              <HubSpotFormFallback
-                formId="case-pdf-download"
-                fields={['Name', 'Email', 'Company']}
-                submitLabel="Download case study"
-              />
+  <section style="padding: var(--section-gap) var(--gutter); border-top: 1px solid var(--border-subtle); background: var(--surface-sunken);">
+    <div style="max-width: var(--container-max); margin: 0 auto;">
+      <Reveal>
+        <span class="ds-eyebrow"><span class="ds-eyebrow-mark" aria-hidden="true"><span></span><span></span><span></span></span>The results</span>
+        <h2 style="font-size: var(--text-display-3); margin-top: var(--space-3);">What the engine delivered</h2>
+      </Reveal>
+      <div class="case-stats" style="margin-top: var(--space-7); display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-4);">
+        {c.stats.map((s, i) => (
+          <Reveal delay={i * 80}>
+            <div style="padding: var(--space-6); border-radius: var(--radius-card); border: 1px solid var(--border-subtle); background: var(--surface-raised);">
+              <div style="font-family: var(--font-display); font-weight: 800; font-size: clamp(2.25rem,1.6rem + 1.7vw,2.9rem); line-height: 1;">
+                {s.prefix && <span style="color: var(--aquamarine);">{s.prefix}</span>}{s.value}{s.suffix && <span style="color: var(--aquamarine); font-size: 0.6em;">{s.suffix}</span>}
+              </div>
+              <div style="margin-top: var(--space-4); color: var(--text-secondary); font-size: 0.9375rem;">{s.label}</div>
             </div>
-            <p class="mt-4 text-xs text-muted">
-              PDF: <a href={data.pdf_download} class="text-aquamarine hover:underline">{data.pdf_download}</a>
-            </p>
-          </div>
-        </section>
-      )
-    }
+          </Reveal>
+        ))}
+      </div>
+    </div>
+  </section>
 
-    {
-      relatedCases.length > 0 && (
-        <section class="py-12 md:py-16">
-          <div class="mx-auto max-w-6xl px-4">
-            <h2 class="text-2xl font-bold">Related cases</h2>
-            <div class="mt-8 grid gap-6 md:grid-cols-2">
-              {relatedCases.map((c) => (
-                <CaseCard
-                  slug={c.id}
-                  client={c.data.client}
-                  sector={c.data.sector}
-                  services={c.data.service}
-                  headlineResult={c.data.headline_result}
-                  challenge={c.data.challenge}
-                />
-              ))}
-            </div>
-          </div>
-        </section>
-      )
-    }
-  </article>
+  <section style="padding: var(--section-gap) var(--gutter);">
+    <div class="case-body" style="max-width: var(--container-max); margin: 0 auto; display: grid; grid-template-columns: 1fr 280px; gap: var(--space-8);">
+      <div>
+        <Reveal><h2 style="font-size: var(--text-h3);">The challenge</h2><p style="margin-top: var(--space-4); color: var(--text-secondary); line-height: 1.65;">{c.challenge}</p></Reveal>
+        <Reveal delay={80}><h2 style="font-size: var(--text-h3); margin-top: var(--space-7);">Our approach</h2><ul style="margin-top: var(--space-4); color: var(--text-secondary); line-height: 1.65; padding-left: 1.25rem;">{c.approach.map((a) => <li style="margin-bottom: 0.5rem;">{a}</li>)}</ul></Reveal>
+        <Reveal delay={120}><h2 style="font-size: var(--text-h3); margin-top: var(--space-7);">The result</h2><p style="margin-top: var(--space-4); color: var(--text-secondary); line-height: 1.65;">{c.result}</p></Reveal>
+      </div>
+      <aside class="case-rail" style="position: sticky; top: calc(var(--header-height) + var(--space-4)); align-self: start;">
+        <div style="padding: var(--space-5); border-radius: var(--radius-card); border: 1px solid var(--border-subtle); background: var(--surface-raised);">
+          <div style="font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted);">Headline result</div>
+          <div style="margin-top: var(--space-3); font-family: var(--font-display); font-weight: 800; font-size: var(--text-h2); color: var(--aquamarine);">{c.title}</div>
+        </div>
+      </aside>
+    </div>
+  </section>
 
-  <CTASection
-    headline="Ready to get similar results?"
-    primaryLabel="Book a free growth audit →"
-    primaryHref="/contact"
-    secondaryLabel="Or identify your bottleneck first →"
-    secondaryHref="/bottleneck-quiz"
-  />
-</Layout>
+  <CaseGatedDownload c={c} />
+  <CaseBottomCTA />
+
+  <section style="padding: var(--section-gap) var(--gutter); border-top: 1px solid var(--border-subtle); background: var(--surface-sunken);">
+    <div style="max-width: var(--container-max); margin: 0 auto;">
+      <h2 style="font-size: var(--text-display-3);">More engines we've built</h2>
+      <div class="more-grid" style="margin-top: var(--space-7); display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-4);">
+        {others.map((o) => <HomeCaseCard c={o} />)}
+      </div>
+    </div>
+  </section>
+</StretchLayout>

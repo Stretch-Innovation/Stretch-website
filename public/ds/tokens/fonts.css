@@ -1,0 +1,79 @@
+/* ============================================================
+   Stretch — Webfonts
+   Syne: display / headlines (bold, geometric)
+   Inter: body, UI, mono-ish numerics
+   ============================================================ */
+
+/* ---- Inter ---- */
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/assets/fonts/Inter-400.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Inter";
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/assets/fonts/Inter-400-italic.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("/assets/fonts/Inter-500.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("/assets/fonts/Inter-600.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("/assets/fonts/Inter-700.woff2") format("woff2");
+}
+
+/* ---- Syne ---- */
+@font-face {
+  font-family: "Syne";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/assets/fonts/Syne-400.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Syne";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("/assets/fonts/Syne-500.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Syne";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("/assets/fonts/Syne-600.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Syne";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("/assets/fonts/Syne-700.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Syne";
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url("/assets/fonts/Syne-800.woff2") format("woff2");
+}

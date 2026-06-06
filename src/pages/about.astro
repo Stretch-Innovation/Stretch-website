@@ -1,129 +1,64 @@
 ---
-import { getCollection } from 'astro:content';
-import Layout from '../layouts/Layout.astro';
-import StatBar from '../components/StatBar.astro';
-import TeamCard from '../components/TeamCard.astro';
-import CTASection from '../components/CTASection.astro';
-
-const team = (await getCollection('team')).sort((a, b) => a.data.order - b.data.order);
-
-const stats = [
-  { value: '+120', label: 'happy clients' },
-  { value: '36', label: 'colleagues' },
-  { value: '5', label: 'services' },
-  { value: 'BE', label: 'Belgium-based, European reach', countUp: false },
-];
-
-const differentiators = [
-  { title: 'Fixed prices', desc: 'No hourly billing. You know what you pay upfront.' },
-  {
-    title: 'Variable KPIs',
-    desc: 'You only pay more if we deliver measurable results.',
-  },
-  {
-    title: 'Well-defined projects',
-    desc: 'Clear timelines, deliverables, and outcomes from day one.',
-  },
-  { title: 'Weekly reporting', desc: 'Full transparency on progress every single week.' },
-];
-
-const testimonials = [
-  {
-    quote:
-      'Stretch went above and beyond... They took the time to dive into a lot of data to understand our company and customers on a deep level.',
-    client: 'Vandemoortele',
-  },
-  {
-    quote:
-      'Stretch is very committed and goal-oriented. It is really easy to work with them and they quickly grasp the concept of what we need.',
-    client: 'Solucious',
-  },
-];
+import StretchLayout from '../layouts/StretchLayout.astro';
+import Reveal from '../components/stretch/Reveal.astro';
+import Icon from '../components/stretch/Icon.astro';
+import FinalCTA from '../components/stretch/FinalCTA.astro';
+import { TEAM, initials } from '../data/team';
 ---
 
-<Layout title="About — Stretch Innovation" description="The team you call when growth needs doing.">
-  <section class="py-12 md:py-20">
-    <div class="mx-auto max-w-3xl px-4">
-      <h1 class="text-3xl font-bold md:text-5xl">The team you call when growth needs doing.</h1>
-      <div class="mt-8 space-y-6 text-muted leading-relaxed">
-        <p>
-          At Stretch Innovation, we help companies build scalable, data-driven Growth Engines that
-          accelerate revenue growth. Unlike traditional consultants who stop at strategy or agencies
-          that focus on execution alone, we combine both. We work alongside our clients to identify
-          growth opportunities, validate assumptions through rapid experimentation, and turn proven
-          initiatives into predictable growth systems.
+<StretchLayout title="About — Stretch Innovation" description="Meet the team behind Stretch Innovation.">
+  <section style="position: relative; overflow: hidden; padding: calc(var(--header-height) + var(--space-8)) var(--gutter) var(--space-8);">
+    <div style="position: relative; max-width: var(--container-max); margin: 0 auto;">
+      <Reveal>
+        <span class="ds-eyebrow"><span class="ds-eyebrow-mark" aria-hidden="true"><span></span><span></span><span></span></span>Who we are</span>
+        <h1 style="font-family: var(--font-display); font-weight: 800; font-size: var(--text-display-1); margin-top: var(--space-4); max-width: 16ch;">
+          The team you call when growth needs <span style="color: var(--aquamarine);">doing</span>.
+        </h1>
+        <p style="margin-top: var(--space-5); max-width: 62ch; font-size: var(--text-lg); line-height: 1.65; color: var(--text-secondary);">
+          Stretch is a growth partner for scale-ups and enterprise. We're strategists, operators and builders who treat growth as something you engineer — not something you hope for.
         </p>
-        <p>
-          Our approach is built on one simple belief: growth should be driven by evidence, not
-          assumptions. That's why we combine customer insights, data analysis, experimentation, and
-          technology to continuously discover what works and scale it.
-        </p>
-        <p>
-          Over the past years, we've helped companies across industries improve lead generation,
-          optimize conversion rates, launch new business concepts, and create sustainable growth
-          processes. From fast-growing scale-ups to international organizations, we embed ourselves
-          in our clients' teams and help build the capabilities needed for long-term success.
-        </p>
-        <p>
-          Because a Growth Engine is not a campaign. It's a system. And systems create predictable
-          growth.
-        </p>
+      </Reveal>
+    </div>
+  </section>
+
+  <section style="padding: var(--space-7) var(--gutter); border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle); background: var(--surface-sunken);">
+    <Reveal>
+      <div style="max-width: var(--container-max); margin: 0 auto; display: flex; align-items: center; justify-content: center; gap: clamp(2rem, 6vw, 5rem); flex-wrap: wrap;">
+        <div style="text-align: center;"><div style="font-family: var(--font-display); font-weight: 800; font-size: 3rem; color: var(--aquamarine);">+120</div><div style="color: var(--text-muted);">Happy clients</div></div>
+        <div style="text-align: center;"><div style="font-family: var(--font-display); font-weight: 800; font-size: 3rem;">36</div><div style="color: var(--text-muted);">Colleagues</div></div>
+        <div style="text-align: center;"><div style="font-family: var(--font-display); font-weight: 800; font-size: 3rem;">5</div><div style="color: var(--text-muted);">Services</div></div>
       </div>
-    </div>
+    </Reveal>
   </section>
 
-  <StatBar stats={stats} />
-
-  <section class="py-12 md:py-20">
-    <div class="mx-auto max-w-6xl px-4">
-      <!-- GROUP PHOTO: place team photo here, file: group-photo.jpg -->
-      <div class="aspect-video w-full rounded-lg bg-bunting" />
-    </div>
-  </section>
-
-  <section class="border-t border-white/10 bg-cod-gray py-12 md:py-20">
-    <div class="mx-auto max-w-6xl px-4">
-      <h2 class="text-2xl font-bold md:text-3xl">Our team</h2>
-      <div class="mt-10 grid grid-cols-2 gap-8 md:grid-cols-4">
-        {team.map((member) => <TeamCard name={member.data.name} role={member.data.role} />)}
+  <section style="padding: var(--section-gap) var(--gutter);">
+    <Reveal>
+      <div style="max-width: var(--container-wide); margin: 0 auto; border-radius: var(--radius-2xl); overflow: hidden; border: 1px solid var(--border-default);">
+        <img src="/assets/team-group.jpeg" alt="The Stretch team together in the office" style="width: 100%; aspect-ratio: 16 / 7; object-fit: cover; object-position: center 35%; display: block;" loading="lazy" />
       </div>
-    </div>
+    </Reveal>
   </section>
 
-  <section class="py-12 md:py-20">
-    <div class="mx-auto max-w-6xl px-4">
-      <h2 class="text-2xl font-bold md:text-3xl">How we do things differently</h2>
-      <div class="mt-10 grid gap-6 sm:grid-cols-2">
+  <section style="padding: 0 var(--gutter) var(--section-gap);">
+    <div style="max-width: var(--container-max); margin: 0 auto;">
+      <h2 style="font-size: var(--text-display-3); margin-bottom: var(--space-7);">The team</h2>
+      <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: var(--space-4);">
         {
-          differentiators.map((d) => (
-            <div class="rounded-lg border border-white/10 bg-cod-gray p-6">
-              <h3 class="font-bold text-aquamarine">{d.title}</h3>
-              <p class="mt-2 text-sm text-muted">{d.desc}</p>
-            </div>
+          TEAM.map((member, i) => (
+            <Reveal delay={(i % 4) * 60}>
+              <div class="team-card" style="padding: var(--space-5); border-radius: var(--radius-card); border: 1px solid var(--border-subtle); background: var(--surface-raised); transition: all var(--dur-base) var(--ease-out);">
+                <div style="width: 56px; height: 56px; border-radius: var(--radius-md); background: rgba(159,255,220,0.1); border: 1px solid var(--border-default); display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-weight: 700; color: var(--aquamarine);">
+                  {initials(member.name)}
+                </div>
+                <div style="margin-top: var(--space-4); font-weight: 600;">{member.name}</div>
+                <div style="margin-top: 0.25rem; font-size: 0.875rem; color: var(--text-muted);">{member.role}</div>
+              </div>
+            </Reveal>
           ))
         }
       </div>
     </div>
   </section>
 
-  <section class="border-t border-white/10 bg-bunting py-12 md:py-20">
-    <div class="mx-auto max-w-6xl px-4">
-      <div class="grid gap-8 md:grid-cols-2">
-        {
-          testimonials.map((t) => (
-            <blockquote class="rounded-lg border border-white/10 bg-pearl p-6">
-              <p class="text-muted">"{t.quote}"</p>
-              <footer class="mt-4 text-sm font-semibold text-aquamarine">— {t.client}</footer>
-            </blockquote>
-          ))
-        }
-      </div>
-    </div>
-  </section>
-
-  <CTASection
-    headline="Ready to work with us?"
-    primaryLabel="Book a free growth audit →"
-    primaryHref="/contact"
-  />
-</Layout>
+  <FinalCTA />
+</StretchLayout>
