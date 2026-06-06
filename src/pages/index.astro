@@ -7,6 +7,7 @@ import CaseCard from '../components/CaseCard.astro';
 import ServiceCard from '../components/ServiceCard.astro';
 import CTASection from '../components/CTASection.astro';
 import StatBar from '../components/StatBar.astro';
+import ClientLogoStrip from '../components/ClientLogoStrip.astro';
 import { services } from '../data/services';
 
 const allCases = await getCollection('cases');
@@ -18,8 +19,6 @@ const bottlenecks = [
   { num: '03', title: 'Struggling for Conversion', desc: 'Too few opportunities become revenue' },
   { num: '04', title: 'Struggling to Scale', desc: 'Growth creates chaos instead of systems' },
 ];
-
-const clients = ['Vandemoortele', 'Brouwerij Van Steenberge', 'H.Essers', 'Luminus', 'Group Jansen'];
 
 const steps = [
   {
@@ -88,22 +87,7 @@ const heroStats = [
   <!-- Stats + social proof -->
   <StatBar stats={heroStats} />
 
-  <section class="border-b border-white/5 bg-bunting py-10">
-    <div class="reveal mx-auto max-w-7xl px-4">
-      <p class="text-center text-sm font-medium text-muted">
-        Trusted by Belgium's most ambitious growth teams
-      </p>
-      <div class="mt-8 flex flex-wrap items-center justify-center gap-x-10 gap-y-4">
-        {
-          clients.map((client) => (
-            <span class="text-sm font-bold tracking-wide text-white/40 transition-colors hover:text-white/70">
-              {client}
-            </span>
-          ))
-        }
-      </div>
-    </div>
-  </section>
+  <ClientLogoStrip />
 
   <!-- Featured cases — alternating layout -->
   <section class="relative py-20 md:py-28">

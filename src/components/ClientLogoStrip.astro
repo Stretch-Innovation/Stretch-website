@@ -1,0 +1,145 @@
+---
+import { clientLogos, clientLogoSrc } from '../data/clients';
+
+interface Props {
+  title?: string;
+}
+
+const { title = "Trusted by Belgium's most ambitious growth teams" } = Astro.props;
+const loop = [...clientLogos, ...clientLogos];
+---
+
+<section class="border-b border-white/5 bg-bunting py-10 md:py-12">
+  <div class="reveal mx-auto max-w-7xl px-4">
+    <p class="text-center text-sm font-medium text-muted">{title}</p>
+
+    <div class="logo-marquee relative mt-8">
+      <div class="logo-marquee__fade logo-marquee__fade--left" aria-hidden="true" />
+      <div class="logo-marquee__fade logo-marquee__fade--right" aria-hidden="true" />
+      <div class="logo-marquee__track">
+        {
+          loop.map((client, i) => (
+            <div class="logo-marquee__item" aria-hidden={i >= clientLogos.length}>
+              <img
+                src={clientLogoSrc(client.file)}
+                alt={i < clientLogos.length ? client.name : ''}
+                class="client-logo"
+                width="140"
+                height="40"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+          ))
+        }
+      </div>
+    </div>
+
+    <!-- Static fallback for reduced motion -->
+    <div class="logo-static mt-8">
+      {
+        clientLogos.map((client) => (
+          <img
+            src={clientLogoSrc(client.file)}
+            alt={client.name}
+            class="client-logo"
+            width="140"
+            height="40"
+            loading="lazy"
+            decoding="async"
+          />
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .client-logo {
+    height: 2rem;
+    width: auto;
+    max-width: 8.75rem;
+    object-fit: contain;
+    opacity: 0.45;
+    filter: brightness(0) invert(1);
+    transition: opacity 0.3s ease;
+  }
+
+  @media (min-width: 768px) {
+    .client-logo {
+      height: 2.5rem;
+      max-width: 10rem;
+    }
+  }
+
+  .logo-marquee__item:hover .client-logo,
+  .logo-static img:hover {
+    opacity: 0.85;
+  }
+
+  .logo-marquee {
+    overflow: hidden;
+  }
+
+  .logo-marquee__fade {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 4rem;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .logo-marquee__fade--left {
+    left: 0;
+    background: linear-gradient(to right, var(--color-bunting), transparent);
+  }
+
+  .logo-marquee__fade--right {
+    right: 0;
+    background: linear-gradient(to left, var(--color-bunting), transparent);
+  }
+
+  .logo-marquee__track {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    width: max-content;
+    animation: logo-marquee 50s linear infinite;
+  }
+
+  .logo-marquee:hover .logo-marquee__track {
+    animation-play-state: paused;
+  }
+
+  .logo-marquee__item {
+    flex-shrink: 0;
+  }
+
+  @keyframes logo-marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  .logo-static {
+    display: none;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem 2.5rem;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .logo-marquee {
+      display: none;
+    }
+
+    .logo-static {
+      display: flex;
+    }
+  }
+</style>
