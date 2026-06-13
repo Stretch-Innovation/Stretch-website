@@ -54,14 +54,16 @@ import { TEAM, getTeamPhoto, initials } from '../data/team';
               <div class="team-card" style="padding: var(--space-5); border-radius: var(--radius-card); border: 1px solid var(--border-subtle); background: var(--surface-raised); transition: all var(--dur-base) var(--ease-out);">
                 {
                   photo ? (
-                    <img
-                      src={photo}
-                      alt={member.name}
-                      class="team-card__photo"
-                      width={72}
-                      height={72}
-                      loading="lazy"
-                    />
+                    <div class="team-card__photo-wrap">
+                      <img
+                        src={photo}
+                        alt={member.name}
+                        class="team-card__photo"
+                        width={80}
+                        height={80}
+                        loading="lazy"
+                      />
+                    </div>
                   ) : (
                     <div class="team-card__initials" style="width: 72px; height: 72px; border-radius: var(--radius-md); background: rgba(159,255,220,0.1); border: 1px solid var(--border-default); display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-weight: 700; color: var(--aquamarine);">
                       {initials(member.name)}
