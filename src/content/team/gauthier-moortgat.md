@@ -1,6 +1,6 @@
 ---
 name: "Gauthier Moortgat"
-role: "Growth Trainee"
+role: "Growth Entrepreneur"
 order: 18
 featured: false
 ---
