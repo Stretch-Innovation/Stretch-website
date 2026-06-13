@@ -3,7 +3,6 @@ export const TEAM = [
   { slug: 'jeroen-de-broyer', name: 'Jeroen De Broyer', role: 'Partner / CRO' },
   { slug: 'sara-blocqiuiaux', name: 'Sara Blocqiuiaux', role: 'Strategy Lead' },
   { slug: 'freek-matthijssen', name: 'Freek Matthijssen', role: 'Innovation Entrepreneur' },
-  { slug: 'camille-sercu', name: 'Camille Sercu', role: 'Innovation Entrepreneur' },
   { slug: 'pierre-henri-vandenabeele', name: 'Pierre-Henri Vandenabeele', role: 'Growth Marketeer' },
   { slug: 'elias-marchal-el-abbassy', name: 'Elias Marchal El Abbassy', role: 'Growth Marketeer' },
   { slug: 'sarah-koster', name: 'Sarah Köster', role: 'Growth UX Designer' },
@@ -15,7 +14,6 @@ export const TEAM = [
   { slug: 'jordy-van-de-locht', name: 'Jordy Van De Locht', role: 'Growth Marketeer' },
   { slug: 'arthur-grisar', name: 'Arthur Grisar', role: 'Growth Entrepreneur' },
   { slug: 'anton-speleers', name: 'Anton Speleers', role: 'Growth Entrepreneur' },
-  { slug: 'emma-dhooghe', name: "Emma D'hooghe", role: 'Growth Trainee' },
   { slug: 'gauthier-moortgat', name: 'Gauthier Moortgat', role: 'Growth Trainee' },
 ];
 
