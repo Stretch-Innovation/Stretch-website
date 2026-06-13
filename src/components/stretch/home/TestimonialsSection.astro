@@ -1,0 +1,25 @@
+---
+import Reveal from '../Reveal.astro';
+import QuoteCard from '../QuoteCard.astro';
+import { HOMEPAGE_TESTIMONIALS } from '../../../data/testimonials';
+---
+
+<section class="testimonials-section">
+  <div class="testimonials-section__inner">
+    <Reveal>
+      <span class="ds-eyebrow">
+        <span class="ds-eyebrow-mark" aria-hidden="true"><span></span><span></span><span></span></span>
+        What clients say
+      </span>
+    </Reveal>
+    <div class="grid-3 testimonials-section__grid">
+      {
+        HOMEPAGE_TESTIMONIALS.map((t, i) => (
+          <Reveal delay={i * 90}>
+            <QuoteCard quote={t.quote} attribution={t.attribution} />
+          </Reveal>
+        ))
+      }
+    </div>
+  </div>
+</section>

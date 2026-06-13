@@ -5,6 +5,7 @@ import Icon from '../../components/stretch/Icon.astro';
 import HomeCaseCard from '../../components/stretch/home/HomeCaseCard.astro';
 import CaseGatedDownload from '../../components/stretch/CaseGatedDownload.astro';
 import CaseBottomCTA from '../../components/stretch/CaseBottomCTA.astro';
+import QuoteCard from '../../components/stretch/QuoteCard.astro';
 import { CASE_DATA, getCase } from '../../data/cases';
 
 export function getStaticPaths() {
@@ -79,6 +80,16 @@ const others = CASE_DATA.filter((x) => x.slug !== slug).slice(0, 3);
       </aside>
     </div>
   </section>
+
+  {'quote' in c && c.quote && (
+    <section style="padding: 0 var(--gutter) var(--section-gap);">
+      <div style="max-width: var(--container-max); margin: 0 auto;">
+        <Reveal>
+          <QuoteCard quote={c.quote.text} attribution={c.quote.attribution} />
+        </Reveal>
+      </div>
+    </section>
+  )}
 
   {'testimonialVideoId' in c && c.testimonialVideoId && (
     <section style="padding: 0 var(--gutter) var(--section-gap);">

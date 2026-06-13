@@ -1,0 +1,15 @@
+---
+interface Props {
+  quote: string;
+  attribution: string;
+  compact?: boolean;
+}
+
+const { quote, attribution, compact = false } = Astro.props;
+---
+
+<blockquote class:list={['quote-card', compact && 'quote-card--compact']}>
+  <span class="quote-card__mark" aria-hidden="true">"</span>
+  <p class="quote-card__text">{quote}</p>
+  <footer class="quote-card__attrib">— {attribution}</footer>
+</blockquote>

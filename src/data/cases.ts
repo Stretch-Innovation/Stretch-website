@@ -30,6 +30,10 @@ export const CASE_DATA = [
       "Implemented lead scoring to qualify and prioritise, plus automated quote sending for small projects.",
     ],
     result: "Phase 1 took them from 5 leads a week to 10+ a day across Meta, LinkedIn and Google Ads. Phase 2 scaled the system into a repeatable engine — and the conversion rates climbed with the volume.",
+    quote: {
+      text: "We have been pleasantly surprised, thanks to Stretch, what digital marketing can do for us. Thanks to their professionalism, expertise, fast and good communication and follow-up, we created a successful campaign.",
+      attribution: "Anders Beton NV",
+    },
     stats: [
       { value: "3,000", suffix: "", label: "Total leads generated" },
       { prefix: "6 → ", value: "29", suffix: "%", label: "Lead-to-SQL conversion" },
@@ -129,6 +133,10 @@ export const CASE_DATA = [
       "Built the engine to be replicable across other European markets.",
     ],
     result: "Vandemoortele now owns direct relationships with thousands of foodservice buyers. Lead scoring and automation run continuously, performance is tracked in real time, and sales receives only sales-ready leads.",
+    quote: {
+      text: "Stretch went above and beyond in their efforts to help us generate and activate leads and improve our digital marketing success. What sets Stretch apart is their entrepreneurial approach to problem-solving. They are not just focused on short-term gains, but also on finding long-term solutions that will benefit our business for years to come.",
+      attribution: "Vandemoortele Europe NV",
+    },
     stats: [
       { value: "1,000s", suffix: "", label: "Foodservice buyers, owned direct" },
       { prefix: "", value: "1st", suffix: "-party", label: "Data ownership, end to end" },
