@@ -67,6 +67,7 @@ export const CASE_DATA = [
       { value: "100", suffix: "%", label: "Of drop stock sold out" },
       { prefix: "0 → ", value: "D2C", suffix: "", label: "New revenue channel, built from scratch" },
     ],
+    testimonialVideoId: "SFsgZQyH-h8",
   },
   {
     slug: "easybell",
@@ -133,6 +134,7 @@ export const CASE_DATA = [
       { prefix: "", value: "1st", suffix: "-party", label: "Data ownership, end to end" },
       { value: "MQL→SQL", suffix: "", label: "Sales and marketing on one funnel" },
     ],
+    testimonialVideoId: "ae33njnaxTg",
   },
 ];
 
