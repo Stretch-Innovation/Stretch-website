@@ -1,5 +1,6 @@
 ---
 import Wordmark from './stretch/Wordmark.astro';
+import { CONTACT } from '../data/contact';
 
 const navLinks = [
   { href: '/services', label: 'Services' },
@@ -40,18 +41,19 @@ const navLinks = [
       <div>
         <h3 class="text-sm font-semibold uppercase tracking-wide">Contact</h3>
         <ul class="mt-4 space-y-2 text-sm text-muted">
-          <li>Desguinlei 6, 2018 Antwerpen</li>
+          <li>{CONTACT.addressLine}</li>
+          <li>{CONTACT.vat}</li>
           <li>
-            <a href="mailto:stijn@stretchinnovation.be" class="hover:text-aquamarine">
-              stijn@stretchinnovation.be
+            <a href={`mailto:${CONTACT.email}`} class="hover:text-aquamarine">
+              {CONTACT.email}
             </a>
           </li>
           <li>
-            <a href="tel:+32477986352" class="hover:text-aquamarine">+32 477 98 63 52</a>
+            <a href={`tel:${CONTACT.phoneTel}`} class="hover:text-aquamarine">{CONTACT.phone}</a>
           </li>
           <li>
             <a
-              href="https://www.linkedin.com/company/stretch-innovation"
+              href={CONTACT.linkedIn}
               target="_blank"
               rel="noopener noreferrer"
               class="hover:text-aquamarine"

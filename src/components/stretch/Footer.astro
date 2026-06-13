@@ -2,8 +2,7 @@
 import Wordmark from './Wordmark.astro';
 import Icon from './Icon.astro';
 import { SERVICE_DATA } from '../../data/stretch-services';
-
-const LINKEDIN = 'https://www.linkedin.com/company/stretch-innovation/';
+import { CONTACT } from '../../data/contact';
 ---
 
 <footer style="border-top: 1px solid var(--border-subtle); background: var(--surface-sunken); padding: var(--space-9) var(--gutter) var(--space-7);">
@@ -14,9 +13,23 @@ const LINKEDIN = 'https://www.linkedin.com/company/stretch-innovation/';
         <p style="color: var(--text-muted); font-size: 0.9375rem; max-width: 32ch; line-height: 1.6; margin: 0;">
           Belgian growth partner. We engineer predictable Growth Engines for scale-ups and enterprise — no guesswork.
         </p>
-        <div style="display: flex; align-items: center; gap: 0.5rem; margin-top: 1.25rem; color: var(--text-muted); font-size: 0.8125rem;">
-          <Icon name="mapPin" size={15} />
-          <span>Antwerp, Belgium · operating across the Benelux</span>
+        <div style="display: flex; flex-direction: column; gap: 0.625rem; margin-top: 1.25rem; color: var(--text-muted); font-size: 0.8125rem; line-height: 1.6;">
+          <div style="display: flex; align-items: flex-start; gap: 0.5rem;">
+            <Icon name="mapPin" size={15} />
+            <span>
+              {CONTACT.street}<br />
+              {CONTACT.city}<br />
+              {CONTACT.vat}
+            </span>
+          </div>
+          <a href={`mailto:${CONTACT.email}`} class="footer-link" style="display: flex; align-items: center; gap: 0.5rem; color: var(--text-secondary); text-decoration: none; width: fit-content;">
+            <Icon name="mail" size={15} />
+            {CONTACT.email}
+          </a>
+          <a href={`tel:${CONTACT.phoneTel}`} class="footer-link" style="display: flex; align-items: center; gap: 0.5rem; color: var(--text-secondary); text-decoration: none; width: fit-content;">
+            <Icon name="phone" size={15} />
+            {CONTACT.phone}
+          </a>
         </div>
       </div>
 
@@ -43,7 +56,7 @@ const LINKEDIN = 'https://www.linkedin.com/company/stretch-innovation/';
         <div style="font-size: 0.75rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 1.25rem;">Connect</div>
         <div style="display: flex; flex-direction: column; gap: 0.625rem;">
           <a href="/contact" class="footer-link" style="font-size: 0.9375rem; color: var(--text-secondary); width: fit-content;">Contact</a>
-          <a href={LINKEDIN} target="_blank" rel="noopener noreferrer" class="footer-link" style="font-size: 0.9375rem; color: var(--text-secondary); width: fit-content;">LinkedIn</a>
+          <a href={CONTACT.linkedIn} target="_blank" rel="noopener noreferrer" class="footer-link" style="font-size: 0.9375rem; color: var(--text-secondary); width: fit-content;">LinkedIn</a>
           <a href="/contact" class="footer-link" style="font-size: 0.9375rem; color: var(--text-secondary); width: fit-content;">Newsletter</a>
         </div>
       </div>
