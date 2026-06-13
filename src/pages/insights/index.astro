@@ -41,4 +41,51 @@ import { INSIGHT_DATA, formatInsightDate } from '../../data/insights';
       }
     </div>
   </section>
+
+  <aside class="insights-podcast-cta">
+    <p>
+      <span aria-hidden="true">🎙️</span> Prefer listening? Check out our podcast <em>Inside the Growth Engine</em> —
+      <a
+        href="https://open.spotify.com/show/7cSP8d9tbIPbEwmr4jS9Fu"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="insights-podcast-cta__link"
+      >
+        Listen on Spotify →
+      </a>
+    </p>
+  </aside>
 </StretchLayout>
+
+<style>
+  .insights-podcast-cta {
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: var(--space-6) var(--gutter) var(--space-8);
+    border-top: 1px solid var(--border-subtle);
+    text-align: center;
+  }
+
+  .insights-podcast-cta p {
+    margin: 0;
+    font-size: 0.875rem;
+    line-height: 1.6;
+    color: var(--text-muted);
+  }
+
+  .insights-podcast-cta em {
+    font-style: normal;
+    color: var(--text-secondary);
+  }
+
+  .insights-podcast-cta__link {
+    color: #1db954;
+    font-weight: 600;
+    text-decoration: none;
+    transition: opacity var(--dur-fast) var(--ease-out);
+  }
+
+  .insights-podcast-cta__link:hover {
+    opacity: 0.85;
+  }
+</style>
