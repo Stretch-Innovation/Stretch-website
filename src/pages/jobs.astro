@@ -1,0 +1,145 @@
+---
+import StretchLayout from '../layouts/StretchLayout.astro';
+import Reveal from '../components/stretch/Reveal.astro';
+import Icon from '../components/stretch/Icon.astro';
+import { CORE_VALUES } from '../data/core-values';
+import { fetchJobs, getJobApplyUrl, getJobTeam } from '../lib/jobs';
+
+const jobs = await fetchJobs();
+---
+
+<StretchLayout
+  title="Jobs — Stretch Innovation"
+  description="Join Stretch Innovation in Antwerp. Build growth engines that land — explore open roles or send a spontaneous application."
+>
+  <section style="position: relative; overflow: hidden; padding: calc(var(--header-height) + var(--space-8)) var(--gutter) var(--space-8);">
+    <div style="position: relative; max-width: var(--container-max); margin: 0 auto;">
+      <Reveal>
+        <span class="ds-eyebrow">
+          <span class="ds-eyebrow-mark" aria-hidden="true"><span></span><span></span><span></span></span>
+          Join the team
+        </span>
+        <h1 style="font-family: var(--font-display); font-weight: 800; font-size: var(--text-display-1); margin-top: var(--space-4); max-width: 18ch; line-height: 1.04;">
+          Build things that actually <span style="color: var(--aquamarine);">land</span>.
+        </h1>
+        <p style="margin-top: var(--space-5); max-width: 52ch; font-size: var(--text-lg); line-height: 1.65; color: var(--text-secondary);">
+          We're looking for curious, hands-on people who want to own their work and see it make an impact.
+        </p>
+      </Reveal>
+    </div>
+  </section>
+
+  <section style="padding: 0 var(--gutter) var(--section-gap);">
+    <Reveal>
+      <blockquote class="jobs-quote" style="max-width: var(--container-max); margin: 0 auto; padding: var(--space-7); border-radius: var(--radius-xl); border: 1px solid var(--border-subtle); background: var(--surface-raised);">
+        <p style="margin: 0; font-size: var(--text-lg); line-height: 1.7; color: var(--text-secondary);">
+          "At Stretch, we don't hand clients a deck and walk away. We build the engine, then we run it with them. That takes people who are curious, hands-on, and hungry to see their work actually land. We're 36 people based in Antwerp. If you want to own your work and grow fast, read on."
+        </p>
+        <footer style="margin-top: var(--space-5); font-size: 0.9375rem; color: var(--text-muted);">
+          — <strong style="color: var(--text-primary); font-weight: 600;">Stijn van Daele</strong>, Founder &amp; CEO
+        </footer>
+      </blockquote>
+    </Reveal>
+  </section>
+
+  <section style="padding: var(--section-gap) var(--gutter); border-top: 1px solid var(--border-subtle); background: var(--surface-sunken);">
+    <div style="max-width: var(--container-max); margin: 0 auto;">
+      <Reveal>
+        <h2 style="font-size: var(--text-display-3); margin: 0;">You recognize yourself in these.</h2>
+      </Reveal>
+      <div class="jobs-values-grid" style="margin-top: var(--space-7); display: grid; gap: var(--space-4);">
+        {
+          CORE_VALUES.map((value, i) => (
+            <Reveal delay={(i % 3) * 80}>
+              <div style="height: 100%; padding: var(--space-6); border-radius: var(--radius-card); border: 1px solid var(--border-subtle); background: var(--surface-raised);">
+                <h3 style="font-size: var(--text-h3); margin: 0;">{value.title}</h3>
+                <p style="margin-top: var(--space-3); color: var(--text-secondary); line-height: 1.65; font-size: 0.9375rem;">{value.description}</p>
+              </div>
+            </Reveal>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section style="padding: var(--section-gap) var(--gutter);">
+    <div style="max-width: var(--container-max); margin: 0 auto;">
+      <Reveal>
+        <h2 style="font-size: var(--text-display-3); margin: 0;">Open roles</h2>
+      </Reveal>
+
+      {
+        jobs.length > 0 ? (
+          <div class="jobs-list" style="margin-top: var(--space-7); display: flex; flex-direction: column; gap: var(--space-4);">
+            {jobs.map((job, i) => (
+              <Reveal delay={(i % 3) * 60}>
+                <article class="jobs-card" style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-4); padding: var(--space-6); border-radius: var(--radius-card); border: 1px solid var(--border-subtle); background: var(--surface-raised);">
+                  <div style="min-width: 0; flex: 1 1 16rem;">
+                    <h3 style="font-size: var(--text-h3); margin: 0;">{job.title}</h3>
+                    <div style="margin-top: var(--space-3); display: flex; flex-wrap: wrap; gap: var(--space-4); color: var(--text-secondary); font-size: 0.9375rem;">
+                      {getJobTeam(job) && (
+                        <span style="display: inline-flex; align-items: center; gap: 0.4rem;">
+                          <Icon name="users" size={16} />
+                          {getJobTeam(job)}
+                        </span>
+                      )}
+                      {job.location && (
+                        <span style="display: inline-flex; align-items: center; gap: 0.4rem;">
+                          <Icon name="mapPin" size={16} />
+                          {job.location}
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                  <a href={getJobApplyUrl(job)} class="ds-btn ds-btn--primary ds-btn--md" target={getJobApplyUrl(job).startsWith('http') ? '_blank' : undefined} rel={getJobApplyUrl(job).startsWith('http') ? 'noopener noreferrer' : undefined}>
+                    Apply
+                    <Icon name="arrowRight" size={16} />
+                  </a>
+                </article>
+              </Reveal>
+            ))}
+          </div>
+        ) : (
+          <Reveal delay={80}>
+            <p style="margin-top: var(--space-6); max-width: 52ch; font-size: var(--text-lg); line-height: 1.65; color: var(--text-secondary);">
+              No open roles right now — but we're always looking for great people. Send us a spontaneous application.
+            </p>
+          </Reveal>
+        )
+      }
+    </div>
+  </section>
+
+  <section style="padding: 0 var(--gutter) var(--section-gap);">
+    <Reveal>
+      <div class="jobs-spontaneous" style="max-width: var(--container-max); margin: 0 auto; padding: var(--space-8) var(--space-7); border-radius: var(--radius-xl); border: 1px solid rgba(159,255,220,0.2); background: linear-gradient(180deg, var(--surface-raised), var(--surface-sunken)); text-align: center;">
+        <h2 style="font-size: var(--text-display-3); margin: 0;">Don't see your role?</h2>
+        <p style="margin: var(--space-4) auto 0; max-width: 42ch; color: var(--text-secondary); font-size: var(--text-lg); line-height: 1.65;">
+          We're always interested in meeting exceptional people. Send us your story.
+        </p>
+        <div style="margin-top: var(--space-6);">
+          <a href="/contact" class="ds-btn ds-btn--primary ds-btn--lg">
+            Send a spontaneous application
+            <Icon name="arrowRight" size={18} />
+          </a>
+        </div>
+      </div>
+    </Reveal>
+  </section>
+</StretchLayout>
+
+<style>
+  .jobs-values-grid {
+    grid-template-columns: 1fr;
+  }
+
+  @media (min-width: 768px) {
+    .jobs-values-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .jobs-quote {
+    margin: 0;
+  }
+</style>
