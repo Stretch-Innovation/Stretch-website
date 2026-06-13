@@ -9,7 +9,7 @@
   --color-indigo: #5f6bd3;
   --color-muted: #9ca3af;
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-display: "Syne", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
 }
 
 .font-display {
@@ -102,6 +102,7 @@ body {
 /* ─── CTA glow pulse ─── */
 .btn-glow {
   position: relative;
+  font-family: var(--font-display);
   background: var(--color-aquamarine);
   color: var(--color-pearl);
   box-shadow:
@@ -179,6 +180,7 @@ body {
   position: absolute;
   top: -0.15em;
   left: -0.05em;
+  font-family: var(--font-display);
   font-size: clamp(6rem, 18vw, 14rem);
   font-weight: 700;
   line-height: 1;
@@ -281,6 +283,7 @@ body {
 
 /* ─── Stat counter ─── */
 .stat-value {
+  font-family: var(--font-display);
   font-size: clamp(3rem, 8vw, 5rem);
   font-weight: 700;
   line-height: 1;

@@ -1,10 +1,10 @@
 /* ============================================================
    Stretch — Typography tokens
-   Syne for display/headlines. Inter for body & UI.
+   Space Grotesk for display/headlines. Inter for body & UI.
    ============================================================ */
 :root {
   /* ---- Families ---- */
-  --font-display: "Syne", "Inter", system-ui, sans-serif;
+  --font-display: "Space Grotesk", "Inter", system-ui, sans-serif;
   --font-body: "Inter", system-ui, -apple-system, sans-serif;
   --font-mono: "Inter", ui-monospace, "SF Mono", Menlo, monospace; /* tabular numerics */
 
@@ -38,7 +38,7 @@
   --leading-relaxed: 1.65;  /* long-form */
 
   /* ---- Letter spacing ---- */
-  --tracking-tighter: -0.04em;  /* big Syne display */
+  --tracking-tighter: -0.04em;  /* big Space Grotesk display */
   --tracking-tight: -0.02em;    /* headings */
   --tracking-normal: 0;
   --tracking-wide: 0.04em;

@@ -41,6 +41,11 @@
   -webkit-backdrop-filter: blur(14px);
 }
 
+.nav-link,
+.nav-services-trigger {
+  font-family: var(--font-display);
+}
+
 .nav-link:hover {
   color: var(--white) !important;
 }
@@ -122,6 +127,7 @@
 
 .services-dropdown__name {
   display: block;
+  font-family: var(--font-display);
   font-size: 0.9375rem;
   font-weight: 600;
   color: var(--white);
@@ -209,7 +215,7 @@
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  font-family: var(--font-body);
+  font-family: var(--font-display);
   font-weight: 600;
   line-height: 1;
   border: 1px solid transparent;
@@ -350,6 +356,16 @@
 
 .mobile-nav.is-open {
   display: block;
+}
+
+.mobile-nav a[href="/cases"],
+.mobile-nav a[href="/insights"],
+.mobile-nav a[href="/about"] {
+  font-family: var(--font-display);
+}
+
+.mobile-nav a[href^="/services/"] > span:first-child {
+  font-family: var(--font-display);
 }
 
 .nav-mobile-btn {

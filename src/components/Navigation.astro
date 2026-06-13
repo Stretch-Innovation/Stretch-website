@@ -27,7 +27,7 @@ const currentPath = Astro.url.pathname;
         <a
           href="/services"
           class:list={[
-            'nav-services-trigger relative text-sm font-medium transition-colors',
+            'nav-services-trigger font-display relative text-sm font-medium transition-colors',
             currentPath.startsWith('/services')
               ? 'text-aquamarine'
               : 'text-white/80 hover:text-white',
@@ -55,7 +55,7 @@ const currentPath = Astro.url.pathname;
           <a
             href={link.href}
             class:list={[
-              'relative text-sm font-medium transition-colors after:absolute after:-bottom-1 after:left-0 after:h-px after:w-0 after:bg-aquamarine after:transition-all hover:after:w-full',
+              'font-display relative text-sm font-medium transition-colors after:absolute after:-bottom-1 after:left-0 after:h-px after:w-0 after:bg-aquamarine after:transition-all hover:after:w-full',
               currentPath.startsWith(link.href)
                 ? 'text-aquamarine after:w-full'
                 : 'text-white/80 hover:text-white',
@@ -106,7 +106,7 @@ const currentPath = Astro.url.pathname;
     {
       SERVICE_DATA.map((s) => (
         <a href={`/services/${s.slug}`} class="border-b border-white/10 py-4">
-          <span class="block text-lg font-medium hover:text-aquamarine">{s.name}</span>
+          <span class="font-display block text-lg font-medium hover:text-aquamarine">{s.name}</span>
           <span class="mt-1 block text-sm text-white/60">{s.headline}</span>
         </a>
       ))
@@ -115,7 +115,7 @@ const currentPath = Astro.url.pathname;
       otherNavLinks.map((link) => (
         <a
           href={link.href}
-          class="border-b border-white/10 py-4 text-lg font-medium hover:text-aquamarine"
+          class="font-display border-b border-white/10 py-4 text-lg font-medium hover:text-aquamarine"
         >
           {link.label}
         </a>
