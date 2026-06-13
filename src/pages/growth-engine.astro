@@ -1,0 +1,190 @@
+---
+import StretchLayout from '../layouts/StretchLayout.astro';
+import Reveal from '../components/stretch/Reveal.astro';
+import Icon from '../components/stretch/Icon.astro';
+import HomeCaseCard from '../components/stretch/home/HomeCaseCard.astro';
+import { BOTTLENECKS } from '../data/clients-logos';
+import { SERVICE_DATA } from '../data/stretch-services';
+import { CASE_DATA } from '../data/cases';
+
+const phases = SERVICE_DATA.filter((s) => !s.standalone).slice(0, 4);
+
+const phaseHighlights: Record<string, string[]> = {
+  'growth-readiness': ['Tracking & reporting', 'CRM foundations', 'Value propositions & segments'],
+  'growth-generation': ['Demand capture', 'Demand creation', 'SEO / GEO'],
+  'growth-conversion': ['Funnel optimization', 'Lead scoring', 'Marketing automation'],
+  'growth-acceleration': ['RevOps', 'Forecasting', 'Process automation', 'Growth playbooks'],
+};
+
+const proofSlugs = ['anders-beton', 'van-steenberge', 'easybell'];
+const proofCases = proofSlugs
+  .map((slug) => CASE_DATA.find((c) => c.slug === slug))
+  .filter((c): c is (typeof CASE_DATA)[number] => Boolean(c));
+---
+
+<StretchLayout
+  title="Growth Engine — Stretch Innovation"
+  description="A repeatable system to identify, validate and scale growth opportunities. Built through experimentation, powered by data, optimized through execution."
+>
+  <section class="ge-hero">
+    <div class="ge-hero__inner">
+      <Reveal>
+        <div class="ge-hero__grid">
+          <div class="ge-hero__copy">
+            <span class="ds-eyebrow">
+              <span class="ds-eyebrow-mark" aria-hidden="true"><span></span><span></span><span></span></span>
+              Growth Engine
+            </span>
+            <h1 class="ge-hero__title">Turning uncertainty into validated growth.</h1>
+            <p class="ge-hero__subtitle">
+              A repeatable system designed to identify, validate and scale growth opportunities. Built through experimentation,
+              powered by data, optimized through execution.
+            </p>
+          </div>
+
+          <div class="ge-label" aria-hidden="true">
+            <div class="ge-label__stitch ge-label__stitch--top"></div>
+            <div class="ge-label__stitch ge-label__stitch--bottom"></div>
+            <div class="ge-label__row ge-label__row--bold">100% PREDICTABLE</div>
+            <div class="ge-label__divider"></div>
+            <div class="ge-label__row">
+              <span class="ge-label__metric">GROWTH POTENTIAL</span>
+              <span class="ge-label__bars" aria-hidden="true">
+                <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+              </span>
+            </div>
+            <div class="ge-label__divider"></div>
+            <div class="ge-label__row ge-label__row--tag">Compounding growth</div>
+            <div class="ge-label__corner ge-label__corner--tl"></div>
+            <div class="ge-label__corner ge-label__corner--br"></div>
+          </div>
+        </div>
+      </Reveal>
+    </div>
+  </section>
+
+  <section class="ge-section ge-section--sunken">
+    <div class="ge-section__inner">
+      <Reveal>
+        <div class="ge-section__header">
+          <span class="ds-eyebrow">
+            <span class="ds-eyebrow-mark" aria-hidden="true"><span></span><span></span><span></span></span>
+            Where growth breaks
+          </span>
+          <h2 class="ge-section__title">Which bottleneck is stalling your growth?</h2>
+          <p class="ge-section__lead">
+            Every plateau traces back to one of four. Name yours and the path forward gets obvious.
+          </p>
+        </div>
+      </Reveal>
+
+      <div class="grid-4 ge-bottlenecks">
+        {
+          BOTTLENECKS.map((b, i) => (
+            <Reveal delay={i * 90}>
+              <div class="ge-bottleneck-card">
+                <span class="ge-bottleneck-card__num">0{i + 1}</span>
+                <h3 class="ge-bottleneck-card__title">{b.title}</h3>
+                <p class="ge-bottleneck-card__desc">{b.desc}</p>
+              </div>
+            </Reveal>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="ge-section">
+    <div class="ge-section__inner">
+      <Reveal>
+        <div class="ge-section__header">
+          <span class="ds-eyebrow">
+            <span class="ds-eyebrow-mark" aria-hidden="true"><span></span><span></span><span></span></span>
+            How we build it
+          </span>
+          <h2 class="ge-section__title">Four phases. One connected engine.</h2>
+          <p class="ge-section__lead">
+            Every Growth Engine is built in sequence. Skip a phase and the whole system leaks.
+          </p>
+        </div>
+      </Reveal>
+
+      <div class="ge-phases">
+        {
+          phases.map((phase, i) => (
+            <Reveal delay={i * 80}>
+              <div class="ge-phase">
+                <div class="ge-phase__marker">
+                  <span class="ge-phase__dot">{phase.num}</span>
+                  {i < phases.length - 1 && <span class="ge-phase__line" aria-hidden="true"></span>}
+                </div>
+                <a href={`/services/${phase.slug}`} class="ge-phase-card hover-card">
+                  <div class="ge-phase-card__top">
+                    <span class="ge-phase-card__num">Phase {phase.num}</span>
+                    <Icon name="arrowUpRight" size={16} class="ge-phase-card__arrow" />
+                  </div>
+                  <h3 class="ge-phase-card__name">{phase.name}</h3>
+                  <p class="ge-phase-card__headline">"{phase.headline}"</p>
+                  <ul class="ge-phase-card__list">
+                    {(phaseHighlights[phase.slug] ?? phase.build.slice(0, 3)).map((item) => (
+                      <li>{item}</li>
+                    ))}
+                  </ul>
+                </a>
+              </div>
+            </Reveal>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="ge-section ge-section--sunken">
+    <div class="ge-section__inner">
+      <Reveal>
+        <div class="ge-proof-header">
+          <div class="ge-section__header ge-section__header--tight">
+            <span class="ds-eyebrow">
+              <span class="ds-eyebrow-mark" aria-hidden="true"><span></span><span></span><span></span></span>
+              Proof, not promises
+            </span>
+            <h2 class="ge-section__title">Engines we've built.</h2>
+          </div>
+          <a href="/cases" class="ds-btn ds-btn--ghost ds-btn--md">
+            Explore all cases
+            <Icon name="arrowRight" size={16} />
+          </a>
+        </div>
+      </Reveal>
+
+      <div class="grid-3 ge-cases">
+        {
+          proofCases.map((c, i) => (
+            <Reveal delay={i * 100}>
+              <HomeCaseCard c={c} />
+            </Reveal>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="ge-section ge-section--cta">
+    <Reveal>
+      <div class="ge-cta">
+        <div class="ge-cta__glow" aria-hidden="true"></div>
+        <div class="ge-cta__inner">
+          <h2 class="ge-cta__title">Ready to build your growth engine?</h2>
+          <p class="ge-cta__subtitle">
+            Book a free 45-minute growth audit. We'll pinpoint your bottleneck and map the fastest path to predictable pipeline.
+          </p>
+          <a href="/contact" class="ds-btn ds-btn--primary ds-btn--lg">
+            Identify your bottleneck
+            <Icon name="arrowRight" size={18} />
+          </a>
+          <p class="ge-cta__note">Free 45-min audit · No commitment · A concrete next step</p>
+        </div>
+      </div>
+    </Reveal>
+  </section>
+</StretchLayout>
