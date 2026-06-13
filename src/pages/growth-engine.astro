@@ -3,9 +3,11 @@ import StretchLayout from '../layouts/StretchLayout.astro';
 import Reveal from '../components/stretch/Reveal.astro';
 import Icon from '../components/stretch/Icon.astro';
 import HomeCaseCard from '../components/stretch/home/HomeCaseCard.astro';
+import QuoteCard from '../components/stretch/QuoteCard.astro';
 import { BOTTLENECKS } from '../data/clients-logos';
 import { SERVICE_DATA } from '../data/stretch-services';
 import { CASE_DATA } from '../data/cases';
+import { GROWTH_ENGINE_TESTIMONIAL } from '../data/testimonials';
 
 const phases = SERVICE_DATA.filter((s) => !s.standalone).slice(0, 4);
 
@@ -166,6 +168,17 @@ const proofCases = proofSlugs
           ))
         }
       </div>
+    </div>
+  </section>
+
+  <section class="ge-section">
+    <div class="ge-section__inner">
+      <Reveal>
+        <QuoteCard
+          quote={GROWTH_ENGINE_TESTIMONIAL.quote}
+          attribution={GROWTH_ENGINE_TESTIMONIAL.attribution}
+        />
+      </Reveal>
     </div>
   </section>
 

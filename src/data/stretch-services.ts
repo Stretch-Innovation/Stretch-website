@@ -14,6 +14,10 @@ export const SERVICE_DATA = [
     intro: "Before you scale anything, you need to see clearly. We put the measurement, data and foundations in place so every growth decision runs on signal — not gut.",
     build: ["Tracking & reporting", "CRM foundations", "Value propositions & segments", "Customer journey blueprint", "KPI & ROI framework"],
     outcome: "Full visibility and control over what drives your growth.",
+    quote: {
+      text: "Stretch is heel proactief in het identificeren van optimalisaties en opportuniteiten. Ze wachten niet af, maar komen zelf met concrete voorstellen om resultaten te verbeteren. Sterke partner voor wie op zoek is naar versnelling, vernieuwing en tastbare impact!",
+      attribution: "Aqualex, Growth Hacking",
+    },
   },
   {
     slug: "growth-generation",
@@ -27,6 +31,10 @@ export const SERVICE_DATA = [
     intro: "Not enough qualified pipeline reaching the top of the funnel? We engineer the channels and systems that create and capture demand on repeat.",
     build: ["Demand capture", "Demand creation", "SEO / GEO", "Paid acquisition", "Lead generation systems"],
     outcome: "Predictable, consistent opportunity generation.",
+    quote: {
+      text: "An eye-opener to think and act in a different way. From the start of the project, there was clear communication about what to expect, adjustments were made where necessary and frequent, proactive contacts avoided the project to be delayed.",
+      attribution: "Renson",
+    },
   },
   {
     slug: "growth-conversion",
@@ -40,6 +48,10 @@ export const SERVICE_DATA = [
     intro: "Leads arrive but stall between first interest and signed revenue. We tighten the funnel so more of the demand you already generate converts.",
     build: ["Funnel optimization", "Lead scoring", "Marketing automation", "Lead nurturing", "Sales enablement"],
     outcome: "More opportunities turning into revenue.",
+    quote: {
+      text: "Your profound understanding of our needs consistently results in tailor-made solutions that seamlessly align with our specific business reality. Your entrepreneurial spirit has been crucial for our success in digital transformation.",
+      attribution: "Vandemoortele",
+    },
   },
   {
     slug: "growth-acceleration",
@@ -53,6 +65,10 @@ export const SERVICE_DATA = [
     intro: "What worked at one stage breaks at the next. We build the operating model, automation and playbooks that let growth scale predictably.",
     build: ["RevOps", "Forecasting", "Process automation", "Growth playbooks", "Commercial operating model"],
     outcome: "Scalable, predictable growth that doesn't depend on heroics.",
+    quote: {
+      text: "Working with Stretch has been a great experience. Their dynamic and solution driven team have helped us greatly in putting many innovative ideas into practice.",
+      attribution: "Cobelpro",
+    },
   },
   {
     slug: "account-based-marketing",
@@ -67,5 +83,9 @@ export const SERVICE_DATA = [
     intro: "When a handful of accounts make or break the year, spray-and-pray doesn't cut it. We run focused, multi-channel programs against your named targets.",
     build: ["Target account selection", "Multi-channel outreach", "LinkedIn advertising", "Personalized content", "CRM integration", "Pipeline tracking"],
     outcome: "Qualified conversations with your most valuable prospects.",
+    quote: {
+      text: "Proactive, deadline-driven, and strategically engaged. They push us when needed and are not afraid to take a deep dive into our strategy and business. Exactly what you want in an Account Based Marketing partner.",
+      attribution: "H.Essers",
+    },
   },
 ];

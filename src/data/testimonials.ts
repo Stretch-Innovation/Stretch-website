@@ -33,3 +33,22 @@ export const CONTACT_TESTIMONIALS: Testimonial[] = [
     attribution: 'Relu, HubSpot Implementation',
   },
 ];
+
+export const ABOUT_TESTIMONIALS: Testimonial[] = [
+  {
+    quote:
+      'It is a pleasure to collaborate with this team of very highly dedicated marketing professionals that become one with your business.',
+    attribution: 'Brugs Brickhouse BV',
+  },
+  {
+    quote:
+      'A great bunch of people who are fun to work with, knowledgeable, and deliver what they promise, in the time they say.',
+    attribution: 'Customs4trade',
+  },
+];
+
+export const GROWTH_ENGINE_TESTIMONIAL: Testimonial = {
+  quote:
+    'Your profound understanding of our needs consistently results in tailor-made solutions that seamlessly align with our specific business reality. What truly sets you apart is your exceptional ability to address complex business challenges promptly and with a high level of organization.',
+  attribution: 'Vandemoortele',
+};

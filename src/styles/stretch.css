@@ -1194,3 +1194,15 @@
     grid-template-columns: 1fr !important;
   }
 }
+
+.quote-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-4);
+}
+
+@media (min-width: 768px) {
+  .quote-row--2 {
+    grid-template-columns: 1fr 1fr;
+  }
+}

@@ -2,6 +2,7 @@
 import Reveal from './Reveal.astro';
 import Icon from './Icon.astro';
 import FinalCTA from './FinalCTA.astro';
+import QuoteCard from './QuoteCard.astro';
 import { SERVICE_DATA } from '../../data/stretch-services';
 
 interface Props {
@@ -77,5 +78,15 @@ const others = SERVICE_DATA.filter((x) => x.slug !== slug);
     </div>
   </div>
 </section>
+
+{'quote' in s && s.quote && (
+  <section style="padding: 0 var(--gutter) var(--section-gap);">
+    <div style="max-width: var(--container-max); margin: 0 auto;">
+      <Reveal>
+        <QuoteCard quote={s.quote.text} attribution={s.quote.attribution} />
+      </Reveal>
+    </div>
+  </section>
+)}
 
 <FinalCTA />
