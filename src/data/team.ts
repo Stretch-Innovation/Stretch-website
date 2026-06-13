@@ -39,7 +39,7 @@ export function getTeamPhoto(slug: string): string | undefined {
 export const TEAM = [
   { slug: 'stijn-van-daele', name: 'Stijn van Daele', role: 'Founder / CEO' },
   { slug: 'jeroen-de-broyer', name: 'Jeroen De Broyer', role: 'Partner / CRO' },
-  { slug: 'sara-blocqiuiaux', name: 'Sara Blocqiuiaux', role: 'Strategy Lead' },
+  { slug: 'sara-blocqiuiaux', name: 'Sara Blocqiuiaux', role: 'Operation & Strategy Lead' },
   { slug: 'freek-matthijssen', name: 'Freek Matthijssen', role: 'Senior Growth Strategist' },
   { slug: 'pierre-henri-vandenabeele', name: 'Pierre-Henri Vandenabeele', role: 'Growth Marketeer' },
   { slug: 'elias-marchal-el-abbassy', name: 'Elias Marchal El Abbassy', role: 'Senior Growth Engineer' },

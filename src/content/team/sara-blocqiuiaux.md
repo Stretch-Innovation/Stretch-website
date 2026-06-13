@@ -1,6 +1,6 @@
 ---
 name: "Sara Blocqiuiaux"
-role: "Strategy Lead"
+role: "Operation & Strategy Lead"
 order: 3
 featured: true
 ---
