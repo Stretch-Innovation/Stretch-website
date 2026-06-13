@@ -14,8 +14,10 @@ export function getJobTeam(job: Job): string | undefined {
   return job.team ?? job.department;
 }
 
+const JOB_PORTAL_BASE = 'https://jobs.stretchinnovation.be';
+
 export function getJobApplyUrl(job: Job): string {
-  return job.apply_url ?? job.application_url ?? job.url ?? '/contact';
+  return `${JOB_PORTAL_BASE}/${job.id}`;
 }
 
 export async function fetchJobs(): Promise<Job[]> {

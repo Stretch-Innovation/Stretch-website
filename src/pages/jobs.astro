@@ -81,8 +81,8 @@ const jobs = await fetchJobs();
                   <a
                     href={getJobApplyUrl(job)}
                     class="ds-btn ds-btn--primary ds-btn--md"
-                    target={getJobApplyUrl(job).startsWith('http') ? '_blank' : undefined}
-                    rel={getJobApplyUrl(job).startsWith('http') ? 'noopener noreferrer' : undefined}
+                    target="_blank"
+                    rel="noopener noreferrer"
                   >
                     Apply
                     <Icon name="arrowRight" size={16} />
