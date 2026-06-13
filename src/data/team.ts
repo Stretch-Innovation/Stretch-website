@@ -46,7 +46,7 @@ export const TEAM = [
   { slug: 'sarah-koster', name: 'Sarah Köster', role: 'Growth UX Designer' },
   { slug: 'arnaud-janssens-de-varebeke', name: 'Arnaud Janssens de Varebeke', role: 'Growth Strategist' },
   { slug: 'dylan-van-loon', name: 'Dylan Van Loon', role: 'Business Developer' },
-  { slug: 'yannick-bongaerts', name: 'Yannick Bongaerts', role: 'Junior Innovation Entrepreneur' },
+  { slug: 'yannick-bongaerts', name: 'Yannick Bongaerts', role: 'Growth Entrepreneur' },
   { slug: 'myrthe-van-geel', name: 'Myrthe Van Geel', role: 'Growth Entrepreneur' },
   { slug: 'lente-sylverans', name: 'Lente Sylverans', role: 'Growth Entrepreneur' },
   { slug: 'jordy-van-de-locht', name: 'Jordy Van De Locht', role: 'Senior Growth Engineer' },

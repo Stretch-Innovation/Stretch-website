@@ -1,6 +1,6 @@
 ---
 name: "Yannick Bongaerts"
-role: "Junior Innovation Entrepreneur"
+role: "Growth Entrepreneur"
 order: 11
 featured: false
 ---
