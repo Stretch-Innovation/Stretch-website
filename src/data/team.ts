@@ -1,3 +1,41 @@
+const TEAM_PHOTO_EXT: Record<string, string> = {
+  'anton-speleers': 'png',
+  'arnaud-janssens-de-varebeke': 'png',
+  'artem-poliakov': 'jpeg',
+  'arthur-grisar': 'png',
+  'betty-coppens': 'png',
+  'cas-lambrechts': 'jpeg',
+  'dylan-van-engeland': 'jpeg',
+  'dylan-van-loon': 'jpeg',
+  'elias-marchal-el-abbassy': 'png',
+  'freek-matthijssen': 'png',
+  'gauthier-moortgat': 'png',
+  'ismail-laaroussi': 'jpeg',
+  'jeroen-de-broyer': 'png',
+  'jeroen-joosens': 'jpeg',
+  'jordy-van-de-locht': 'jpeg',
+  'kobe-jennes': 'png',
+  'lente-sylverans': 'png',
+  'myrthe-van-geel': 'jpeg',
+  'noah-guerin': 'jpeg',
+  'nouhaila-islah': 'png',
+  'pierre-henri-vandenabeele': 'png',
+  'sara-blocqiuiaux': 'png',
+  'sarah-koster': 'png',
+  'sophie-roozen': 'jpeg',
+  'stijn-van-daele': 'png',
+  'thomas-van-buynder': 'png',
+  'tom-bouckaert': 'jpeg',
+  'toon-vandersteene': 'png',
+  'wout-dietvorst': 'jpeg',
+  'yannick-bongaerts': 'png',
+};
+
+export function getTeamPhoto(slug: string): string | undefined {
+  const ext = TEAM_PHOTO_EXT[slug];
+  return ext ? `/assets/team/${slug}.${ext}` : undefined;
+}
+
 export const TEAM = [
   { slug: 'stijn-van-daele', name: 'Stijn van Daele', role: 'Founder / CEO' },
   { slug: 'jeroen-de-broyer', name: 'Jeroen De Broyer', role: 'Partner / CRO' },

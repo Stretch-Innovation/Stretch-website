@@ -4,7 +4,7 @@ import Reveal from '../components/stretch/Reveal.astro';
 import Icon from '../components/stretch/Icon.astro';
 import FinalCTA from '../components/stretch/FinalCTA.astro';
 import VideoTestimonial from '../components/stretch/home/VideoTestimonial.astro';
-import { TEAM, initials } from '../data/team';
+import { TEAM, getTeamPhoto, initials } from '../data/team';
 ---
 
 <StretchLayout title="About — Stretch Innovation" description="Meet the team behind Stretch Innovation.">
@@ -47,17 +47,33 @@ import { TEAM, initials } from '../data/team';
       <h2 style="font-size: var(--text-display-3); margin-bottom: var(--space-7);">The team</h2>
       <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: var(--space-4);">
         {
-          TEAM.map((member, i) => (
+          TEAM.map((member, i) => {
+            const photo = getTeamPhoto(member.slug);
+            return (
             <Reveal delay={(i % 4) * 60}>
               <div class="team-card" style="padding: var(--space-5); border-radius: var(--radius-card); border: 1px solid var(--border-subtle); background: var(--surface-raised); transition: all var(--dur-base) var(--ease-out);">
-                <div style="width: 56px; height: 56px; border-radius: var(--radius-md); background: rgba(159,255,220,0.1); border: 1px solid var(--border-default); display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-weight: 700; color: var(--aquamarine);">
-                  {initials(member.name)}
-                </div>
+                {
+                  photo ? (
+                    <img
+                      src={photo}
+                      alt={member.name}
+                      class="team-card__photo"
+                      width={72}
+                      height={72}
+                      loading="lazy"
+                    />
+                  ) : (
+                    <div class="team-card__initials" style="width: 72px; height: 72px; border-radius: var(--radius-md); background: rgba(159,255,220,0.1); border: 1px solid var(--border-default); display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-weight: 700; color: var(--aquamarine);">
+                      {initials(member.name)}
+                    </div>
+                  )
+                }
                 <div style="margin-top: var(--space-4); font-weight: 600;">{member.name}</div>
                 <div style="margin-top: 0.25rem; font-size: 0.875rem; color: var(--text-muted);">{member.role}</div>
               </div>
             </Reveal>
-          ))
+            );
+          })
         }
       </div>
     </div>

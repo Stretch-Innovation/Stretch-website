@@ -429,6 +429,17 @@
   transform: translateY(-3px);
 }
 
+.team-card__photo {
+  width: 72px;
+  height: 72px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-default);
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+  filter: grayscale(100%);
+}
+
 .icon-back {
   transform: rotate(180deg);
 }
