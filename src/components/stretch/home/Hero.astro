@@ -9,7 +9,7 @@ import Icon from '../Icon.astro';
     <Reveal>
       <span class="ds-badge ds-badge--accent ds-badge--dot">Belgian growth partner · scale-ups &amp; enterprise</span>
     </Reveal>
-    <Reveal delay={80} tag="h1" class="hero-headline" style="font-family: var(--font-display); font-weight: 800; font-size: var(--text-display-1); line-height: 1.02; letter-spacing: -0.04em; margin: 0 auto; max-width: 15ch;">
+    <Reveal delay={80} tag="h1" class="hero-headline" style="font-family: var(--font-display); font-weight: 800; font-size: var(--text-display-1); line-height: 1.02; letter-spacing: -0.04em; margin-inline: auto; max-width: 15ch;">
       Building <span style="color: var(--aquamarine);">predictable</span> Growth Engines<span style="color: var(--aquamarine);">.</span>
     </Reveal>
     <Reveal delay={180} tag="p" style="margin: var(--space-5) auto 0; max-width: 54ch; font-size: var(--text-lg); line-height: 1.6; color: var(--text-secondary);">
@@ -48,3 +48,11 @@ import Icon from '../Icon.astro';
     </Reveal>
   </div>
 </section>
+
+<style>
+  @media (max-width: 767px) {
+    .hero-headline {
+      margin-top: var(--space-5);
+    }
+  }
+</style>
