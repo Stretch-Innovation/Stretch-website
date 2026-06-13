@@ -54,6 +54,16 @@
   position: relative;
 }
 
+/* Invisible bridge so hover isn't lost between trigger and dropdown */
+.services-menu::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: -0.5rem;
+  width: 420px;
+  height: 16px;
+}
+
 .nav-services-trigger {
   display: inline-flex;
   align-items: center;
@@ -83,7 +93,7 @@
 
 .services-dropdown {
   position: absolute;
-  top: calc(100% + 10px);
+  top: calc(100% + 8px);
   left: -0.5rem;
   width: 420px;
   padding: 0.5rem;
@@ -94,19 +104,23 @@
     0 12px 40px -12px rgba(0, 0, 0, 0.55),
     0 0 0 1px rgba(255, 255, 255, 0.04);
   opacity: 0;
+  visibility: hidden;
   transform: translateY(-4px);
   pointer-events: none;
   transition:
-    opacity var(--dur-base) var(--ease-out),
-    transform var(--dur-base) var(--ease-out);
+    opacity var(--dur-base) var(--ease-out) 0.12s,
+    transform var(--dur-base) var(--ease-out) 0.12s,
+    visibility 0s linear 0.12s;
   z-index: 200;
 }
 
 .services-menu:hover .services-dropdown,
 .services-menu:focus-within .services-dropdown {
   opacity: 1;
+  visibility: visible;
   transform: translateY(0);
   pointer-events: auto;
+  transition-delay: 0s;
 }
 
 .services-dropdown__item {
