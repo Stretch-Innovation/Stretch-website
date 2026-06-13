@@ -32,33 +32,41 @@ const { c } = Astro.props;
             Download the complete version including methodology, experiment details and full results.
           </p>
 
-          <!-- HUBSPOT FORM EMBED — replace with actual embed 
-          code from HubSpot portal per case -->
-          <form class="case-gated-form" onsubmit="event.preventDefault()">
-            <div class="case-gated-names">
+          <div data-hs-form-panel>
+            <form
+              class="case-gated-form"
+              data-hubspot-form="caseDownload"
+              data-page-name={c.client}
+            >
+              <input type="hidden" name="page_name" value={c.client} />
+              <div class="case-gated-names">
+                <label class="case-gated-field">
+                  <span class="case-gated-field__label">First name</span>
+                  <input type="text" name="firstname" required placeholder="Jane" autocomplete="given-name" class="case-gated-input" />
+                </label>
+                <label class="case-gated-field">
+                  <span class="case-gated-field__label">Last name</span>
+                  <input type="text" name="lastname" required placeholder="Doe" autocomplete="family-name" class="case-gated-input" />
+                </label>
+              </div>
               <label class="case-gated-field">
-                <span class="case-gated-field__label">First name</span>
-                <input type="text" name="firstname" placeholder="Jane" autocomplete="given-name" class="case-gated-input" />
+                <span class="case-gated-field__label">Company email</span>
+                <input type="email" name="email" required placeholder="you@company.com" autocomplete="email" class="case-gated-input" />
               </label>
               <label class="case-gated-field">
-                <span class="case-gated-field__label">Last name</span>
-                <input type="text" name="lastname" placeholder="Doe" autocomplete="family-name" class="case-gated-input" />
+                <span class="case-gated-field__label">Phone</span>
+                <input type="tel" name="phone" placeholder="+32 ..." autocomplete="tel" class="case-gated-input" />
               </label>
+              <button type="submit" class="ds-btn ds-btn--primary ds-btn--lg ds-btn--full case-gated-submit">
+                Send me the case study
+                <Icon name="arrowRight" size={18} />
+              </button>
+              <p class="case-gated-note">We'll send it to your inbox immediately.</p>
+            </form>
+            <div class="hs-form-success" hidden>
+              <p class="case-gated-form__subtitle" data-hs-success-message style="margin-top: var(--space-4);"></p>
             </div>
-            <label class="case-gated-field">
-              <span class="case-gated-field__label">Company email</span>
-              <input type="email" name="email" placeholder="you@company.com" autocomplete="email" class="case-gated-input" />
-            </label>
-            <label class="case-gated-field">
-              <span class="case-gated-field__label">Phone</span>
-              <input type="tel" name="phone" placeholder="+32 ..." autocomplete="tel" class="case-gated-input" />
-            </label>
-            <button type="submit" class="ds-btn ds-btn--primary ds-btn--lg ds-btn--full case-gated-submit">
-              Send me the case study
-              <Icon name="arrowRight" size={18} />
-            </button>
-            <p class="case-gated-note">We'll send it to your inbox immediately.</p>
-          </form>
+          </div>
         </div>
       </div>
     </div>

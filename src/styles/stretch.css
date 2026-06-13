@@ -1275,3 +1275,19 @@
   min-height: 352px;
   border: 0;
 }
+
+/* HubSpot form feedback */
+.hs-form-error {
+  margin: var(--space-3) 0 0;
+  color: #f87171;
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+.hs-form-error[hidden] {
+  display: none;
+}
+
+.hs-form-success[hidden] {
+  display: none;
+}

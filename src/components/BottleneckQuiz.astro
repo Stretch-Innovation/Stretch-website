@@ -1,7 +1,3 @@
----
-import HubSpotFormFallback from './HubSpotFormFallback.astro';
----
-
 <div id="bottleneck-quiz" class="mx-auto max-w-2xl">
   <div id="quiz-intro" class="quiz-panel rounded-2xl p-6 md:p-8">
     <div class="mb-2 flex items-center justify-between text-xs font-medium uppercase tracking-wider text-muted">
@@ -22,14 +18,47 @@ import HubSpotFormFallback from './HubSpotFormFallback.astro';
   <div id="quiz-email" class="quiz-panel mt-8 hidden rounded-2xl p-6 md:p-8">
     <h3 class="font-display text-xl font-bold">Get your personalized growth roadmap</h3>
     <p class="mt-2 text-sm text-muted">
-      Leave your email and we'll send you a tailored action plan based on your bottleneck.
+      Leave your details and we'll show your bottleneck diagnosis plus a tailored next step.
     </p>
-    <div class="mt-6">
-      <HubSpotFormFallback
-        formId="quiz-email-capture"
-        fields={['Name', 'Email', 'Company']}
-        submitLabel="Get my roadmap"
-      />
+    <div class="mt-6" data-hs-form-panel>
+      <form class="space-y-5" data-hubspot-form="bottleneckQuiz" id="quiz-hubspot-form">
+        <input type="hidden" name="quiz_answers" id="quiz-answers-field" value="" />
+        <div>
+          <label class="mb-1.5 block text-sm font-medium text-muted" for="quiz-firstname">Name</label>
+          <input
+            type="text"
+            id="quiz-firstname"
+            name="firstname"
+            required
+            class="w-full rounded-lg border border-white/10 bg-pearl px-4 py-3 text-sm text-white placeholder:text-muted focus:border-aquamarine focus:outline-none focus:ring-1 focus:ring-aquamarine/30"
+          />
+        </div>
+        <div>
+          <label class="mb-1.5 block text-sm font-medium text-muted" for="quiz-email-input">Email</label>
+          <input
+            type="email"
+            id="quiz-email-input"
+            name="email"
+            required
+            class="w-full rounded-lg border border-white/10 bg-pearl px-4 py-3 text-sm text-white placeholder:text-muted focus:border-aquamarine focus:outline-none focus:ring-1 focus:ring-aquamarine/30"
+          />
+        </div>
+        <div>
+          <label class="mb-1.5 block text-sm font-medium text-muted" for="quiz-company">Company</label>
+          <input
+            type="text"
+            id="quiz-company"
+            name="company"
+            class="w-full rounded-lg border border-white/10 bg-pearl px-4 py-3 text-sm text-white placeholder:text-muted focus:border-aquamarine focus:outline-none focus:ring-1 focus:ring-aquamarine/30"
+          />
+        </div>
+        <button type="submit" class="btn-glow rounded-lg px-6 py-3.5 text-sm font-semibold">
+          Get my roadmap
+        </button>
+      </form>
+      <div class="hs-form-success hidden rounded-lg border border-aquamarine/30 bg-bunting/60 p-4 text-sm text-white/90" role="status">
+        <p data-hs-success-message></p>
+      </div>
     </div>
   </div>
 </div>
@@ -199,7 +228,7 @@ import HubSpotFormFallback from './HubSpotFormFallback.astro';
           if (currentQuestion < questions.length) {
             renderQuestion();
           } else {
-            showResult();
+            showEmailCapture();
           }
         }, 200);
       });
@@ -224,15 +253,34 @@ import HubSpotFormFallback from './HubSpotFormFallback.astro';
     return results.developing;
   }
 
-  function showResult() {
-    const result = calculateResult();
-    if (!resultEl || !introEl || !emailEl || !progress || !percentLabel) return;
+  function formatQuizAnswers() {
+    return questions
+      .map((q, index) => {
+        const value = answers[q.dimension];
+        const answer = q.answers.find((a) => a.value === value);
+        return `Q${index + 1}: ${q.text}\nA: ${answer?.label || value || '—'}`;
+      })
+      .join('\n\n');
+  }
+
+  function showEmailCapture() {
+    if (!introEl || !emailEl || !progress || !percentLabel) return;
 
     progress.style.width = '100%';
     percentLabel.textContent = '100%';
     introEl.classList.add('hidden');
-    resultEl.classList.remove('hidden');
     emailEl.classList.remove('hidden');
+
+    const answersField = document.getElementById('quiz-answers-field') as HTMLInputElement | null;
+    if (answersField) answersField.value = formatQuizAnswers();
+  }
+
+  function showResult() {
+    const result = calculateResult();
+    if (!resultEl || !emailEl) return;
+
+    emailEl.classList.add('hidden');
+    resultEl.classList.remove('hidden');
 
     resultEl.innerHTML = `
       <div class="quiz-question-enter rounded-2xl border border-aquamarine/30 bg-bunting p-6 md:p-8">
@@ -253,6 +301,11 @@ import HubSpotFormFallback from './HubSpotFormFallback.astro';
       </div>
     `;
   }
+
+  const quizForm = document.getElementById('quiz-hubspot-form');
+  quizForm?.addEventListener('hubspot:success', () => {
+    showResult();
+  });
 
   renderQuestion();
 </script>
