@@ -1,0 +1,31 @@
+---
+const organizationSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfessionalService',
+  name: 'Stretch Innovation',
+  description:
+    'Belgian growth consultancy building predictable Growth Engines for scale-ups and enterprise.',
+  url: 'https://stretchinnovation.be',
+  logo: 'https://stretchinnovation.be/assets/stretch-logo.svg',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Desguinlei 6',
+    addressLocality: 'Antwerpen',
+    postalCode: '2018',
+    addressCountry: 'BE',
+  },
+  telephone: '+32477986352',
+  email: 'stijn@stretchinnovation.be',
+  areaServed: 'Europe',
+  serviceType: [
+    'Growth Readiness',
+    'Growth Generation',
+    'Growth Conversion',
+    'Growth Acceleration',
+    'Account Based Marketing',
+  ],
+  sameAs: ['https://www.linkedin.com/company/stretch-innovation/'],
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(organizationSchema)} />

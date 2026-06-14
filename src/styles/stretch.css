@@ -1291,3 +1291,7 @@
 .hs-form-success[hidden] {
   display: none;
 }
+
+form.hs-form--hidden {
+  display: none !important;
+}

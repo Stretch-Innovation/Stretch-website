@@ -3,6 +3,7 @@ import Reveal from './Reveal.astro';
 import Icon from './Icon.astro';
 import FinalCTA from './FinalCTA.astro';
 import QuoteCard from './QuoteCard.astro';
+import ServiceFaqSchema from './ServiceFaqSchema.astro';
 import { SERVICE_DATA } from '../../data/stretch-services';
 
 interface Props {
@@ -90,3 +91,4 @@ const others = SERVICE_DATA.filter((x) => x.slug !== slug);
 )}
 
 <FinalCTA />
+<ServiceFaqSchema slug={slug} />

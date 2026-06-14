@@ -14,34 +14,87 @@ export interface HubSpotField {
   value: string;
 }
 
-export async function submitHubSpotForm(
-  formId: string,
-  fields: HubSpotField[],
-): Promise<void> {
+const LEGAL_CONSENT = {
+  consent: {
+    consentToProcess: true,
+    text: 'I agree to allow Stretch Innovation to store and process my personal data.',
+    communications: [],
+  },
+};
+
+function buildPayload(fields: HubSpotField[]) {
+  const filtered = fields
+    .map((field) => ({ name: field.name, value: field.value.trim() }))
+    .filter((field) => field.value);
+
+  return {
+    fields: filtered,
+    context: {
+      pageUri: window.location.href,
+      pageName: document.title,
+    },
+    legalConsentOptions: LEGAL_CONSENT,
+  };
+}
+
+async function postToHubSpot(formId: string, payload: ReturnType<typeof buildPayload>) {
   const response = await fetch(
     `https://api.hsforms.com/submissions/v3/integration/submit/${HUBSPOT_PORTAL_ID}/${formId}`,
     {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        fields,
-        context: {
-          pageUri: window.location.href,
-          pageName: document.title,
-        },
-      }),
+      body: JSON.stringify(payload),
     },
   );
 
-  if (!response.ok) {
-    let message = `Something went wrong. Please try again. (${response.status})`;
+  const raw = await response.text();
+  let data: { status?: string; message?: string } = {};
+  try {
+    data = JSON.parse(raw) as { status?: string; message?: string };
+  } catch {
+    data = { message: raw };
+  }
+
+  if (!response.ok || data.status === 'error') {
+    throw new Error(data.message || `Something went wrong. Please try again. (${response.status})`);
+  }
+}
+
+async function postViaProxy(formId: string, payload: ReturnType<typeof buildPayload>) {
+  const response = await fetch('/api/hubspot-submit', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      formId,
+      fields: payload.fields,
+      pageUri: payload.context.pageUri,
+      pageName: payload.context.pageName,
+    }),
+  });
+
+  const data = (await response.json()) as { status?: string; message?: string };
+
+  if (!response.ok || data.status === 'error') {
+    throw new Error(data.message || `Something went wrong. Please try again. (${response.status})`);
+  }
+}
+
+export async function submitHubSpotForm(formId: string, fields: HubSpotField[]): Promise<void> {
+  const payload = buildPayload(fields);
+
+  if (!payload.fields.length) {
+    throw new Error('Please fill in the required fields.');
+  }
+
+  try {
+    await postViaProxy(formId, payload);
+  } catch (proxyError) {
+    // Local dev has no /api route — fall back to direct HubSpot submit.
     try {
-      const data = (await response.json()) as { message?: string };
-      if (data.message) message = data.message;
-    } catch {
-      // keep default message
+      await postToHubSpot(formId, payload);
+    } catch (directError) {
+      throw directError instanceof Error ? directError : proxyError;
     }
-    throw new Error(message);
   }
 }
 
@@ -93,7 +146,7 @@ function showSuccess(form: HTMLFormElement, message: string) {
   const panel = form.closest<HTMLElement>('[data-hs-form-panel]');
   const success = panel?.querySelector<HTMLElement>('.hs-form-success');
 
-  form.hidden = true;
+  form.classList.add('hs-form--hidden');
   hideError(form);
 
   if (success) {
@@ -119,7 +172,7 @@ function buildFields(form: HTMLFormElement, type: HubSpotFormType): HubSpotField
         { name: 'lastname', value: getFieldValue(form, 'lastname') },
         { name: 'email', value: getFieldValue(form, 'email') },
         { name: 'phone', value: getFieldValue(form, 'phone') },
-        { name: 'page_name', value: form.dataset.pageName || '' },
+        { name: 'page_name', value: form.dataset.pageName || getFieldValue(form, 'page_name') },
       ];
     case 'bottleneckQuiz':
       return [
