@@ -6,9 +6,15 @@ import {
   PODCAST_SUBTITLE,
   PODCAST_TITLE,
 } from '../../data/podcast';
+
+interface Props {
+  light?: boolean;
+}
+
+const { light = false } = Astro.props;
 ---
 
-<section class="podcast-section">
+<section class:list={['podcast-section', light && 'podcast-section--light']}>
   <div class="podcast-section__inner">
     <Reveal>
       <div class="podcast-section__header">

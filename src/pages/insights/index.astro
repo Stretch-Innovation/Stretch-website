@@ -16,36 +16,164 @@ import { INSIGHT_DATA, formatInsightDate } from '../../data/insights';
     </div>
   </section>
 
-  <section style="padding: 0 var(--gutter) var(--section-gap);">
-    <div class="grid-3" style="max-width: var(--container-max); margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-4);">
-      {
-        INSIGHT_DATA.map((ins, i) => (
-          <Reveal delay={i * 70}>
-            <a
-              href={`/insights/${ins.slug}`}
-              class="insight-card"
-              style={`display: flex; flex-direction: column; height: 100%; border-radius: var(--radius-card); overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.08); background: ${i % 2 === 0 ? '#0E1330' : '#111827'}; text-decoration: none; color: inherit; transition: all var(--dur-base) var(--ease-out);`}
-            >
-              <div style="height: 260px; display: flex; align-items: center; justify-content: center; background: radial-gradient(ellipse at 70% 80%, rgba(95,107,211,0.18), var(--surface-sunken) 70%); border-bottom: 1px solid var(--border-subtle);">
-                <img src={`/assets/insights/covers/${ins.cover}`} alt={`${ins.title} cover`} class="insight-cover-img" style="height: 82%; width: auto; border-radius: 3px; box-shadow: 0 12px 28px -8px rgba(0,0,0,0.6); transform: rotate(-1.5deg); transition: transform var(--dur-base) var(--ease-out);" loading="lazy" />
-              </div>
-              <div style="display: flex; flex-direction: column; flex: 1; padding: var(--space-5) var(--space-5) var(--space-6);">
-                <div style="display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap;">
-                  <span class="ds-badge ds-badge--accent">{ins.category}</span>
-                  <span style="font-size: 0.8125rem; color: var(--text-muted);">{formatInsightDate(ins.date)}{ins.readMins ? ` · ${ins.readMins} min read` : ''}</span>
+  <div class="insights-light">
+    <section class="insights-light__articles">
+      <div class="insights-grid grid-3">
+        {
+          INSIGHT_DATA.map((ins, i) => (
+            <Reveal delay={i * 70}>
+              <a href={`/insights/${ins.slug}`} class="insight-card--light">
+                <div class="insight-card__cover">
+                  <img
+                    src={`/assets/insights/covers/${ins.cover}`}
+                    alt={`${ins.title} cover`}
+                    class="insight-cover-img"
+                    loading="lazy"
+                  />
                 </div>
-                <h3 style="font-size: var(--text-h3); margin-top: var(--space-4);">{ins.title}</h3>
-                <p style="margin-top: var(--space-3); color: var(--text-secondary); font-size: 0.9375rem; line-height: 1.6; flex: 1;">{ins.excerpt}</p>
-                <span class="insight-cta" style="display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.875rem; font-weight: 600; color: var(--text-secondary); margin-top: var(--space-5); transition: color var(--dur-fast) var(--ease-out);">
-                  Read more <Icon name="arrowRight" size={15} class="icon-arrow-right" />
-                </span>
-              </div>
-            </a>
-          </Reveal>
-        ))
-      }
-    </div>
-  </section>
+                <div class="insight-card__body">
+                  <div class="insight-card__meta-row">
+                    <span class="ds-badge ds-badge--accent">{ins.category}</span>
+                    <span class="insight-card__meta">
+                      {formatInsightDate(ins.date)}{ins.readMins ? ` · ${ins.readMins} min read` : ''}
+                    </span>
+                  </div>
+                  <h3 class="insight-card__title">{ins.title}</h3>
+                  <p class="insight-card__excerpt">{ins.excerpt}</p>
+                  <span class="insight-cta insight-cta--light">
+                    Read article <Icon name="arrowRight" size={15} class="icon-arrow-right" />
+                  </span>
+                </div>
+              </a>
+            </Reveal>
+          ))
+        }
+      </div>
+    </section>
 
-  <PodcastSection />
+    <PodcastSection light />
+  </div>
 </StretchLayout>
+
+<style>
+  .insights-light {
+    width: 100%;
+    background: #f8f9fb;
+  }
+
+  .insights-light__articles {
+    padding: var(--section-gap) var(--gutter);
+  }
+
+  .insights-grid {
+    max-width: var(--container-max);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-4);
+  }
+
+  .insight-card--light {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+    border: none;
+    background: #ffffff;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+    text-decoration: none;
+    color: inherit;
+    transition:
+      transform var(--dur-base) var(--ease-out),
+      box-shadow var(--dur-base) var(--ease-out);
+  }
+
+  .insight-card--light:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  }
+
+  .insight-card--light:hover .insight-cover-img {
+    transform: translateY(-4px) rotate(-1deg);
+  }
+
+  .insight-card--light:hover .insight-cta--light {
+    color: #1fa882;
+  }
+
+  .insight-card--light:hover .insight-cta--light .icon-arrow-right {
+    transform: translateX(3px);
+  }
+
+  .insight-card__cover {
+    height: 260px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(ellipse at 70% 80%, rgba(95, 107, 211, 0.18), var(--surface-sunken) 70%);
+  }
+
+  .insight-cover-img {
+    height: 82%;
+    width: auto;
+    border-radius: 3px;
+    box-shadow: 0 12px 28px -8px rgba(0, 0, 0, 0.6);
+    transform: rotate(-1.5deg);
+    transition: transform var(--dur-base) var(--ease-out);
+  }
+
+  .insight-card__body {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: var(--space-5) var(--space-5) var(--space-6);
+  }
+
+  .insight-card__meta-row {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  .insight-card__meta {
+    font-size: 0.8125rem;
+    color: #9ca3af;
+  }
+
+  .insight-card__title {
+    font-size: var(--text-h3);
+    margin: var(--space-4) 0 0;
+    color: #06091d;
+  }
+
+  .insight-card__excerpt {
+    margin-top: var(--space-3);
+    color: #6b7280;
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    flex: 1;
+  }
+
+  .insight-cta--light {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #25db99;
+    margin-top: var(--space-5);
+    transition: color var(--dur-fast) var(--ease-out);
+  }
+
+  .insight-cta--light .icon-arrow-right {
+    transition: transform var(--dur-fast) var(--ease-out);
+  }
+
+  @media (max-width: 860px) {
+    .insights-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

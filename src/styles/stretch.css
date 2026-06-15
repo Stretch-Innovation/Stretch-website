@@ -1276,6 +1276,25 @@
   border: 0;
 }
 
+.podcast-section--light {
+  border-top: 1px solid #e5e7eb;
+  background: transparent;
+}
+
+.podcast-section--light .podcast-section__title {
+  color: #06091d;
+}
+
+.podcast-section--light .podcast-section__subtitle {
+  color: #6b7280;
+}
+
+.podcast-section--light .podcast-section__embed-wrap {
+  border: none;
+  background: #ffffff;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+}
+
 /* HubSpot form feedback */
 .hs-form-error {
   margin: var(--space-3) 0 0;
