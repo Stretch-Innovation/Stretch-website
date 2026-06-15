@@ -1,0 +1,84 @@
+---
+import StretchLayout from '../layouts/StretchLayout.astro';
+import Reveal from '../components/stretch/Reveal.astro';
+import Icon from '../components/stretch/Icon.astro';
+
+const audiences = [
+  {
+    title: 'Scale-ups',
+    description:
+      "You've found product-market fit and need to build a repeatable engine to scale it. Fast.",
+  },
+  {
+    title: 'Enterprise',
+    description:
+      'You have the budget and the ambition, but growth feels unpredictable. You need structure and execution.',
+  },
+  {
+    title: 'PE-backed companies',
+    description: 'Your portfolio company needs to accelerate. You need a growth partner who moves at your pace.',
+  },
+];
+---
+
+<StretchLayout
+  title="For Who — Stretch Innovation"
+  description="Stretch works with scale-ups and enterprise companies across Europe that are ready to engineer their growth."
+>
+  <section style="position: relative; overflow: hidden; padding: calc(var(--header-height) + var(--space-8)) var(--gutter) var(--space-8);">
+    <div style="position: relative; max-width: var(--container-max); margin: 0 auto;">
+      <Reveal>
+        <span class="ds-eyebrow"><span class="ds-eyebrow-mark" aria-hidden="true"><span></span><span></span><span></span></span>For Who</span>
+        <h1 style="font-family: var(--font-display); font-weight: 800; font-size: var(--text-display-1); margin-top: var(--space-4); max-width: 18ch; line-height: 1.05;">
+          Built for teams serious about <span style="color: var(--aquamarine);">growth</span>.
+        </h1>
+        <p style="margin-top: var(--space-5); max-width: 62ch; font-size: var(--text-lg); line-height: 1.65; color: var(--text-secondary);">
+          We work with scale-ups and enterprise companies across Europe that are ready to engineer their growth — not just talk about it.
+        </p>
+      </Reveal>
+    </div>
+  </section>
+
+  <section style="padding: 0 var(--gutter) var(--section-gap);">
+    <div class="for-who-grid" style="max-width: var(--container-max); margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-4);">
+      {
+        audiences.map((item, i) => (
+          <Reveal delay={i * 80}>
+            <article class="for-who-card" style="height: 100%; padding: var(--space-6); border-radius: var(--radius-card); border: 1px solid rgba(255, 255, 255, 0.08); background: var(--surface-raised);">
+              <h2 style="font-size: var(--text-h3); margin: 0;">{item.title}</h2>
+              <p style="margin-top: var(--space-4); color: var(--text-secondary); font-size: 0.9375rem; line-height: 1.65;">{item.description}</p>
+            </article>
+          </Reveal>
+        ))
+      }
+    </div>
+  </section>
+
+  <section style="padding: 0 var(--gutter) var(--section-gap);">
+    <Reveal>
+      <div style="max-width: var(--container-max); margin: 0 auto; text-align: center;">
+        <a href="/contact" class="ds-btn ds-btn--primary ds-btn--lg">
+          Identify your bottleneck
+          <Icon name="arrowRight" size={18} />
+        </a>
+      </div>
+    </Reveal>
+  </section>
+</StretchLayout>
+
+<style>
+  @media (max-width: 860px) {
+    .for-who-grid {
+      grid-template-columns: 1fr !important;
+    }
+  }
+
+  .for-who-card {
+    transition: border-color var(--dur-base) var(--ease-out), transform var(--dur-base) var(--ease-out);
+  }
+
+  .for-who-card:hover {
+    border-color: rgba(37, 219, 153, 0.35);
+    transform: translateY(-3px);
+  }
+</style>

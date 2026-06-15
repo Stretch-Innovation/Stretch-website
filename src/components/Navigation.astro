@@ -5,6 +5,7 @@ import Wordmark from './stretch/Wordmark.astro';
 const otherNavLinks = [
   { href: '/cases', label: 'Cases' },
   { href: '/insights', label: 'Insights' },
+  { href: '/for-who', label: 'For Who?' },
   { href: '/about', label: 'About' },
 ];
 
@@ -17,7 +18,7 @@ const currentPath = Astro.url.pathname;
       <Wordmark height={36} />
     </a>
 
-    <div class="hidden items-center gap-8 md:flex">
+    <div class="hidden items-center gap-8 md:ml-auto md:flex">
       <div class="services-menu">
         <a
           href="/services"
@@ -71,7 +72,7 @@ const currentPath = Astro.url.pathname;
     <button
       id="mobile-menu-btn"
       type="button"
-      class="flex h-10 w-10 items-center justify-center rounded md:hidden"
+      class="ml-auto flex h-10 w-10 items-center justify-center rounded md:hidden"
       aria-label="Open menu"
       aria-expanded="false"
     >

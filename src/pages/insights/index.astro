@@ -21,7 +21,11 @@ import { INSIGHT_DATA, formatInsightDate } from '../../data/insights';
       {
         INSIGHT_DATA.map((ins, i) => (
           <Reveal delay={i * 70}>
-            <a href={`/insights/${ins.slug}`} class="insight-card" style="display: flex; flex-direction: column; height: 100%; border-radius: var(--radius-card); overflow: hidden; border: 1px solid var(--border-subtle); background: var(--surface-raised); text-decoration: none; color: inherit; transition: all var(--dur-base) var(--ease-out);">
+            <a
+              href={`/insights/${ins.slug}`}
+              class="insight-card"
+              style={`display: flex; flex-direction: column; height: 100%; border-radius: var(--radius-card); overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.08); background: ${i % 2 === 0 ? '#0E1330' : '#111827'}; text-decoration: none; color: inherit; transition: all var(--dur-base) var(--ease-out);`}
+            >
               <div style="height: 260px; display: flex; align-items: center; justify-content: center; background: radial-gradient(ellipse at 70% 80%, rgba(95,107,211,0.18), var(--surface-sunken) 70%); border-bottom: 1px solid var(--border-subtle);">
                 <img src={`/assets/insights/covers/${ins.cover}`} alt={`${ins.title} cover`} class="insight-cover-img" style="height: 82%; width: auto; border-radius: 3px; box-shadow: 0 12px 28px -8px rgba(0,0,0,0.6); transform: rotate(-1.5deg); transition: transform var(--dur-base) var(--ease-out);" loading="lazy" />
               </div>

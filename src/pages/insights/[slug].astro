@@ -30,7 +30,7 @@ const ins = getInsight(slug!);
             if ('h2' in block) return <h2 style="font-family: var(--font-display); font-size: var(--text-h2); color: var(--text-primary); margin-top: var(--space-4);">{block.h2}</h2>;
             if ('p' in block) return <p>{block.p}</p>;
             if ('ul' in block) return <ul style="padding-left: 1.25rem;">{block.ul.map((li) => <li style="margin-bottom: 0.5rem;">{li}</li>)}</ul>;
-            if ('fix' in block) return <p style="padding: var(--space-4); border-left: 3px solid var(--aquamarine); background: rgba(159,255,220,0.06); border-radius: var(--radius-sm); color: var(--text-primary); font-weight: 500;">{block.fix}</p>;
+            if ('fix' in block) return <p style="padding: var(--space-4); border-left: 3px solid var(--aquamarine); background: rgba(37, 219, 153,0.06); border-radius: var(--radius-sm); color: var(--text-primary); font-weight: 500;">{block.fix}</p>;
             return null;
           })
         }

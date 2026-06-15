@@ -98,7 +98,7 @@
   width: 420px;
   padding: 0.5rem;
   background: #06091d;
-  border: 1px solid rgba(159, 255, 220, 0.15);
+  border: 1px solid rgba(37, 219, 153, 0.15);
   border-radius: 8px;
   box-shadow:
     0 12px 40px -12px rgba(0, 0, 0, 0.55),
@@ -166,7 +166,7 @@
 }
 
 .hover-card:hover {
-  border-color: rgba(159, 255, 220, 0.4) !important;
+  border-color: rgba(37, 219, 153, 0.4) !important;
   box-shadow: var(--glow-aqua);
   transform: translateY(-4px);
 }
@@ -188,7 +188,7 @@
 }
 
 .hover-service-card:hover {
-  border-color: rgba(159, 255, 220, 0.4) !important;
+  border-color: rgba(37, 219, 153, 0.4) !important;
   background: var(--surface-overlay) !important;
   box-shadow: var(--glow-aqua);
   transform: translateY(-3px);
@@ -313,8 +313,8 @@
 
 .ds-badge--accent {
   color: var(--aquamarine);
-  background: rgba(159, 255, 220, 0.12);
-  border: 1px solid rgba(159, 255, 220, 0.3);
+  background: rgba(37, 219, 153, 0.12);
+  border: 1px solid rgba(37, 219, 153, 0.3);
 }
 
 .ds-badge--indigo {
@@ -407,7 +407,7 @@
 }
 
 .insight-card:hover {
-  border-color: rgba(159, 255, 220, 0.4);
+  border-color: rgba(37, 219, 153, 0.4);
   box-shadow: var(--glow-aqua);
   transform: translateY(-4px);
 }
@@ -425,7 +425,7 @@
 }
 
 .team-card:hover {
-  border-color: rgba(159, 255, 220, 0.35);
+  border-color: rgba(37, 219, 153, 0.35);
   transform: translateY(-3px);
 }
 
@@ -456,7 +456,7 @@
   max-width: var(--container-max);
   margin: 0 auto;
   background: #0d1117;
-  border: 1px solid rgba(159, 255, 220, 0.15);
+  border: 1px solid rgba(37, 219, 153, 0.15);
   border-radius: 12px;
   padding: 48px;
 }
@@ -490,7 +490,7 @@
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  background: radial-gradient(ellipse at center, rgba(159, 255, 220, 0.08), transparent 68%);
+  background: radial-gradient(ellipse at center, rgba(37, 219, 153, 0.08), transparent 68%);
   filter: blur(16px);
   pointer-events: none;
 }
@@ -570,7 +570,7 @@
 
 .case-gated-input:focus {
   border-color: var(--accent);
-  box-shadow: 0 0 0 3px rgba(159, 255, 220, 0.14);
+  box-shadow: 0 0 0 3px rgba(37, 219, 153, 0.14);
 }
 
 .case-gated-submit {
@@ -668,7 +668,7 @@
   border: 1.5px dashed rgba(6, 9, 29, 0.35);
   box-shadow:
     0 24px 60px rgba(0, 0, 0, 0.35),
-    0 0 0 1px rgba(159, 255, 220, 0.12);
+    0 0 0 1px rgba(37, 219, 153, 0.12);
   transform: rotate(2.5deg);
 }
 
@@ -889,8 +889,8 @@
   width: 40px;
   height: 40px;
   border-radius: 999px;
-  border: 1px solid rgba(159, 255, 220, 0.45);
-  background: rgba(159, 255, 220, 0.08);
+  border: 1px solid rgba(37, 219, 153, 0.45);
+  background: rgba(37, 219, 153, 0.08);
   color: var(--aquamarine);
   font-family: var(--font-display);
   font-weight: 800;
@@ -905,7 +905,7 @@
   top: 50%;
   height: 2px;
   transform: translateY(-50%);
-  background: linear-gradient(90deg, rgba(159, 255, 220, 0.55), rgba(159, 255, 220, 0.15));
+  background: linear-gradient(90deg, rgba(37, 219, 153, 0.55), rgba(37, 219, 153, 0.15));
 }
 
 .ge-phase-card {
@@ -926,7 +926,7 @@
 }
 
 .ge-phase-card:hover {
-  border-color: rgba(159, 255, 220, 0.35);
+  border-color: rgba(37, 219, 153, 0.35);
   transform: translateY(-3px);
 }
 
@@ -1021,7 +1021,7 @@
   max-width: var(--container-max);
   margin: 0 auto;
   border-radius: var(--radius-2xl);
-  border: 1px solid rgba(159, 255, 220, 0.25);
+  border: 1px solid rgba(37, 219, 153, 0.25);
   background: linear-gradient(180deg, var(--surface-raised), var(--surface-sunken));
   padding: var(--space-9) var(--gutter);
   text-align: center;
@@ -1035,7 +1035,7 @@
   transform: translateX(-50%);
   width: 760px;
   height: 540px;
-  background: radial-gradient(ellipse at center, rgba(159, 255, 220, 0.2), transparent 65%);
+  background: radial-gradient(ellipse at center, rgba(37, 219, 153, 0.2), transparent 65%);
   pointer-events: none;
 }
 
@@ -1108,7 +1108,7 @@
     width: 2px;
     height: auto;
     transform: translateX(-50%);
-    background: linear-gradient(180deg, rgba(159, 255, 220, 0.55), rgba(159, 255, 220, 0.15));
+    background: linear-gradient(180deg, rgba(37, 219, 153, 0.55), rgba(37, 219, 153, 0.15));
   }
 
   .ge-phase:last-child .ge-phase__line {

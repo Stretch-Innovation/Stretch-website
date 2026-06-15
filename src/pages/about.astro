@@ -14,8 +14,11 @@ import { TEAM, getTeamPhoto, initials } from '../data/team';
     <div style="position: relative; max-width: var(--container-max); margin: 0 auto;">
       <Reveal>
         <span class="ds-eyebrow"><span class="ds-eyebrow-mark" aria-hidden="true"><span></span><span></span><span></span></span>Who we are</span>
-        <h1 style="font-family: var(--font-display); font-weight: 800; font-size: var(--text-display-1); margin-top: var(--space-4); max-width: 16ch;">
-          The team you call when growth needs <span style="color: var(--aquamarine);">doing</span>.
+        <div style="text-align: center; margin-top: var(--space-4); margin-bottom: var(--space-2);">
+          <a href="/jobs" class="about-hiring-pill">We're hiring — Join the team →</a>
+        </div>
+        <h1 style="font-family: var(--font-display); font-weight: 800; font-size: var(--text-display-1); margin-top: var(--space-4); max-width: 20ch;">
+          The team that builds your <span style="color: var(--aquamarine);">growth engine</span> — and runs it with you.
         </h1>
         <p style="margin-top: var(--space-5); max-width: 62ch; font-size: var(--text-lg); line-height: 1.65; color: var(--text-secondary);">
           Stretch is a growth partner for scale-ups and enterprise. We're strategists, operators and builders who treat growth as something you engineer — not something you hope for.
@@ -67,7 +70,7 @@ import { TEAM, getTeamPhoto, initials } from '../data/team';
                       />
                     </div>
                   ) : (
-                    <div class="team-card__initials" style="width: 72px; height: 72px; border-radius: var(--radius-md); background: rgba(159,255,220,0.1); border: 1px solid var(--border-default); display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-weight: 700; color: var(--aquamarine);">
+                    <div class="team-card__initials" style="width: 72px; height: 72px; border-radius: var(--radius-md); background: rgba(37, 219, 153,0.1); border: 1px solid var(--border-default); display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-weight: 700; color: var(--aquamarine);">
                       {initials(member.name)}
                     </div>
                   )
@@ -99,3 +102,23 @@ import { TEAM, getTeamPhoto, initials } from '../data/team';
 
   <FinalCTA />
 </StretchLayout>
+
+<style>
+  .about-hiring-pill {
+    display: inline-flex;
+    align-items: center;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    padding: 0.4rem 0.875rem;
+    border-radius: var(--radius-pill);
+    background: #25db99;
+    color: #06091D;
+    text-decoration: none;
+    transition: opacity var(--dur-base) var(--ease-out);
+  }
+
+  .about-hiring-pill:hover {
+    opacity: 0.88;
+  }
+</style>
