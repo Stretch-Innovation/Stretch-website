@@ -17,7 +17,7 @@ export const CLIENT_LOGOS = [
 ];
 
 export const BOTTLENECKS = [
-  { icon: 'eyeOff', title: 'Flying blind', desc: 'You spend on growth but can\'t see what\'s working. No attribution, no clear data — decisions made on gut, not signal.' },
+  { icon: 'eyeOff', title: 'Flying blind', desc: 'You spend on growth but can\'t see what\'s working. No attribution, no clear data, decisions made on gut, not signal.' },
   { icon: 'radio', title: 'Struggling for demand', desc: 'Not enough qualified pipeline reaches the top of the funnel. Outbound stalls and inbound is a trickle.' },
   { icon: 'filter', title: 'Struggling to convert', desc: 'Leads arrive but stall. Your funnel leaks between first interest and signed revenue, and you\'re not sure where.' },
   { icon: 'expand', title: 'Struggling to scale', desc: 'What worked at one stage breaks at the next. Growth plateaus and the engine can\'t keep up with ambition.' },

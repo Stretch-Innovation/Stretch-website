@@ -13,7 +13,7 @@ const { slug } = Astro.params;
 const ins = getInsight(slug!);
 ---
 
-<StretchLayout title={`${ins.title} — Stretch Innovation`} description={ins.excerpt}>
+<StretchLayout title={`${ins.title} | Stretch Innovation`} description={ins.excerpt}>
   <article style="padding: calc(var(--header-height) + var(--space-8)) var(--gutter) 0;">
     <div style="max-width: var(--container-prose); margin: 0 auto;">
       <Reveal>

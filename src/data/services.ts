@@ -85,7 +85,7 @@ export const services: Service[] = [
     description:
       'A systematic approach to winning your most valuable target accounts.',
     whoItsFor:
-      'Companies with high deal values, long sales cycles, and a clear list of target accounts. You know exactly who you want as a client — you need a systematic way to get in front of them.',
+      'Companies with high deal values, long sales cycles, and a clear list of target accounts. You know exactly who you want as a client. You need a systematic way to get in front of them.',
     bullets: [
       'Target account selection',
       'Multi-channel outreach sequences',

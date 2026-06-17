@@ -1,7 +1,7 @@
 ---
 title: "Why Food Companies Are Too Busy to Grow (And How to Fix It)"
 category: "Industry"
-intro: "Food and beverage companies face unique growth challenges — tight margins, complex distribution, and teams stretched across operations. Here's what we see working."
+intro: "Food and beverage companies face unique growth challenges, tight margins, complex distribution, and teams stretched across operations. Here's what we see working."
 date: 2025-02-05
 featured: true
 cover_image: "/images/insights/covers/busy-food-companies.png"
@@ -13,7 +13,7 @@ Between production schedules, distributor relationships, and regulatory complian
 
 ## The shift we're seeing
 
-Leading food companies are building direct B2B relationships alongside traditional distribution — with gated content, lead scoring, and automated nurture sequences that run without constant manual effort.
+Leading food companies are building direct B2B relationships alongside traditional distribution, with gated content, lead scoring, and automated nurture sequences that run without constant manual effort.
 
 ## Proof it works
 

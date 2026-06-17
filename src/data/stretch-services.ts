@@ -1,4 +1,4 @@
-// Stretch — shared services data. Used by the homepage Services section,
+// Stretch: shared services data. Used by the homepage Services section,
 // the nav mega-menu, and the individual service pages.
 
 export const SERVICE_DATA = [
@@ -11,7 +11,7 @@ export const SERVICE_DATA = [
     icon: "barChart",
     headline: "You can't grow what you can't measure.",
     short: "Full visibility into what drives your growth.",
-    intro: "Before you scale anything, you need to see clearly. We put the measurement, data and foundations in place so every growth decision runs on signal — not gut.",
+    intro: "Before you scale anything, you need to see clearly. We put the measurement, data and foundations in place so every growth decision runs on signal, not gut.",
     build: ["Tracking & reporting", "CRM foundations", "Value propositions & segments", "Customer journey blueprint", "KPI & ROI framework"],
     outcome: "Full visibility and control over what drives your growth.",
     quote: {

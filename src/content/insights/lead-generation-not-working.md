@@ -1,7 +1,7 @@
 ---
 title: "Why Your Lead Generation Isn't Working (And What To Do About It)"
 category: "Demand Generation"
-intro: "You're running ads, posting on LinkedIn, and attending events — but the pipeline isn't growing. Here's why most lead generation fails and the three shifts that fix it."
+intro: "You're running ads, posting on LinkedIn, and attending events, but the pipeline isn't growing. Here's why most lead generation fails and the three shifts that fix it."
 date: 2024-11-15
 featured: true
 ---
@@ -28,7 +28,7 @@ Running ads without lead scoring, nurture sequences, and sales handoff procedure
 
 ## The compound effect
 
-When you fix all three — targeted demand, specific messaging, and systematic follow-up — lead generation stops being a gamble and becomes a predictable engine.
+When you fix all three: targeted demand, specific messaging, and systematic follow-up, lead generation stops being a gamble and becomes a predictable engine.
 
 ---
 

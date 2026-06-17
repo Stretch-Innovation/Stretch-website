@@ -1,5 +1,5 @@
 /* ============================================================
-   Stretch — Base / element defaults
+   Stretch: Base / element defaults
    Applied on top of tokens. Dark-first.
    ============================================================ */
 *,
@@ -83,7 +83,7 @@ button, input, select, textarea {
   padding-inline: var(--gutter);
 }
 
-/* The signature "stretched E" rule mark — three lines */
+/* The signature "stretched E" rule mark: three lines */
 .stretch-rule {
   display: inline-flex;
   flex-direction: column;

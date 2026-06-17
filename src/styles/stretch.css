@@ -1,4 +1,4 @@
-/* Stretch design — interactions & animations (pure CSS + JS hooks) */
+/* Stretch design: interactions & animations (pure CSS + JS hooks) */
 
 .reveal {
   opacity: 1;
@@ -451,7 +451,7 @@
   transform: rotate(180deg);
 }
 
-/* Case — gated download */
+/* Case: gated download */
 .case-gated-panel {
   max-width: var(--container-max);
   margin: 0 auto;

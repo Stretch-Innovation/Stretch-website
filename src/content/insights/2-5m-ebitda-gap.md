@@ -19,4 +19,4 @@ CAC payback period, LTV:CAC ratio by segment, and revenue per employee reveal wh
 
 ## Closing the gap
 
-It starts with visibility — knowing which channels, segments, and motions actually drive profitable growth. Then systematically optimizing the ones that do.
+It starts with visibility. Knowing which channels, segments, and motions actually drive profitable growth. Then systematically optimizing the ones that do.

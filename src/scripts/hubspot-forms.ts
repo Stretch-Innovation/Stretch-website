@@ -89,7 +89,7 @@ export async function submitHubSpotForm(formId: string, fields: HubSpotField[]):
   try {
     await postViaProxy(formId, payload);
   } catch (proxyError) {
-    // Local dev has no /api route — fall back to direct HubSpot submit.
+    // Local dev has no /api route: fall back to direct HubSpot submit.
     try {
       await postToHubSpot(formId, payload);
     } catch (directError) {
@@ -160,7 +160,8 @@ function buildFields(form: HTMLFormElement, type: HubSpotFormType): HubSpotField
   switch (type) {
     case 'contact':
       return [
-        { name: 'firstname', value: getFieldValue(form, 'name') },
+        { name: 'firstname', value: getFieldValue(form, 'firstname') },
+        { name: 'lastname', value: getFieldValue(form, 'lastname') },
         { name: 'email', value: getFieldValue(form, 'email') },
         { name: 'phone', value: getFieldValue(form, 'phone') },
         { name: 'message', value: getFieldValue(form, 'message') },
@@ -177,6 +178,7 @@ function buildFields(form: HTMLFormElement, type: HubSpotFormType): HubSpotField
     case 'bottleneckQuiz':
       return [
         { name: 'firstname', value: getFieldValue(form, 'firstname') },
+        { name: 'lastname', value: getFieldValue(form, 'lastname') },
         { name: 'email', value: getFieldValue(form, 'email') },
         { name: 'company', value: getFieldValue(form, 'company') },
         { name: 'quiz_answers', value: getFieldValue(form, 'quiz_answers') },
@@ -189,9 +191,9 @@ function buildFields(form: HTMLFormElement, type: HubSpotFormType): HubSpotField
 const SUCCESS_MESSAGES: Record<HubSpotFormType, string> = {
   contact: "Thanks! We'll be in touch within one business day.",
   caseDownload:
-    "Thanks! Check your inbox — we've sent the full case study to your email.",
+    "Thanks! Check your inbox. We've sent the full case study to your email.",
   insightDownload:
-    "Thanks! Check your inbox — we've sent the full guide to your email.",
+    "Thanks! Check your inbox. We've sent the full guide to your email.",
   bottleneckQuiz: "Thanks! Your personalized result is ready below.",
 };
 

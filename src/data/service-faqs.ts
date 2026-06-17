@@ -20,12 +20,12 @@ export const SERVICE_FAQS: Record<string, ServiceFaq[]> = {
     {
       question: 'What is Growth Generation?',
       answer:
-        'Growth Generation is the demand engine of your Growth Engine. We build the channels and systems that create and capture qualified pipeline on purpose — through demand capture, demand creation, SEO / GEO and paid acquisition.',
+        'Growth Generation is the demand engine of your Growth Engine. We build the channels and systems that create and capture qualified pipeline on purpose, through demand capture, demand creation, SEO / GEO and paid acquisition.',
     },
     {
       question: 'Who is Growth Generation for?',
       answer:
-        'Growth Generation is for companies with inconsistent pipeline — too dependent on referrals, outbound that stalls, or inbound that trickles. If you are struggling for demand, this is your bottleneck.',
+        'Growth Generation is for companies with inconsistent pipeline, too dependent on referrals, outbound that stalls, or inbound that trickles. If you are struggling for demand, this is your bottleneck.',
     },
   ],
   'growth-conversion': [
@@ -61,7 +61,7 @@ export const SERVICE_FAQS: Record<string, ServiceFaq[]> = {
     {
       question: 'Who is Account Based Marketing for?',
       answer:
-        'ABM is for companies with high deal values, long sales cycles and a defined target account list — where a handful of accounts can make or break the year and spray-and-pray does not cut it.',
+        'ABM is for companies with high deal values, long sales cycles and a defined target account list, where a handful of accounts can make or break the year and spray-and-pray does not cut it.',
     },
   ],
 };

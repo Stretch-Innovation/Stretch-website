@@ -1,4 +1,4 @@
-// Stretch — shared case-study data. Used by the homepage Cases section,
+// Stretch: shared case-study data. Used by the homepage Cases section,
 // the Cases overview page, and the individual case page template.
 // Content is sourced from the real case studies in the Stretch website repo.
 
@@ -22,14 +22,14 @@ export const CASE_DATA = [
     hero: "anders-beton-yard.jpeg",
     heroAlt: "Permeable concrete pavers being installed at a construction yard",
     intro: "When new Belgian legislation banned non-permeable concrete, Anders Beton had a market opening and no way to capture it. We built the engine that turned that opening into pipeline.",
-    challenge: "New legislation prohibiting non-permeable concrete created both a challenge and an opportunity. Anders Beton needed to rapidly build awareness of their alternative solutions and generate a new revenue stream — starting from zero leads and no digital marketing infrastructure.",
+    challenge: "New legislation prohibiting non-permeable concrete created both a challenge and an opportunity. Anders Beton needed to rapidly build awareness of their alternative solutions and generate a new revenue stream, starting from zero leads and no digital marketing infrastructure.",
     approach: [
       "Ran a full growth audit to map the opportunity and baseline.",
       "Launched 10+ growth experiments across Meta, LinkedIn and Google Ads.",
       "Built a complete HubSpot lead-management system with segmented B2B and residential workflows.",
       "Implemented lead scoring to qualify and prioritise, plus automated quote sending for small projects.",
     ],
-    result: "Phase 1 took them from 5 leads a week to 10+ a day across Meta, LinkedIn and Google Ads. Phase 2 scaled the system into a repeatable engine — and the conversion rates climbed with the volume.",
+    result: "Phase 1 took them from 5 leads a week to 10+ a day across Meta, LinkedIn and Google Ads. Phase 2 scaled the system into a repeatable engine, and the conversion rates climbed with the volume.",
     quote: {
       text: "We have been pleasantly surprised, thanks to Stretch, what digital marketing can do for us. Thanks to their professionalism, expertise, fast and good communication and follow-up, we created a successful campaign.",
       attribution: "Anders Beton NV",
@@ -57,15 +57,15 @@ export const CASE_DATA = [
     teaser: "Built a direct-to-consumer engine from scratch for a brewery with no webshop and no online audience.",
     hero: "van-steenberge-bottle.jpg",
     heroAlt: "Gulden Draak bottles moving along the brewery production line",
-    intro: "A renowned Belgian brewery, entirely B2B, with no webshop and no online audience. We built the direct-to-consumer engine — and the first product drop sold out in a day.",
+    intro: "A renowned Belgian brewery, entirely B2B, with no webshop and no online audience. We built the direct-to-consumer engine, and the first product drop sold out in a day.",
     challenge: "Brouwerij Van Steenberge was focused entirely on B2B distribution. They wanted a direct-to-consumer revenue stream but had no digital infrastructure, no online audience, and operational constraints around stock and fulfilment.",
     approach: [
       "Audited existing assets and ran internal ideation to find the angle.",
       "Built a 3-month experiment roadmap and a systematic growth-hacking cadence.",
-      "Leaned into urgency and exclusivity — the levers that drove higher conversions and order values.",
+      "Leaned into urgency and exclusivity, the levers that drove higher conversions and order values.",
       "Deployed the 'post-ID engagement snowball' technique on Meta to consolidate social proof and lower CPMs.",
     ],
-    result: "Starting from zero in March 2024, sales scaled month over month. The November product drop generated over €65,000 in sales within 24 hours — with stock selling out completely.",
+    result: "Starting from zero in March 2024, sales scaled month over month. The November product drop generated over €65,000 in sales within 24 hours, with stock selling out completely.",
     stats: [
       { prefix: "€", value: "65k", suffix: "", label: "In sales within 24 hours" },
       { value: "100", suffix: "%", label: "Of drop stock sold out" },
@@ -100,7 +100,7 @@ export const CASE_DATA = [
       "Ran systematic A/B experiments on landing pages, driven by real user data.",
       "Rebuilt the product page around what the data said actually converts.",
     ],
-    result: "The Stretch-built product page hit a 13.1% conversion rate versus 6.9% for the baseline — nearly double. Across the funnel, acquisition costs collapsed while revenue and trial volume climbed.",
+    result: "The Stretch-built product page hit a 13.1% conversion rate versus 6.9% for the baseline, nearly double. Across the funnel, acquisition costs collapsed while revenue and trial volume climbed.",
     stats: [
       { prefix: "−", value: "272", suffix: "%", label: "Customer acquisition cost" },
       { prefix: "+", value: "261", suffix: "%", label: "Monthly recurring revenue" },
@@ -124,8 +124,8 @@ export const CASE_DATA = [
     teaser: "Turned strong brand visibility into a first-party B2B engine that owns the customer relationship.",
     hero: "vandemoortele-building.webp",
     heroAlt: "Vandemoortele headquarters signage against an open sky",
-    intro: "Strong brand, weak conversion. Vandemoortele had visibility but no first-party data and no qualified B2B pipeline — every relationship ran through intermediaries. We rebuilt marketing into an engine they own.",
-    challenge: "Vandemoortele had strong brand visibility but marketing wasn't converting. Their B2C-influenced approach wasn't generating qualified B2B leads, and they had no first-party data ownership — relying entirely on intermediaries and distributors who controlled the customer relationship.",
+    intro: "Strong brand, weak conversion. Vandemoortele had visibility but no first-party data and no qualified B2B pipeline, every relationship ran through intermediaries. We rebuilt marketing into an engine they own.",
+    challenge: "Vandemoortele had strong brand visibility but marketing wasn't converting. Their B2C-influenced approach wasn't generating qualified B2B leads, and they had no first-party data ownership, relying entirely on intermediaries and distributors who controlled the customer relationship.",
     approach: [
       "Transformed the approach into a high-performance B2B engine built on first-party data.",
       "Implemented a full-funnel strategy with gated content, lead magnets and HubSpot-powered lead scoring.",

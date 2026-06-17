@@ -1,5 +1,5 @@
 /* ============================================================
-   Stretch — Typography tokens
+   Stretch: Typography tokens
    Space Grotesk for display/headlines. Inter for body & UI.
    ============================================================ */
 :root {
@@ -21,7 +21,7 @@
   --text-lg: 1.125rem;   /* 18 */
   --text-base: 1rem;     /* 16 */
   --text-sm: 0.875rem;   /* 14 */
-  --text-xs: 0.75rem;    /* 12 — labels, eyebrows */
+  --text-xs: 0.75rem;    /* 12: labels, eyebrows */
 
   /* ---- Weights ---- */
   --weight-regular: 400;

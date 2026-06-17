@@ -1,5 +1,5 @@
 /* ============================================================
-   Stretch — Color tokens
+   Stretch: Color tokens
    Dark-first brand. Black Pearl is the canonical canvas.
    ============================================================ */
 :root {
@@ -43,7 +43,7 @@
   --ink-900:#FFFFFF;
 
   /* ============================================================
-     Semantic aliases — reference these in components
+     Semantic aliases: reference these in components
      ============================================================ */
 
   /* Surfaces */

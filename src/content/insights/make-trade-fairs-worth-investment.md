@@ -7,7 +7,7 @@ featured: true
 cover_image: "/images/insights/covers/make-trade-fairs-worth-investment.png"
 ---
 
-Trade fairs are one of the most expensive line items in a B2B marketing budget — and one of the least measured.
+Trade fairs are one of the most expensive line items in a B2B marketing budget, and one of the least measured.
 
 ## Before the event
 
@@ -19,4 +19,4 @@ Real-time lead capture into your CRM, same-day follow-up sequences, and lead sco
 
 ## The ROI framework
 
-Measure cost per qualified lead, meeting-to-opportunity rate, and pipeline generated — not just foot traffic and badge scans.
+Measure cost per qualified lead, meeting-to-opportunity rate, and pipeline generated, not just foot traffic and badge scans.

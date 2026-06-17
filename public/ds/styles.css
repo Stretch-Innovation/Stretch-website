@@ -1,5 +1,5 @@
 /* ============================================================
-   Stretch Design System — global entry point
+   Stretch Design System: global entry point
    Consumers link THIS file only. Imports must stay first.
    ============================================================ */
 @import "./tokens/fonts.css";

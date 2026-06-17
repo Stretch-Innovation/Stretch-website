@@ -7,9 +7,9 @@ featured: true
 cover_image: "/images/insights/covers/why-all-companies-building-GE-cover.png"
 ---
 
-The companies winning in 2025 aren't running more campaigns — they're building growth engines.
+The companies winning in 2025 aren't running more campaigns, they're building growth engines.
 
-A growth engine is a repeatable system: measurement, demand generation, conversion, and scale — all connected and continuously optimized. When one part improves, the whole system gets stronger.
+A growth engine is a repeatable system: measurement, demand generation, conversion, and scale, all connected and continuously optimized. When one part improves, the whole system gets stronger.
 
 ## What separates engines from campaigns
 
