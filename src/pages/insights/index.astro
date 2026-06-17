@@ -108,18 +108,22 @@ import { INSIGHT_DATA, formatInsightDate, insightCoverSrc } from '../../data/ins
 
   .insight-card__cover {
     height: 200px;
-    overflow: hidden;
-    background: var(--surface-sunken);
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f5f5f5;
   }
 
   .insight-cover-img {
-    width: 100%;
-    height: 100%;
     display: block;
-    object-fit: cover;
+    height: 100%;
+    width: auto;
+    max-width: 100%;
+    object-fit: contain;
     object-position: center;
-    border-radius: 0;
-    box-shadow: none;
+    border-radius: 2px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
     transform: none;
     transition: transform var(--dur-base) var(--ease-out);
   }

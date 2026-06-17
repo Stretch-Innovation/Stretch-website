@@ -2,6 +2,9 @@
 // the individual insight page template. Article bodies are condensed,
 // on-brand versions of the full guides; the complete PDF is the gated download.
 //
+// Cover images: `downloadCover` is the canonical path (overview + gated download).
+// Prefer `/images/insights/covers/`; articles without an export there use `/assets/insights/covers/`.
+//
 // Block types: { lead }, { h2 }, { p }, { ul:[...] }, { fix } (the "what to do" note).
 
 export const INSIGHT_DATA = [
