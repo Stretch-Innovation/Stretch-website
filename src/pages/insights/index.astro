@@ -3,7 +3,7 @@ import StretchLayout from '../../layouts/StretchLayout.astro';
 import Reveal from '../../components/stretch/Reveal.astro';
 import Icon from '../../components/stretch/Icon.astro';
 import PodcastSection from '../../components/stretch/PodcastSection.astro';
-import { INSIGHT_DATA, formatInsightDate } from '../../data/insights';
+import { INSIGHT_DATA, formatInsightDate, insightCoverSrc } from '../../data/insights';
 ---
 
 <StretchLayout title="Insights | Stretch Innovation" description="Guides and perspectives on building predictable growth.">
@@ -25,7 +25,7 @@ import { INSIGHT_DATA, formatInsightDate } from '../../data/insights';
               <a href={`/insights/${ins.slug}`} class="insight-card--light">
                 <div class="insight-card__cover">
                   <img
-                    src={`/assets/insights/covers/${ins.cover}`}
+                    src={insightCoverSrc(ins)}
                     alt={`${ins.title} cover`}
                     class="insight-cover-img"
                     loading="lazy"
@@ -95,7 +95,7 @@ import { INSIGHT_DATA, formatInsightDate } from '../../data/insights';
   }
 
   .insight-card--light:hover .insight-cover-img {
-    transform: translateY(-4px) rotate(-1deg);
+    transform: scale(1.03);
   }
 
   .insight-card--light:hover .insight-cta--light {
@@ -107,19 +107,20 @@ import { INSIGHT_DATA, formatInsightDate } from '../../data/insights';
   }
 
   .insight-card__cover {
-    height: 260px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: radial-gradient(ellipse at 70% 80%, rgba(95, 107, 211, 0.18), var(--surface-sunken) 70%);
+    height: 200px;
+    overflow: hidden;
+    background: var(--surface-sunken);
   }
 
   .insight-cover-img {
-    height: 82%;
-    width: auto;
-    border-radius: 3px;
-    box-shadow: 0 12px 28px -8px rgba(0, 0, 0, 0.6);
-    transform: rotate(-1.5deg);
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 0;
+    box-shadow: none;
+    transform: none;
     transition: transform var(--dur-base) var(--ease-out);
   }
 

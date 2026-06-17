@@ -498,8 +498,12 @@
 .case-gated-cover-img {
   position: relative;
   width: 100%;
+  max-height: 420px;
   height: auto;
+  aspect-ratio: 3 / 4;
   display: block;
+  object-fit: cover;
+  object-position: center;
   border-radius: 6px;
   border: 1px solid var(--border-default);
   transform: rotate(-3deg);

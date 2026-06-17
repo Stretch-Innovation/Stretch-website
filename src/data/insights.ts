@@ -185,6 +185,10 @@ export const INSIGHT_CATEGORY_ORDER = [
 
 export type Insight = (typeof INSIGHT_DATA)[number];
 
+export function insightCoverSrc(ins: Insight) {
+  return ins.downloadCover;
+}
+
 export function getInsight(slug: string) {
   return INSIGHT_DATA.find((i) => i.slug === slug) || INSIGHT_DATA[0];
 }

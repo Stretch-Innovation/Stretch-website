@@ -1,0 +1,125 @@
+---
+import Icon from './Icon.astro';
+---
+
+<div class="newsletter-form" data-hs-form-panel>
+  <form class="newsletter-form__form" data-hubspot-form="newsletter">
+    <label class="newsletter-form__label" for="newsletter-email">Stay in the loop</label>
+    <div class="newsletter-form__row">
+      <input
+        id="newsletter-email"
+        type="email"
+        name="email"
+        required
+        placeholder="your@company.com"
+        autocomplete="email"
+        class="newsletter-form__input"
+      />
+      <button type="submit" class="newsletter-form__submit">
+        Subscribe
+        <Icon name="arrowRight" size={15} />
+      </button>
+    </div>
+  </form>
+  <p class="hs-form-success newsletter-form__success" hidden data-hs-success-message role="status"></p>
+</div>
+
+<style>
+  .newsletter-form {
+    margin-top: var(--space-4);
+  }
+
+  .newsletter-form__label {
+    display: block;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin-bottom: 0.5rem;
+  }
+
+  .newsletter-form__row {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .newsletter-form__input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0.625rem 0.75rem;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-default);
+    background: var(--surface-base);
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+  }
+
+  .newsletter-form__input::placeholder {
+    color: var(--text-muted);
+  }
+
+  .newsletter-form__input:focus {
+    outline: none;
+    border-color: rgba(37, 219, 153, 0.45);
+    box-shadow: 0 0 0 3px rgba(37, 219, 153, 0.12);
+  }
+
+  .newsletter-form__submit {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+    width: fit-content;
+    padding: 0.5rem 0.875rem;
+    border: none;
+    border-radius: var(--radius-md);
+    background: var(--aquamarine);
+    color: #06091d;
+    font-family: var(--font-body);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity var(--dur-fast) var(--ease-out);
+  }
+
+  .newsletter-form__submit:hover {
+    opacity: 0.9;
+  }
+
+  .newsletter-form__submit:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  .newsletter-form__success {
+    margin: var(--space-3) 0 0;
+    font-size: 0.875rem;
+    color: var(--aquamarine);
+    line-height: 1.5;
+  }
+
+  .newsletter-form__success[hidden] {
+    display: none;
+  }
+
+  form.newsletter-form__form.hs-form--hidden {
+    display: none;
+  }
+
+  @media (min-width: 480px) {
+    .newsletter-form__row {
+      flex-direction: row;
+      align-items: stretch;
+    }
+
+    .newsletter-form__input {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .newsletter-form__submit {
+      flex-shrink: 0;
+    }
+  }
+</style>

@@ -5,7 +5,8 @@ export const HUBSPOT_FORM_IDS = {
   caseDownload: 'b84fa7ad-7b78-4d00-a9a7-c4bda8b6075d',
   insightDownload: '525ffee5-8542-422e-8047-a86c93dc94e6',
   bottleneckQuiz: 'eb364f5c-be6a-4814-b342-adb5e84207e0',
-} as const;
+  newsletter: (import.meta.env.PUBLIC_HUBSPOT_NEWSLETTER_FORM_ID as string | undefined) ?? '',
+} as const satisfies Record<string, string>;
 
 export type HubSpotFormType = keyof typeof HUBSPOT_FORM_IDS;
 
@@ -151,7 +152,11 @@ function showSuccess(form: HTMLFormElement, message: string) {
 
   if (success) {
     const messageEl = success.querySelector<HTMLElement>('[data-hs-success-message]');
-    if (messageEl) messageEl.textContent = message;
+    if (messageEl) {
+      messageEl.textContent = message;
+    } else if (!success.hasAttribute('data-hs-success-message')) {
+      success.textContent = message;
+    }
     success.hidden = false;
   }
 }
@@ -183,6 +188,8 @@ function buildFields(form: HTMLFormElement, type: HubSpotFormType): HubSpotField
         { name: 'company', value: getFieldValue(form, 'company') },
         { name: 'quiz_answers', value: getFieldValue(form, 'quiz_answers') },
       ];
+    case 'newsletter':
+      return [{ name: 'email', value: getFieldValue(form, 'email') }];
     default:
       return [];
   }
@@ -195,6 +202,7 @@ const SUCCESS_MESSAGES: Record<HubSpotFormType, string> = {
   insightDownload:
     "Thanks! Check your inbox. We've sent the full guide to your email.",
   bottleneckQuiz: "Thanks! Your personalized result is ready below.",
+  newsletter: "You're in! Expect sharp thinking in your inbox.",
 };
 
 export function initHubSpotForms() {
@@ -208,12 +216,18 @@ export function initHubSpotForms() {
       const type = form.dataset.hubspotForm as HubSpotFormType | undefined;
       if (!type || !(type in HUBSPOT_FORM_IDS)) return;
 
+      const formId = HUBSPOT_FORM_IDS[type];
+      if (!formId) {
+        showError(form, 'This form is not configured yet. Please try again later.');
+        return;
+      }
+
       hideError(form);
       setSubmitting(form, true);
 
       try {
         const fields = buildFields(form, type);
-        await submitHubSpotForm(HUBSPOT_FORM_IDS[type], fields);
+        await submitHubSpotForm(formId, fields);
         showSuccess(form, SUCCESS_MESSAGES[type]);
         form.dispatchEvent(new CustomEvent('hubspot:success', { bubbles: true }));
       } catch (error) {

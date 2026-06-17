@@ -1,6 +1,7 @@
 ---
 import Wordmark from './Wordmark.astro';
 import Icon from './Icon.astro';
+import NewsletterForm from './NewsletterForm.astro';
 import { SERVICE_DATA } from '../../data/stretch-services';
 import { CONTACT } from '../../data/contact';
 ---
@@ -54,7 +55,7 @@ import { CONTACT } from '../../data/contact';
         <div style="display: flex; flex-direction: column; gap: 0.625rem;">
           <a href="/contact" class="footer-link" style="font-size: 0.9375rem; color: var(--text-secondary); width: fit-content;">Contact</a>
           <a href={CONTACT.linkedIn} target="_blank" rel="noopener noreferrer" class="footer-link" style="font-size: 0.9375rem; color: var(--text-secondary); width: fit-content;">LinkedIn</a>
-          <a href="/contact" class="footer-link" style="font-size: 0.9375rem; color: var(--text-secondary); width: fit-content;">Newsletter</a>
+          <NewsletterForm />
           <a href="https://open.spotify.com/show/7cSP8d9tbIPbEwmr4jS9Fu" target="_blank" rel="noopener noreferrer" class="footer-link" style="font-size: 0.9375rem; color: var(--text-secondary); width: fit-content;">🎙️ Podcast</a>
         </div>
       </div>
