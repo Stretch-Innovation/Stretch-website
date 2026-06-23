@@ -53,7 +53,7 @@ export const CASE_DATA = [
     downloadCover: "/images/cases/vsb-case-cover.png",
     tag: "D2C launch",
     title: "€65,000 in sales in 24 hours",
-    stat: { prefix: "€", value: "65k", suffix: "", metric: "in the first 24 hours" },
+    stat: { prefix: "€", value: "65k", suffix: "", metric: "revenue in the first 24 hours" },
     teaser: "Built a direct-to-consumer engine from scratch for a brewery with no webshop and no online audience.",
     hero: "van-steenberge-bottle.jpg",
     heroAlt: "Gulden Draak bottles moving along the brewery production line",
