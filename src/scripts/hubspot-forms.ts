@@ -6,6 +6,7 @@ export const HUBSPOT_FORM_IDS = {
   insightDownload: '525ffee5-8542-422e-8047-a86c93dc94e6',
   bottleneckQuiz: 'eb364f5c-be6a-4814-b342-adb5e84207e0',
   newsletter: (import.meta.env.PUBLIC_HUBSPOT_NEWSLETTER_FORM_ID as string | undefined) ?? '',
+  podcastNotify: (import.meta.env.PUBLIC_HUBSPOT_PODCAST_NOTIFY_FORM_ID as string | undefined) ?? '',
 } as const satisfies Record<string, string>;
 
 export type HubSpotFormType = keyof typeof HUBSPOT_FORM_IDS;
@@ -189,6 +190,7 @@ function buildFields(form: HTMLFormElement, type: HubSpotFormType): HubSpotField
         { name: 'quiz_answers', value: getFieldValue(form, 'quiz_answers') },
       ];
     case 'newsletter':
+    case 'podcastNotify':
       return [{ name: 'email', value: getFieldValue(form, 'email') }];
     default:
       return [];
@@ -203,6 +205,7 @@ const SUCCESS_MESSAGES: Record<HubSpotFormType, string> = {
     "Thanks! Check your inbox. We've sent the full guide to your email.",
   bottleneckQuiz: "Thanks! Your personalized result is ready below.",
   newsletter: "You're in! Expect sharp thinking in your inbox.",
+  podcastNotify: "You're on the list. We'll email you when a new episode drops.",
 };
 
 export function initHubSpotForms() {

@@ -1,0 +1,554 @@
+---
+import StretchLayout from '../layouts/StretchLayout.astro';
+import Reveal from '../components/stretch/Reveal.astro';
+import Icon from '../components/stretch/Icon.astro';
+import {
+  PODCAST_BEHIND_PHOTOS,
+  PODCAST_COVER_SRC,
+  PODCAST_EMBED_URL,
+  PODCAST_PAGE_SUBTITLE,
+  PODCAST_SHOW_URL,
+  PODCAST_TITLE,
+  PODCAST_YOUTUBE_URL,
+} from '../data/podcast';
+---
+
+<StretchLayout
+  title={`${PODCAST_TITLE} | Stretch Innovation`}
+  description={PODCAST_PAGE_SUBTITLE}
+>
+  <!-- Section 1: Hero -->
+  <section class="podcast-hero">
+    <div class="podcast-hero__bg" aria-hidden="true">
+      <img
+        src="/assets/podcast/behind-01.jpg"
+        alt=""
+        class="podcast-hero__bg-img"
+        loading="eager"
+        decoding="async"
+      />
+    </div>
+    <div class="podcast-hero__overlay" aria-hidden="true"></div>
+
+    <div class="podcast-hero__content">
+      <Reveal>
+        <span class="ds-eyebrow">
+          <span class="ds-eyebrow-mark" aria-hidden="true"><span></span><span></span><span></span></span>
+          Podcast
+        </span>
+        <h1 class="podcast-hero__title">{PODCAST_TITLE}</h1>
+        <p class="podcast-hero__subtitle">{PODCAST_PAGE_SUBTITLE}</p>
+        <div class="podcast-hero__actions">
+          <a href={PODCAST_SHOW_URL} target="_blank" rel="noopener noreferrer" class="ds-btn ds-btn--primary ds-btn--lg">
+            Listen on Spotify
+            <Icon name="arrowRight" size={18} />
+          </a>
+          <a href={PODCAST_YOUTUBE_URL} target="_blank" rel="noopener noreferrer" class="ds-btn ds-btn--outline ds-btn--lg">
+            Watch on YouTube
+            <Icon name="arrowRight" size={18} />
+          </a>
+        </div>
+      </Reveal>
+    </div>
+  </section>
+
+  <!-- Section 2: About -->
+  <section class="podcast-section podcast-section--light">
+    <div class="podcast-container podcast-about">
+      <Reveal>
+        <div class="podcast-about__copy">
+          <span class="ds-eyebrow">
+            <span class="ds-eyebrow-mark" aria-hidden="true"><span></span><span></span><span></span></span>
+            About the show
+          </span>
+          <h2 class="podcast-section__title podcast-section__title--dark">No fluff. Just the real story.</h2>
+          <div class="podcast-about__text">
+            <p>
+              Inside the Growth Engine is a podcast for ambitious entrepreneurs, marketers and leaders who want to understand what actually drives growth.
+            </p>
+            <p>
+              Every episode, we sit down with founders, CEOs and commercial leaders who scaled their company, conquered new markets, or turned around a complex organisation.
+            </p>
+            <p>
+              No surface-level success stories. Deep, honest conversations about commercial discipline, data-driven decision making, strategy, failure and sustainable value creation.
+            </p>
+            <p>
+              Made with ambition by Stretch Innovation — a scale-up specialized in Growth Engines.
+            </p>
+          </div>
+        </div>
+      </Reveal>
+
+      <Reveal delay={120}>
+        <div class="podcast-about__cover-wrap">
+          <img
+            src={PODCAST_COVER_SRC}
+            alt={`${PODCAST_TITLE} podcast cover`}
+            class="podcast-about__cover"
+            width={640}
+            height={360}
+            loading="lazy"
+          />
+        </div>
+      </Reveal>
+    </div>
+  </section>
+
+  <!-- Section 3: Behind the scenes -->
+  <section class="podcast-section podcast-section--dark">
+    <div class="podcast-container">
+      <Reveal>
+        <span class="ds-eyebrow">
+          <span class="ds-eyebrow-mark" aria-hidden="true"><span></span><span></span><span></span></span>
+          Behind the scenes
+        </span>
+        <h2 class="podcast-section__title">Where the conversations happen.</h2>
+      </Reveal>
+
+      <div class="podcast-bts-grid">
+        {
+          PODCAST_BEHIND_PHOTOS.map((photo, i) => (
+            <Reveal delay={i * 80}>
+              <img src={photo.src} alt={photo.alt} class="podcast-bts-grid__img" loading="lazy" />
+            </Reveal>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 4: Episodes -->
+  <section class="podcast-section podcast-section--light">
+    <div class="podcast-container">
+      <Reveal>
+        <span class="ds-eyebrow">
+          <span class="ds-eyebrow-mark" aria-hidden="true"><span></span><span></span><span></span></span>
+          Episodes
+        </span>
+        <h2 class="podcast-section__title podcast-section__title--dark">Latest episodes.</h2>
+      </Reveal>
+
+      <Reveal delay={100}>
+        <div class="podcast-embed-wrap">
+          <iframe
+            class="podcast-embed"
+            src={PODCAST_EMBED_URL}
+            title={`Spotify: ${PODCAST_TITLE}`}
+            width="100%"
+            height="352"
+            frameborder="0"
+            allowfullscreen
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+            loading="lazy"
+          />
+        </div>
+      </Reveal>
+    </div>
+  </section>
+
+  <!-- Section 5: Subscribe -->
+  <section class="podcast-section podcast-section--dark podcast-subscribe">
+    <div class="podcast-container podcast-subscribe__inner">
+      <Reveal>
+        <span class="ds-eyebrow">
+          <span class="ds-eyebrow-mark" aria-hidden="true"><span></span><span></span><span></span></span>
+          Never miss an episode
+        </span>
+        <h2 class="podcast-section__title">Stay in the loop.</h2>
+        <p class="podcast-subscribe__lead">
+          New episodes drop regularly. Subscribe wherever you listen.
+        </p>
+      </Reveal>
+
+      <Reveal delay={100}>
+        <div class="podcast-platforms">
+          <a href={PODCAST_SHOW_URL} target="_blank" rel="noopener noreferrer" class="podcast-platform-btn">
+            <svg class="podcast-platform-btn__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path
+                fill="currentColor"
+                d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"
+              />
+            </svg>
+            Follow on Spotify
+          </a>
+
+          <a href={PODCAST_YOUTUBE_URL} target="_blank" rel="noopener noreferrer" class="podcast-platform-btn">
+            <svg class="podcast-platform-btn__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path
+                fill="currentColor"
+                d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31.5 31.5 0 0 0 0 12a31.5 31.5 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31.5 31.5 0 0 0 24 12a31.5 31.5 0 0 0-.5-5.8zM9.75 15.57V8.43L15.82 12l-6.07 3.57z"
+              />
+            </svg>
+            Subscribe on YouTube
+          </a>
+        </div>
+      </Reveal>
+
+      <Reveal delay={180}>
+        <div class="podcast-notify" data-hs-form-panel>
+          <p class="podcast-notify__label">Or get notified by email:</p>
+          <form class="podcast-notify__form" data-hubspot-form="podcastNotify">
+            <input
+              type="email"
+              name="email"
+              required
+              placeholder="your@company.com"
+              autocomplete="email"
+              class="podcast-notify__input"
+            />
+            <button type="submit" class="podcast-notify__submit">
+              Notify me
+              <Icon name="arrowRight" size={16} />
+            </button>
+          </form>
+          <p class="hs-form-success podcast-notify__success" hidden data-hs-success-message role="status"></p>
+        </div>
+      </Reveal>
+    </div>
+  </section>
+</StretchLayout>
+
+<style>
+  .podcast-container {
+    max-width: var(--container-max);
+    margin: 0 auto;
+  }
+
+  .podcast-hero {
+    position: relative;
+    overflow: hidden;
+    min-height: 72vh;
+    display: flex;
+    align-items: center;
+    padding: calc(var(--header-height) + var(--space-8)) var(--gutter) var(--space-9);
+  }
+
+  .podcast-hero__bg {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+  }
+
+  .podcast-hero__bg-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 30%;
+    filter: blur(3px);
+    transform: scale(1.05);
+  }
+
+  .podcast-hero__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(6, 9, 29, 0.7) 0%,
+      rgba(6, 9, 29, 0.9) 100%
+    );
+  }
+
+  .podcast-hero__content {
+    position: relative;
+    z-index: 1;
+    max-width: var(--container-max);
+    margin: 0 auto;
+    width: 100%;
+    text-align: center;
+  }
+
+  .podcast-hero__title {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: var(--text-display-1);
+    line-height: 1.02;
+    letter-spacing: -0.04em;
+    margin: var(--space-4) auto 0;
+    max-width: 16ch;
+    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+  }
+
+  .podcast-hero__subtitle {
+    margin: var(--space-5) auto 0;
+    max-width: 52ch;
+    font-size: var(--text-lg);
+    line-height: 1.65;
+    color: rgba(255, 255, 255, 0.84);
+    text-shadow: 0 1px 12px rgba(0, 0, 0, 0.35);
+  }
+
+  .podcast-hero__actions {
+    display: flex;
+    gap: 0.875rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: var(--space-6);
+  }
+
+  .podcast-section {
+    padding: var(--section-gap) var(--gutter);
+  }
+
+  .podcast-section--light {
+    background: #f8f9fb;
+  }
+
+  .podcast-section--dark {
+    background: #06091d;
+  }
+
+  .podcast-section__title {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: var(--text-display-3);
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    margin: var(--space-4) 0 0;
+    max-width: 20ch;
+  }
+
+  .podcast-section__title--dark {
+    color: #06091d;
+  }
+
+  .podcast-about {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: var(--space-8);
+    align-items: center;
+  }
+
+  .podcast-about__text {
+    margin-top: var(--space-5);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    color: #4b5563;
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+
+  .podcast-about__cover-wrap {
+    display: flex;
+    justify-content: center;
+    padding: var(--space-4);
+    background: #f0f1f4;
+    border-radius: 12px;
+  }
+
+  .podcast-about__cover {
+    display: block;
+    width: min(100%, 360px);
+    height: auto;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  }
+
+  .podcast-bts-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-4);
+    margin-top: var(--space-7);
+  }
+
+  .podcast-bts-grid__img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 12px;
+    display: block;
+  }
+
+  .podcast-embed-wrap {
+    margin-top: var(--space-7);
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid rgba(6, 9, 29, 0.08);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+    background: #fff;
+  }
+
+  .podcast-embed {
+    display: block;
+    width: 100%;
+    border: 0;
+  }
+
+  .podcast-subscribe__inner {
+    text-align: center;
+  }
+
+  .podcast-subscribe__lead {
+    margin: var(--space-4) auto 0;
+    max-width: 42ch;
+    color: var(--text-secondary);
+    font-size: var(--text-lg);
+    line-height: 1.6;
+  }
+
+  .podcast-platforms {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-4);
+    margin-top: var(--space-7);
+    max-width: 640px;
+    margin-inline: auto;
+  }
+
+  .podcast-platform-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    min-height: 64px;
+    padding: 1rem 1.25rem;
+    border-radius: 12px;
+    border: 1px solid var(--border-default);
+    background: rgba(255, 255, 255, 0.03);
+    color: var(--text-primary);
+    text-decoration: none;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    transition:
+      border-color var(--dur-fast) var(--ease-out),
+      background var(--dur-fast) var(--ease-out),
+      color var(--dur-fast) var(--ease-out);
+  }
+
+  .podcast-platform-btn:hover {
+    border-color: rgba(37, 219, 153, 0.45);
+    background: rgba(37, 219, 153, 0.06);
+    color: var(--aquamarine);
+  }
+
+  .podcast-platform-btn__icon {
+    width: 22px;
+    height: 22px;
+    flex-shrink: 0;
+  }
+
+  .podcast-notify {
+    margin-top: var(--space-8);
+    max-width: 520px;
+    margin-inline: auto;
+  }
+
+  .podcast-notify__label {
+    margin: 0 0 var(--space-3);
+    font-size: 0.875rem;
+    color: var(--text-muted);
+  }
+
+  .podcast-notify__form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.625rem;
+  }
+
+  .podcast-notify__input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0.75rem 1rem;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-default);
+    background: var(--surface-base);
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    font-size: 0.9375rem;
+  }
+
+  .podcast-notify__input::placeholder {
+    color: var(--text-muted);
+  }
+
+  .podcast-notify__input:focus {
+    outline: none;
+    border-color: rgba(37, 219, 153, 0.45);
+    box-shadow: 0 0 0 3px rgba(37, 219, 153, 0.12);
+  }
+
+  .podcast-notify__submit {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+    align-self: center;
+    padding: 0.625rem 1rem;
+    border: none;
+    border-radius: var(--radius-md);
+    background: var(--aquamarine);
+    color: #06091d;
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity var(--dur-fast) var(--ease-out);
+  }
+
+  .podcast-notify__submit:hover {
+    opacity: 0.9;
+  }
+
+  .podcast-notify__submit:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  .podcast-notify__success {
+    margin: var(--space-3) 0 0;
+    font-size: 0.875rem;
+    color: var(--aquamarine);
+    line-height: 1.5;
+  }
+
+  .podcast-notify__success[hidden] {
+    display: none;
+  }
+
+  form.podcast-notify__form.hs-form--hidden {
+    display: none;
+  }
+
+  :global(.podcast-notify .hs-form-error) {
+    margin-top: var(--space-3);
+    font-size: 0.875rem;
+    color: #f87171;
+  }
+
+  @media (min-width: 560px) {
+    .podcast-notify__form {
+      flex-direction: row;
+      align-items: stretch;
+    }
+
+    .podcast-notify__input {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .podcast-notify__submit {
+      flex-shrink: 0;
+    }
+  }
+
+  @media (max-width: 900px) {
+    .podcast-about {
+      grid-template-columns: 1fr;
+    }
+
+    .podcast-platforms {
+      grid-template-columns: 1fr;
+    }
+
+    .podcast-bts-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .podcast-hero {
+      min-height: 70vh;
+    }
+  }
+</style>
