@@ -23,7 +23,6 @@ import { BOTTLENECK_QUIZ_QUESTIONS, BOTTLENECK_QUIZ_RESULTS } from '../../data/b
         </span>
         <h2 class="bq__result-headline" id="bq-result-headline"></h2>
         <p class="bq__result-subtitle" id="bq-result-subtitle"></p>
-        <p class="bq__result-rec" id="bq-result-rec"></p>
         <a href="#" class="bq__service-link" id="bq-service-link">
           <span id="bq-service-link-text"></span>
           <Icon name="arrowRight" size={16} />
@@ -31,9 +30,9 @@ import { BOTTLENECK_QUIZ_QUESTIONS, BOTTLENECK_QUIZ_RESULTS } from '../../data/b
       </div>
 
       <div class="bq__form-card" data-hs-form-panel>
-        <h3 class="bq__form-title">Get your personalized growth roadmap.</h3>
+        <h3 class="bq__form-title">Get your personalized next steps.</h3>
         <p class="bq__form-subtitle">
-          We'll map your bottleneck and outline the fastest path to predictable growth. Free. No commitment.
+          Tell us a bit about your situation and we'll reach out with a sharp take on your bottleneck — and what to do about it first.
         </p>
         <form class="bq__form" data-hubspot-form="bottleneckQuiz" id="bq-hubspot-form">
           <input type="hidden" name="quiz_answers" id="bq-quiz-answers-field" value="" />
@@ -50,7 +49,7 @@ import { BOTTLENECK_QUIZ_QUESTIONS, BOTTLENECK_QUIZ_RESULTS } from '../../data/b
             <input type="text" name="company" required autocomplete="organization" placeholder="Acme Inc." class="bq__input" />
           </label>
           <button type="submit" class="ds-btn ds-btn--primary ds-btn--lg bq__submit">
-            Get my roadmap
+            Get my next steps
             <Icon name="arrowRight" size={18} />
           </button>
         </form>
@@ -109,13 +108,11 @@ import { BOTTLENECK_QUIZ_QUESTIONS, BOTTLENECK_QUIZ_RESULTS } from '../../data/b
 
     const headline = document.getElementById('bq-result-headline');
     const subtitle = document.getElementById('bq-result-subtitle');
-    const rec = document.getElementById('bq-result-rec');
     const serviceLink = document.getElementById('bq-service-link');
     const serviceLinkText = document.getElementById('bq-service-link-text');
 
     if (headline) headline.textContent = result.headline;
     if (subtitle) subtitle.textContent = result.subtitle;
-    if (rec) rec.textContent = result.recommendation;
     if (serviceLink) serviceLink.href = result.serviceHref;
     if (serviceLinkText) serviceLinkText.textContent = result.recommendation;
     if (answersField) answersField.value = formatQuizAnswers(result.key);
@@ -351,12 +348,6 @@ import { BOTTLENECK_QUIZ_QUESTIONS, BOTTLENECK_QUIZ_RESULTS } from '../../data/b
     font-size: var(--text-lg);
     line-height: 1.65;
     color: var(--text-secondary);
-  }
-
-  .bq__result-rec {
-    margin: var(--space-5) 0 0;
-    font-weight: 600;
-    color: var(--text-primary);
   }
 
   .bq__service-link {
