@@ -1,15 +1,15 @@
 ---
 title: "Why Every Ambitious Company Is Building a Growth Engine"
 category: "Growth Strategy"
-intro: "Campaigns spike and fade. Growth engines compound. Here's why the smartest companies are shifting from one-off marketing to systematic, measurable growth infrastructure."
+intro: "Campaigns spike and fade. Growth Engines compound. Here's why the smartest companies are shifting from one-off marketing to systematic, measurable growth infrastructure."
 date: 2025-01-10
 featured: true
 cover_image: "/images/insights/covers/why-all-companies-building-GE-cover.png"
 ---
 
-The companies winning in 2025 aren't running more campaigns, they're building growth engines.
+The companies winning in 2025 aren't running more campaigns, they're building Growth Engines.
 
-A growth engine is a repeatable system: measurement, demand generation, conversion, and scale, all connected and continuously optimized. When one part improves, the whole system gets stronger.
+A Growth Engine is a repeatable system: measurement, demand generation, conversion, and scale, all connected and continuously optimized. When one part improves, the whole system gets stronger.
 
 ## What separates engines from campaigns
 

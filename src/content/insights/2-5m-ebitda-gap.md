@@ -15,7 +15,7 @@ Inefficient customer acquisition, leaky funnels, and manual processes that don't
 
 ## What to measure
 
-CAC payback period, LTV:CAC ratio by segment, and revenue per employee reveal whether your growth engine is creating value or just activity.
+CAC payback period, LTV:CAC ratio by segment, and revenue per employee reveal whether your Growth Engine is creating value or just activity.
 
 ## Closing the gap
 

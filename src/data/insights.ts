@@ -142,7 +142,7 @@ export const INSIGHT_DATA = [
       { p: "Generating leads is only half the battle. We regularly see healthy top-of-funnel numbers paired with conversion rates below 5%. The problem isn't demand. It's what happens after the lead arrives." },
       { fix: "Map your funnel, implement lead scoring, and automate follow-up." },
       { h2: "4. Heroic sales" },
-      { p: "When growth depends on one or two star performers closing through relationships and hustle, you don't have a growth engine. You have a dependency." },
+      { p: "When growth depends on one or two star performers closing through relationships and hustle, you don't have a Growth Engine. You have a dependency." },
       { fix: "Document what works, build playbooks, and create systems any team member can execute." },
       { h2: "5. Scaling chaos" },
       { p: "The final bottleneck hits when growth itself creates complexity: more leads, more deals, more tools, but no processes to manage it all." },

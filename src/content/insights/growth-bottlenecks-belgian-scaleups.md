@@ -28,7 +28,7 @@ Generating leads is only half the battle. We regularly see companies with health
 
 ## 4. Heroic Sales
 
-When growth depends on one or two star performers closing deals through relationships and hustle, you don't have a growth engine. You have a dependency.
+When growth depends on one or two star performers closing deals through relationships and hustle, you don't have a Growth Engine. You have a dependency.
 
 **What to do:** Document what works, build playbooks, and create systems that any team member can execute.
 
