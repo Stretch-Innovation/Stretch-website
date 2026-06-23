@@ -41,6 +41,16 @@
   -webkit-backdrop-filter: blur(14px);
 }
 
+.site-header__logo .wordmark {
+  height: 52px;
+}
+
+@media (max-width: 860px) {
+  .site-header__logo .wordmark {
+    height: 48px;
+  }
+}
+
 .nav-link,
 .nav-services-trigger {
   font-family: var(--font-display);
