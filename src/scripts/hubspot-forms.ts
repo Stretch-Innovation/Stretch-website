@@ -183,8 +183,7 @@ function buildFields(form: HTMLFormElement, type: HubSpotFormType): HubSpotField
       ];
     case 'bottleneckQuiz':
       return [
-        { name: 'firstname', value: getFieldValue(form, 'firstname') },
-        { name: 'lastname', value: getFieldValue(form, 'lastname') },
+        { name: 'firstname', value: getFieldValue(form, 'name') },
         { name: 'email', value: getFieldValue(form, 'email') },
         { name: 'company', value: getFieldValue(form, 'company') },
         { name: 'quiz_answers', value: getFieldValue(form, 'quiz_answers') },

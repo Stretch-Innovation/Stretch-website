@@ -1,27 +1,11 @@
 ---
-import Layout from '../../layouts/Layout.astro';
-import PageHero from '../../components/PageHero.astro';
-import BottleneckQuiz from '../../components/BottleneckQuiz.astro';
+import StretchLayout from '../../layouts/StretchLayout.astro';
+import BottleneckQuiz from '../../components/stretch/BottleneckQuiz.astro';
 ---
 
-<Layout
+<StretchLayout
   title="Growth Bottleneck Quiz | Stretch Innovation"
   description="Find your growth bottleneck in 2 minutes. Answer 4 questions and get a clear diagnosis."
 >
-  <PageHero
-    eyebrow="Self-assessment"
-    title="Find your growth bottleneck in 2 minutes."
-    description="Answer 4 questions. Get a clear diagnosis and a recommended next step."
-    sectionNumber="?"
-    align="center"
-  />
-
-  <section class="relative bg-cod-gray py-12 md:py-20 diagonal-top">
-    <div class="absolute inset-0 grid-pattern opacity-30" aria-hidden="true" />
-    <div class="relative mx-auto max-w-4xl px-4">
-      <div class="reveal">
-        <BottleneckQuiz />
-      </div>
-    </div>
-  </section>
-</Layout>
+  <BottleneckQuiz />
+</StretchLayout>

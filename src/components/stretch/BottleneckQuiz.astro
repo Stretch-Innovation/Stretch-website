@@ -1,0 +1,478 @@
+---
+import Icon from './Icon.astro';
+import { BOTTLENECK_QUIZ_QUESTIONS, BOTTLENECK_QUIZ_RESULTS } from '../../data/bottleneck-quiz';
+---
+
+<section class="bq" id="bottleneck-quiz">
+  <div class="bq__container">
+    <div class="bq__quiz" id="bq-quiz-panel">
+      <div class="bq__progress-header">
+        <span class="bq__step" id="bq-step-label">Question 1 of 4</span>
+        <div class="bq__progress-track" aria-hidden="true">
+          <div class="bq__progress-bar" id="bq-progress-bar"></div>
+        </div>
+      </div>
+      <div class="bq__question-wrap" id="bq-question-wrap"></div>
+    </div>
+
+    <div class="bq__result hidden" id="bq-result-panel">
+      <div class="bq__result-card">
+        <span class="ds-eyebrow bq__result-eyebrow">
+          <span class="ds-eyebrow-mark" aria-hidden="true"><span></span><span></span><span></span></span>
+          Your bottleneck
+        </span>
+        <h2 class="bq__result-headline" id="bq-result-headline"></h2>
+        <p class="bq__result-subtitle" id="bq-result-subtitle"></p>
+        <p class="bq__result-rec" id="bq-result-rec"></p>
+        <a href="#" class="bq__service-link" id="bq-service-link">
+          <span id="bq-service-link-text"></span>
+          <Icon name="arrowRight" size={16} />
+        </a>
+      </div>
+
+      <div class="bq__form-card" data-hs-form-panel>
+        <h3 class="bq__form-title">Get your personalized growth roadmap.</h3>
+        <p class="bq__form-subtitle">
+          We'll map your bottleneck and outline the fastest path to predictable growth. Free. No commitment.
+        </p>
+        <form class="bq__form" data-hubspot-form="bottleneckQuiz" id="bq-hubspot-form">
+          <input type="hidden" name="quiz_answers" id="bq-quiz-answers-field" value="" />
+          <label class="bq__field">
+            <span class="bq__field-label">Name</span>
+            <input type="text" name="name" required autocomplete="name" placeholder="Jane Doe" class="bq__input" />
+          </label>
+          <label class="bq__field">
+            <span class="bq__field-label">Company email</span>
+            <input type="email" name="email" required autocomplete="email" placeholder="you@company.com" class="bq__input" />
+          </label>
+          <label class="bq__field">
+            <span class="bq__field-label">Company name</span>
+            <input type="text" name="company" required autocomplete="organization" placeholder="Acme Inc." class="bq__input" />
+          </label>
+          <button type="submit" class="ds-btn ds-btn--primary ds-btn--lg bq__submit">
+            Get my roadmap
+            <Icon name="arrowRight" size={18} />
+          </button>
+        </form>
+        <p class="hs-form-success bq__form-success" hidden data-hs-success-message role="status"></p>
+      </div>
+
+      <a href="/contact" class="ds-btn ds-btn--primary ds-btn--lg bq__audit-cta">
+        Book a free growth audit
+        <Icon name="arrowRight" size={18} />
+      </a>
+    </div>
+  </div>
+</section>
+
+<script define:vars={{ questions: BOTTLENECK_QUIZ_QUESTIONS, results: BOTTLENECK_QUIZ_RESULTS }}>
+  const questionWrap = document.getElementById('bq-question-wrap');
+  const quizPanel = document.getElementById('bq-quiz-panel');
+  const resultPanel = document.getElementById('bq-result-panel');
+  const stepLabel = document.getElementById('bq-step-label');
+  const progressBar = document.getElementById('bq-progress-bar');
+  const answersField = document.getElementById('bq-quiz-answers-field');
+
+  const answerLetters = [];
+  const answerLabels = [];
+
+  let currentQuestion = 0;
+  let isAdvancing = false;
+
+  function updateProgress() {
+    const pct = Math.round((currentQuestion / questions.length) * 100);
+    if (stepLabel) stepLabel.textContent = `Question ${currentQuestion + 1} of ${questions.length}`;
+    if (progressBar) progressBar.style.width = `${pct}%`;
+  }
+
+  function calculateResult() {
+    const counts = { A: 0, B: 0, C: 0, D: 0 };
+    answerLetters.forEach((letter) => {
+      counts[letter] += 1;
+    });
+
+    const max = Math.max(counts.A, counts.B, counts.C, counts.D);
+    const winners = ['A', 'B', 'C', 'D'].filter((letter) => counts[letter] === max);
+    const letter = winners.length === 1 ? winners[0] : answerLetters[0];
+    return { letter, result: results[letter] };
+  }
+
+  function formatQuizAnswers(resultName) {
+    return questions
+      .map((q, index) => `Q${index + 1}: ${answerLabels[index]}`)
+      .concat(`Result: ${resultName}`)
+      .join(', ');
+  }
+
+  function showResult() {
+    const { letter, result } = calculateResult();
+
+    const headline = document.getElementById('bq-result-headline');
+    const subtitle = document.getElementById('bq-result-subtitle');
+    const rec = document.getElementById('bq-result-rec');
+    const serviceLink = document.getElementById('bq-service-link');
+    const serviceLinkText = document.getElementById('bq-service-link-text');
+
+    if (headline) headline.textContent = result.headline;
+    if (subtitle) subtitle.textContent = result.subtitle;
+    if (rec) rec.textContent = result.recommendation;
+    if (serviceLink) serviceLink.href = result.serviceHref;
+    if (serviceLinkText) serviceLinkText.textContent = result.recommendation;
+    if (answersField) answersField.value = formatQuizAnswers(result.key);
+
+    quizPanel?.classList.add('hidden');
+    resultPanel?.classList.remove('hidden');
+    if (progressBar) progressBar.style.width = '100%';
+
+    resultPanel?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  function renderQuestion() {
+    if (!questionWrap) return;
+
+    const q = questions[currentQuestion];
+    updateProgress();
+
+    questionWrap.innerHTML = `
+      <div class="bq__question bq__question--enter">
+        <h2 class="bq__question-text">${q.text}</h2>
+        <div class="bq__answers">
+          ${q.answers
+            .map(
+              (answer) => `
+            <button type="button" class="bq__answer" data-letter="${answer.letter}" data-label="${answer.label.replace(/"/g, '&quot;')}">
+              <span class="bq__answer-letter">${answer.letter}</span>
+              <span class="bq__answer-label">${answer.label}</span>
+            </button>
+          `,
+            )
+            .join('')}
+        </div>
+      </div>
+    `;
+
+    questionWrap.querySelectorAll('.bq__answer').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        if (isAdvancing) return;
+        isAdvancing = true;
+
+        const letter = btn.getAttribute('data-letter');
+        const label = btn.getAttribute('data-label');
+        if (!letter || !label) return;
+
+        btn.classList.add('bq__answer--selected');
+        answerLetters[currentQuestion] = letter;
+        answerLabels[currentQuestion] = label;
+
+        setTimeout(() => {
+          currentQuestion += 1;
+          isAdvancing = false;
+
+          if (currentQuestion < questions.length) {
+            renderQuestion();
+          } else {
+            showResult();
+          }
+        }, 320);
+      });
+    });
+  }
+
+  renderQuestion();
+</script>
+
+<style>
+  .bq {
+    min-height: calc(100vh - var(--header-height));
+    background: #06091d;
+    padding: calc(var(--header-height) + var(--space-6)) var(--gutter) var(--space-9);
+  }
+
+  .bq__container {
+    max-width: 42rem;
+    margin: 0 auto;
+    min-height: calc(100vh - var(--header-height) - var(--space-9));
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .bq__quiz.hidden,
+  .bq__result.hidden {
+    display: none;
+  }
+
+  .bq__progress-header {
+    margin-bottom: var(--space-7);
+  }
+
+  .bq__step {
+    display: block;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: var(--space-3);
+  }
+
+  .bq__progress-track {
+    height: 4px;
+    border-radius: var(--radius-pill);
+    background: rgba(255, 255, 255, 0.08);
+    overflow: hidden;
+  }
+
+  .bq__progress-bar {
+    height: 100%;
+    width: 0;
+    border-radius: inherit;
+    background: #25db99;
+    transition: width 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .bq__question--enter {
+    animation: bq-fade-in 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  @keyframes bq-fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .bq__question-text {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: clamp(1.5rem, 1.1rem + 1.5vw, 2rem);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    margin: 0;
+  }
+
+  .bq__answers {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    margin-top: var(--space-6);
+  }
+
+  .bq__answer {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-4);
+    width: 100%;
+    padding: var(--space-5);
+    border-radius: 12px;
+    border: 1px solid var(--border-default);
+    background: var(--surface-raised);
+    color: var(--text-primary);
+    text-align: left;
+    cursor: pointer;
+    transition:
+      border-color var(--dur-fast) var(--ease-out),
+      background var(--dur-fast) var(--ease-out),
+      transform var(--dur-fast) var(--ease-out);
+  }
+
+  .bq__answer:hover {
+    border-color: rgba(37, 219, 153, 0.35);
+    transform: translateY(-1px);
+  }
+
+  .bq__answer--selected {
+    border-color: #25db99;
+    background: rgba(37, 219, 153, 0.08);
+    box-shadow: 0 0 0 1px rgba(37, 219, 153, 0.2);
+  }
+
+  .bq__answer-letter {
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    border-radius: var(--radius-pill);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-display);
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #25db99;
+    border: 1px solid rgba(37, 219, 153, 0.35);
+    background: rgba(37, 219, 153, 0.06);
+  }
+
+  .bq__answer-label {
+    font-size: 0.9375rem;
+    line-height: 1.55;
+    color: var(--text-secondary);
+  }
+
+  .bq__answer--selected .bq__answer-label {
+    color: var(--text-primary);
+  }
+
+  .bq__result-card,
+  .bq__form-card {
+    border-radius: var(--radius-card);
+    border: 1px solid var(--border-subtle);
+    background: var(--surface-raised);
+    padding: var(--space-7);
+  }
+
+  .bq__result-eyebrow {
+    margin-bottom: var(--space-3);
+  }
+
+  .bq__result-headline {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: var(--text-display-3);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin: 0;
+  }
+
+  .bq__result-subtitle {
+    margin: var(--space-4) 0 0;
+    font-size: var(--text-lg);
+    line-height: 1.65;
+    color: var(--text-secondary);
+  }
+
+  .bq__result-rec {
+    margin: var(--space-5) 0 0;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+
+  .bq__service-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    margin-top: var(--space-4);
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: #25db99;
+    text-decoration: none;
+  }
+
+  .bq__service-link:hover {
+    opacity: 0.88;
+  }
+
+  .bq__form-card {
+    margin-top: var(--space-5);
+  }
+
+  .bq__form-title {
+    font-family: var(--font-display);
+    font-size: var(--text-h3);
+    font-weight: 700;
+    margin: 0;
+  }
+
+  .bq__form-subtitle {
+    margin: var(--space-3) 0 0;
+    color: var(--text-secondary);
+    font-size: 0.9375rem;
+    line-height: 1.6;
+  }
+
+  .bq__form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    margin-top: var(--space-5);
+  }
+
+  .bq__field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .bq__field-label {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+  }
+
+  .bq__input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0.75rem 1rem;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-default);
+    background: var(--surface-base);
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    font-size: 0.9375rem;
+  }
+
+  .bq__input:focus {
+    outline: none;
+    border-color: rgba(37, 219, 153, 0.45);
+    box-shadow: 0 0 0 3px rgba(37, 219, 153, 0.12);
+  }
+
+  .bq__submit {
+    width: fit-content;
+  }
+
+  .bq__form-success {
+    margin: var(--space-4) 0 0;
+    color: #25db99;
+    font-size: 0.9375rem;
+  }
+
+  .bq__form-success[hidden] {
+    display: none;
+  }
+
+  form.bq__form.hs-form--hidden {
+    display: none;
+  }
+
+  .bq__audit-cta {
+    display: inline-flex;
+    margin-top: var(--space-6);
+    width: 100%;
+    justify-content: center;
+  }
+
+  :global(.bq__form .hs-form-error) {
+    margin: 0;
+    color: #f87171;
+    font-size: 0.875rem;
+  }
+
+  @media (max-width: 640px) {
+    .bq {
+      padding-top: calc(var(--header-height) + var(--space-4));
+    }
+
+    .bq__container {
+      min-height: calc(100dvh - var(--header-height));
+    }
+
+    .bq__answer {
+      padding: var(--space-4);
+    }
+
+    .bq__result-card,
+    .bq__form-card {
+      padding: var(--space-5);
+    }
+
+    .bq__submit,
+    .bq__audit-cta {
+      width: 100%;
+    }
+  }
+</style>
