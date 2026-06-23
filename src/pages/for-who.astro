@@ -32,6 +32,29 @@ const archetypes = [
   },
 ];
 
+const audiences = [
+  {
+    title: 'Scale-ups',
+    description:
+      "You've found product-market fit and need to build a repeatable engine to scale it. Fast.",
+  },
+  {
+    title: 'Enterprise',
+    description:
+      'You have the budget and the ambition, but growth feels unpredictable. You need structure and execution.',
+  },
+  {
+    title: 'PE-backed companies',
+    description:
+      'Your portfolio company needs to accelerate. You need a growth partner who moves at your pace.',
+  },
+  {
+    title: 'SMBs',
+    description:
+      "You're a growing business with real ambition. You've outgrown ad hoc marketing and need a structured approach to generate predictable pipeline.",
+  },
+];
+
 const personas = ['CEO', 'CMO', 'CRO', 'Commercial Director'];
 
 const triggers = [
@@ -92,13 +115,31 @@ const situations = [
         </span>
         <h1 class="fw-hero__title">Built for <span class="fw-accent">ambitious</span> companies.</h1>
         <p class="fw-hero__lead">
-          We work with scale-ups and enterprise companies that have hit a growth ceiling and need a system, not more headcount.
+          We work with ambitious companies that are ready to engineer their growth — not just talk about it.
         </p>
       </Reveal>
     </div>
   </section>
 
-  <!-- Section 2: Archetypes -->
+  <!-- Section 2: Audiences -->
+  <section class="fw-section">
+    <div class="fw-container">
+      <div class="fw-audiences">
+        {
+          audiences.map((item, i) => (
+            <Reveal delay={i * 70}>
+              <article class="fw-audience-card">
+                <h2 class="fw-audience-card__title">{item.title}</h2>
+                <p class="fw-audience-card__desc">{item.description}</p>
+              </article>
+            </Reveal>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 3: Archetypes -->
   <section class="fw-section fw-section--sunken">
     <div class="fw-container">
       <Reveal>
@@ -145,7 +186,7 @@ const situations = [
     </div>
   </section>
 
-  <!-- Section 3: Decision makers -->
+  <!-- Section 4: Decision makers -->
   <section class="fw-section fw-section--sunken">
     <div class="fw-container">
       <Reveal>
@@ -184,7 +225,7 @@ const situations = [
     </div>
   </section>
 
-  <!-- Section 4: Sound familiar -->
+  <!-- Section 5: Sound familiar -->
   <section class="fw-section">
     <div class="fw-container">
       <Reveal>
@@ -217,7 +258,7 @@ const situations = [
     </div>
   </section>
 
-  <!-- Section 5: CTA -->
+  <!-- Section 6: CTA -->
   <section class="fw-section fw-cta">
     <div class="fw-container">
       <Reveal>
@@ -304,6 +345,44 @@ const situations = [
     color: var(--text-secondary);
     font-size: var(--text-lg);
     line-height: 1.6;
+  }
+
+  .fw-audiences {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-4);
+  }
+
+  .fw-audience-card {
+    height: 100%;
+    padding: var(--space-6);
+    border-radius: var(--radius-card);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: var(--surface-raised);
+    box-shadow: var(--shadow-inset-hairline);
+    transition:
+      border-color var(--dur-base) var(--ease-out),
+      transform var(--dur-base) var(--ease-out);
+  }
+
+  .fw-audience-card:hover {
+    border-color: rgba(37, 219, 153, 0.35);
+    transform: translateY(-3px);
+  }
+
+  .fw-audience-card__title {
+    font-family: var(--font-display);
+    font-size: var(--text-h3);
+    font-weight: 700;
+    line-height: 1.2;
+    margin: 0;
+  }
+
+  .fw-audience-card__desc {
+    margin: var(--space-4) 0 0;
+    color: var(--text-secondary);
+    font-size: 0.9375rem;
+    line-height: 1.65;
   }
 
   .fw-archetypes {
@@ -541,7 +620,14 @@ const situations = [
     font-size: 0.875rem;
   }
 
+  @media (max-width: 1024px) {
+    .fw-audiences {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
   @media (max-width: 860px) {
+    .fw-audiences,
     .fw-archetypes,
     .fw-situations {
       grid-template-columns: 1fr;
