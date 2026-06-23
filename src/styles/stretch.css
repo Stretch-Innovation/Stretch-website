@@ -384,7 +384,8 @@
 
 .mobile-nav a[href="/cases"],
 .mobile-nav a[href="/insights"],
-.mobile-nav a[href="/about"] {
+.mobile-nav a[href="/about"],
+.mobile-nav a[href="/jobs"] {
   font-family: var(--font-display);
 }
 
