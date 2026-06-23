@@ -4,7 +4,15 @@ import Icon from '../Icon.astro';
 ---
 
 <section id="top" class="hero-section">
-  <div class="hero-bg" aria-hidden="true"></div>
+  <div class="hero-bg" aria-hidden="true">
+    <img
+      src="/assets/team-group.jpeg"
+      alt=""
+      class="hero-bg__img"
+      loading="eager"
+      decoding="async"
+    />
+  </div>
   <div class="hero-overlay" aria-hidden="true"></div>
 
   <div class="hero-content">
@@ -64,9 +72,14 @@ import Icon from '../Icon.astro';
   .hero-bg {
     position: absolute;
     inset: 0;
-    background-image: url('/assets/team-group.jpeg');
-    background-size: cover;
-    background-position: center top;
+    overflow: hidden;
+  }
+
+  .hero-bg__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 30%;
     filter: blur(3px);
     transform: scale(1.05);
   }
@@ -76,8 +89,8 @@ import Icon from '../Icon.astro';
     inset: 0;
     background: linear-gradient(
       to bottom,
-      rgba(6, 9, 29, 0.75) 0%,
-      rgba(6, 9, 29, 0.85) 60%,
+      rgba(6, 9, 29, 0.8) 0%,
+      rgba(6, 9, 29, 0.9) 50%,
       rgba(6, 9, 29, 1) 100%
     );
   }
