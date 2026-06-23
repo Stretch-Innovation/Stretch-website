@@ -248,18 +248,18 @@ import { BOTTLENECK_QUIZ_QUESTIONS, BOTTLENECK_QUIZ_RESULTS } from '../../data/b
 
   .bq__question-text {
     font-family: var(--font-display);
-    font-weight: 800;
-    font-size: clamp(1.5rem, 1.1rem + 1.5vw, 2rem);
+    font-weight: 700;
+    font-size: clamp(1.5rem, 3vw, 2rem);
     line-height: 1.2;
     letter-spacing: -0.02em;
-    margin: 0;
+    color: #ffffff;
+    margin: 0 0 32px;
   }
 
   .bq__answers {
     display: flex;
     flex-direction: column;
-    gap: var(--space-3);
-    margin-top: var(--space-6);
+    gap: 12px;
   }
 
   .bq__answer {
@@ -267,28 +267,34 @@ import { BOTTLENECK_QUIZ_QUESTIONS, BOTTLENECK_QUIZ_RESULTS } from '../../data/b
     align-items: flex-start;
     gap: var(--space-4);
     width: 100%;
-    padding: var(--space-5);
+    margin-bottom: 12px;
+    padding: 20px 24px;
     border-radius: 12px;
-    border: 1px solid var(--border-default);
-    background: var(--surface-raised);
-    color: var(--text-primary);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: #0e1330;
+    color: #ffffff;
+    font-family: var(--font-body);
+    font-size: 1rem;
     text-align: left;
     cursor: pointer;
     transition:
       border-color var(--dur-fast) var(--ease-out),
-      background var(--dur-fast) var(--ease-out),
-      transform var(--dur-fast) var(--ease-out);
+      background var(--dur-fast) var(--ease-out);
+  }
+
+  .bq__answer:last-child {
+    margin-bottom: 0;
   }
 
   .bq__answer:hover {
-    border-color: rgba(37, 219, 153, 0.35);
-    transform: translateY(-1px);
+    border: 1px solid #25db99;
+    background: rgba(37, 219, 153, 0.08);
   }
 
   .bq__answer--selected {
-    border-color: #25db99;
-    background: rgba(37, 219, 153, 0.08);
-    box-shadow: 0 0 0 1px rgba(37, 219, 153, 0.2);
+    border: 2px solid #25db99;
+    background: rgba(37, 219, 153, 0.12);
+    color: #ffffff;
   }
 
   .bq__answer-letter {
@@ -308,13 +314,13 @@ import { BOTTLENECK_QUIZ_QUESTIONS, BOTTLENECK_QUIZ_RESULTS } from '../../data/b
   }
 
   .bq__answer-label {
-    font-size: 0.9375rem;
+    font-size: 1rem;
     line-height: 1.55;
-    color: var(--text-secondary);
+    color: #ffffff;
   }
 
   .bq__answer--selected .bq__answer-label {
-    color: var(--text-primary);
+    color: #ffffff;
   }
 
   .bq__result-card,
@@ -462,7 +468,7 @@ import { BOTTLENECK_QUIZ_QUESTIONS, BOTTLENECK_QUIZ_RESULTS } from '../../data/b
     }
 
     .bq__answer {
-      padding: var(--space-4);
+      padding: 20px 24px;
     }
 
     .bq__result-card,
