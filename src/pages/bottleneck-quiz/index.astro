@@ -9,3 +9,56 @@ import BottleneckQuiz from '../../components/stretch/BottleneckQuiz.astro';
 >
   <BottleneckQuiz />
 </StretchLayout>
+
+<style>
+  .quiz-option {
+    display: block;
+    width: 100%;
+    background-color: #0e1330 !important;
+    color: #ffffff !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    border-radius: 12px !important;
+    padding: 20px 24px !important;
+    margin-bottom: 12px !important;
+    font-size: 1rem !important;
+    font-weight: 500 !important;
+    text-align: left !important;
+    cursor: pointer !important;
+    box-sizing: border-box !important;
+    appearance: none !important;
+    -webkit-appearance: none !important;
+    transition: border-color 0.2s, background-color 0.2s;
+  }
+
+  .quiz-option:hover {
+    border-color: #25db99 !important;
+    background-color: rgba(37, 219, 153, 0.08) !important;
+    color: #ffffff !important;
+  }
+
+  .quiz-option.selected {
+    border: 2px solid #25db99 !important;
+    background-color: rgba(37, 219, 153, 0.12) !important;
+    color: #ffffff !important;
+  }
+
+  .quiz-container {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 60px 24px;
+  }
+
+  .quiz-question {
+    color: #ffffff !important;
+    font-size: clamp(1.4rem, 3vw, 2rem) !important;
+    font-weight: 700 !important;
+    margin-bottom: 32px !important;
+  }
+
+  .quiz-progress {
+    color: #25db99 !important;
+    font-size: 0.75rem !important;
+    letter-spacing: 2px !important;
+    margin-bottom: 16px !important;
+  }
+</style>

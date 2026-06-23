@@ -4,10 +4,10 @@ import { BOTTLENECK_QUIZ_QUESTIONS, BOTTLENECK_QUIZ_RESULTS } from '../../data/b
 ---
 
 <section class="bq" id="bottleneck-quiz">
-  <div class="bq__container">
+  <div class="bq__container quiz-container">
     <div class="bq__quiz" id="bq-quiz-panel">
       <div class="bq__progress-header">
-        <span class="bq__step" id="bq-step-label">Question 1 of 4</span>
+        <span class="bq__step quiz-progress" id="bq-step-label">Question 1 of 4</span>
         <div class="bq__progress-track" aria-hidden="true">
           <div class="bq__progress-bar" id="bq-progress-bar"></div>
         </div>
@@ -127,6 +127,9 @@ import { BOTTLENECK_QUIZ_QUESTIONS, BOTTLENECK_QUIZ_RESULTS } from '../../data/b
     resultPanel?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
+  const optionStyle =
+    'display: block; width: 100%; background-color: #0E1330; color: #FFFFFF; border: 1px solid rgba(255,255,255,0.15); border-radius: 12px; padding: 20px 24px; margin-bottom: 12px; font-size: 1rem; font-weight: 500; text-align: left; cursor: pointer; font-family: inherit;';
+
   function renderQuestion() {
     if (!questionWrap) return;
 
@@ -135,14 +138,13 @@ import { BOTTLENECK_QUIZ_QUESTIONS, BOTTLENECK_QUIZ_RESULTS } from '../../data/b
 
     questionWrap.innerHTML = `
       <div class="bq__question bq__question--enter">
-        <h2 class="bq__question-text">${q.text}</h2>
+        <h2 class="quiz-question">${q.text}</h2>
         <div class="bq__answers">
           ${q.answers
             .map(
               (answer) => `
-            <button type="button" class="bq__answer" data-letter="${answer.letter}" data-label="${answer.label.replace(/"/g, '&quot;')}">
-              <span class="bq__answer-letter">${answer.letter}</span>
-              <span class="bq__answer-label">${answer.label}</span>
+            <button type="button" class="quiz-option" style="${optionStyle}" data-letter="${answer.letter}" data-label="${answer.label.replace(/"/g, '&quot;')}">
+              ${answer.label}
             </button>
           `,
             )
@@ -151,7 +153,7 @@ import { BOTTLENECK_QUIZ_QUESTIONS, BOTTLENECK_QUIZ_RESULTS } from '../../data/b
       </div>
     `;
 
-    questionWrap.querySelectorAll('.bq__answer').forEach((btn) => {
+    questionWrap.querySelectorAll('.quiz-option').forEach((btn) => {
       btn.addEventListener('click', () => {
         if (isAdvancing) return;
         isAdvancing = true;
@@ -160,7 +162,7 @@ import { BOTTLENECK_QUIZ_QUESTIONS, BOTTLENECK_QUIZ_RESULTS } from '../../data/b
         const label = btn.getAttribute('data-label');
         if (!letter || !label) return;
 
-        btn.classList.add('bq__answer--selected');
+        btn.classList.add('selected');
         answerLetters[currentQuestion] = letter;
         answerLabels[currentQuestion] = label;
 
