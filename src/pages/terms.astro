@@ -1,0 +1,52 @@
+---
+import LegalDocLayout from '../components/stretch/LegalDocLayout.astro';
+import { CONTACT } from '../data/contact';
+---
+
+<LegalDocLayout
+  title="Terms & Conditions"
+  lastUpdated="June 2026"
+  seoTitle="Terms & Conditions | Stretch Innovation"
+  seoDescription="Terms and conditions for using stretchinnovation.be and Stretch Innovation services."
+>
+  <h2>1. Introduction</h2>
+  <p>
+    By using stretchinnovation.be, you agree to these terms and conditions. Please read them carefully.
+  </p>
+
+  <h2>2. Use of the Website</h2>
+  <p>
+    You may use this website for lawful purposes only. You may not use it in any way that causes damage to the website
+    or impairs its availability.
+  </p>
+
+  <h2>3. Intellectual Property</h2>
+  <p>
+    All content on this website — including text, graphics, logos, and images — is the property of Stretch Innovation
+    and protected by Belgian and international copyright law.
+  </p>
+
+  <h2>4. Services</h2>
+  <p>
+    Stretch Innovation provides B2B growth consultancy services. The information on this website is for general
+    information purposes only and does not constitute professional advice.
+  </p>
+
+  <h2>5. Limitation of Liability</h2>
+  <p>
+    Stretch Innovation is not liable for any indirect or consequential damages arising from the use of this website or
+    our services.
+  </p>
+
+  <h2>6. Governing Law</h2>
+  <p>
+    These terms are governed by Belgian law. Any disputes will be subject to the exclusive jurisdiction of the courts
+    of Antwerp, Belgium.
+  </p>
+
+  <h2>7. Contact</h2>
+  <p>
+    For questions about these terms, contact us at{' '}
+    <a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a>
+  </p>
+</LegalDocLayout>

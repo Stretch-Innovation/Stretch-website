@@ -1,0 +1,77 @@
+---
+import LegalDocLayout from '../components/stretch/LegalDocLayout.astro';
+import { CONTACT } from '../data/contact';
+---
+
+<LegalDocLayout
+  title="Privacy Policy"
+  lastUpdated="June 2026"
+  seoTitle="Privacy Policy | Stretch Innovation"
+  seoDescription="How Stretch Innovation collects, uses, and protects your personal data on stretchinnovation.be."
+>
+  <h2>1. Introduction</h2>
+  <p>
+    Stretch Innovation respects your privacy and is committed to protecting your personal data. This privacy policy
+    explains how we collect, use, and protect your information when you visit stretchinnovation.be.
+  </p>
+
+  <h2>2. Data We Collect</h2>
+  <p>
+    We collect information you provide directly (name, email, phone number via our contact forms), as well as data
+    collected automatically via cookies (IP address, browser type, visited pages, referral source).
+  </p>
+
+  <h2>3. How We Use Your Data</h2>
+  <ul>
+    <li>To respond to your inquiries and provide our services</li>
+    <li>To improve our website and user experience</li>
+    <li>To send relevant communications (with your consent)</li>
+    <li>For security monitoring and fraud prevention</li>
+    <li>For marketing optimization</li>
+  </ul>
+
+  <h2>4. Cookies</h2>
+  <p>
+    stretchinnovation.be uses cookies to track website visits, navigation behavior, and page views. This is standard
+    practice and helps us improve the user experience. Data collected via cookies is anonymous and not linked to
+    personal information. You can disable cookies in your browser settings, though this may affect website
+    functionality.
+  </p>
+
+  <h2>5. Third Parties</h2>
+  <p>
+    We may share data with third-party tools such as analytics platforms, CRM systems (HubSpot), and advertising
+    platforms. All third parties process data securely and in compliance with privacy regulations.
+  </p>
+
+  <h2>6. Data Security</h2>
+  <p>
+    We take appropriate security measures to protect your data from unauthorized access, loss, or alteration. Our
+    website uses encryption and secure protocols.
+  </p>
+
+  <h2>7. Your Rights</h2>
+  <p>
+    You have the right to access, correct, or delete your personal data at any time. Contact us at{' '}
+    <a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a> to exercise these rights.
+  </p>
+
+  <h2>8. Changes to This Policy</h2>
+  <p>
+    Stretch Innovation reserves the right to modify this privacy policy at any time. Changes will be published on this
+    page.
+  </p>
+
+  <h2>9. Contact</h2>
+  <p>
+    For questions about this privacy policy, contact us at{' '}
+    <a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a> or:
+  </p>
+  <p>
+    Stretch Innovation<br />
+    {CONTACT.street}<br />
+    {CONTACT.city}<br />
+    Belgium<br />
+    {CONTACT.vat}
+  </p>
+</LegalDocLayout>
