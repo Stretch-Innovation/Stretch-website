@@ -24,11 +24,16 @@ const whyCards = SERVICE_WHY_NEED[slug] ?? [];
         <span style="width: 56px; height: 56px; border-radius: var(--radius-md); border: 1px solid var(--border-default); display: flex; align-items: center; justify-content: center; color: var(--aquamarine); background: rgba(37, 219, 153,0.06);">
           <Icon name={s.icon} size={26} />
         </span>
-        <span class="ds-eyebrow"><span class="ds-eyebrow-mark" aria-hidden="true"><span></span><span></span><span></span></span>Growth Engine · {s.num}</span>
         {s.standalone ? <span class="ds-badge ds-badge--accent">High-value accounts</span> : <span class="ds-badge ds-badge--indigo">Solves: {s.solves}</span>}
       </div>
     </Reveal>
-    <Reveal delay={80} tag="h1" style="font-family: var(--font-display); font-weight: 800; font-size: var(--text-display-2); margin-top: var(--space-5); max-width: 20ch;">{s.headline}</Reveal>
+    <Reveal delay={40}>
+      <span class="ds-eyebrow" style="display: inline-flex; margin-top: var(--space-4);">
+        <span class="ds-eyebrow-mark" aria-hidden="true"><span></span><span></span><span></span></span>
+        {s.name.toUpperCase()}
+      </span>
+    </Reveal>
+    <Reveal delay={80} tag="h1" style="font-family: var(--font-display); font-weight: 800; font-size: var(--text-display-2); margin-top: var(--space-4); max-width: 20ch;">{s.headline}</Reveal>
     <Reveal delay={160} tag="p" style="margin-top: var(--space-5); max-width: 60ch; font-size: var(--text-lg); color: var(--text-secondary); line-height: 1.65;">{s.intro}</Reveal>
     <Reveal delay={240}>
       <div style="margin-top: var(--space-6); display: flex; gap: 0.875rem; flex-wrap: wrap;">
