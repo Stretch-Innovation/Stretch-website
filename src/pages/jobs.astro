@@ -3,9 +3,11 @@ import StretchLayout from '../layouts/StretchLayout.astro';
 import Reveal from '../components/stretch/Reveal.astro';
 import Icon from '../components/stretch/Icon.astro';
 import { CORE_VALUES } from '../data/core-values';
+import { getTeamPhoto } from '../data/team';
 import { fetchJobs, getJobApplyUrl, getJobTeam } from '../lib/jobs';
 
 const jobs = await fetchJobs();
+const stijnPhoto = getTeamPhoto('stijn-van-daele');
 ---
 
 <StretchLayout
@@ -35,8 +37,24 @@ const jobs = await fetchJobs();
         <p style="margin: 0; font-size: var(--text-lg); line-height: 1.7; color: var(--text-secondary);">
           "At Stretch, we don't hand clients a deck and walk away. We build the engine, then we run it with them. That takes people who are curious, hands-on, and hungry to see their work actually land. We're 32 people based in Antwerp. If you want to own your work and grow fast, read on."
         </p>
-        <footer style="margin-top: var(--space-5); font-size: 0.9375rem; color: var(--text-muted);">
-          <strong style="color: var(--text-primary); font-weight: 600;">Stijn van Daele</strong>, Founder &amp; CEO
+        <footer style="margin-top: var(--space-5);">
+          <div style="display: flex; align-items: center; gap: 12px; margin-top: 16px;">
+            {
+              stijnPhoto && (
+                <img
+                  src={stijnPhoto}
+                  alt="Stijn van Daele"
+                  style="width: 44px; height: 44px; border-radius: 50%; object-fit: cover;"
+                  loading="lazy"
+                  decoding="async"
+                />
+              )
+            }
+            <div>
+              <p style="font-weight: 600; color: white; margin: 0;">Stijn van Daele</p>
+              <p style="font-size: 0.875rem; color: #8892a4; margin: 0;">Founder &amp; CEO, Stretch Innovation</p>
+            </div>
+          </div>
         </footer>
       </blockquote>
     </Reveal>
