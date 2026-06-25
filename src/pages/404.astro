@@ -1,0 +1,174 @@
+---
+import StretchLayout from '../layouts/StretchLayout.astro';
+---
+
+<StretchLayout title="Page not found — Stretch Innovation" description="This page could not be found. Head back to Stretch Innovation or identify your growth bottleneck.">
+  <section class="not-found">
+    <div class="container">
+      <div class="big-404">404</div>
+      <span class="eyebrow">Page not found</span>
+      <h1>This page hit a <span class="accent">growth ceiling.</span></h1>
+      <p>Looks like this URL didn't scale. The good news: your growth potential still does. Let's get you back on track.</p>
+      <div class="cta-group">
+        <a href="/" class="btn-primary">← Back to homepage</a>
+        <a href="/bottleneck-quiz" class="btn-secondary">Identify your bottleneck →</a>
+      </div>
+      <div class="growth-note">
+        <p>💡 Fun fact: <strong>404</strong> is also the number of growth experiments we wish every company ran before giving up.</p>
+      </div>
+    </div>
+  </section>
+</StretchLayout>
+
+<style>
+  .not-found {
+    background: #06091d;
+    min-height: calc(100dvh - var(--header-height));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 24px var(--section-gap);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .not-found::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(37, 219, 153, 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(37, 219, 153, 0.04) 1px, transparent 1px);
+    background-size: 48px 48px;
+    pointer-events: none;
+  }
+
+  .container {
+    text-align: center;
+    max-width: 620px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .big-404 {
+    font-family: var(--font-display);
+    font-size: clamp(6rem, 20vw, 180px);
+    font-weight: 800;
+    line-height: 1;
+    background: linear-gradient(135deg, rgba(37, 219, 153, 0.18) 0%, rgba(95, 107, 211, 0.12) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: -4px;
+    margin-bottom: -10px;
+  }
+
+  .eyebrow {
+    display: inline-block;
+    font-family: var(--font-display);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #25db99;
+    background: rgba(37, 219, 153, 0.1);
+    border: 1px solid rgba(37, 219, 153, 0.25);
+    border-radius: 20px;
+    padding: 4px 14px;
+    margin-bottom: 20px;
+    margin-top: 8px;
+  }
+
+  .not-found h1 {
+    font-family: var(--font-display);
+    font-size: clamp(1.5rem, 4vw, 32px);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 16px;
+    color: #fff;
+  }
+
+  .accent {
+    color: #25db99;
+  }
+
+  .not-found p {
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.55);
+    line-height: 1.7;
+    margin-bottom: 36px;
+    max-width: 440px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .cta-group {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 48px;
+  }
+
+  .btn-primary {
+    background: #25db99;
+    color: #06091d;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 14px;
+    padding: 12px 24px;
+    border-radius: 6px;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: opacity 0.2s ease;
+  }
+
+  .btn-primary:hover {
+    opacity: 0.9;
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: rgba(255, 255, 255, 0.7);
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 14px;
+    padding: 12px 24px;
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition:
+      border-color 0.2s ease,
+      color 0.2s ease;
+  }
+
+  .btn-secondary:hover {
+    border-color: rgba(37, 219, 153, 0.35);
+    color: #ffffff;
+  }
+
+  .growth-note {
+    padding: 16px 24px;
+    border: 1px solid rgba(37, 219, 153, 0.15);
+    border-radius: 8px;
+    background: rgba(37, 219, 153, 0.04);
+    display: inline-block;
+  }
+
+  .growth-note p {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.4);
+    font-style: italic;
+    margin-bottom: 0;
+  }
+
+  .growth-note p strong {
+    color: #25db99;
+    font-style: normal;
+  }
+</style>
